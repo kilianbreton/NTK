@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CGE.CGEObject" Collapsed="true">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AogAAgAAAIAAAAEgAgYAAAAEAIAghAAABAQAAAAIAQI=</HashCode>
+      <FileName>CGE\CGEObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGE.CGEProgress" Collapsed="true">
+    <Position X="9.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAACAgAAIAAAAAAAAkACAABAAAAAAAAAA=</HashCode>
+      <FileName>CGE\CGEProgress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGE.CGEScreen" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAARAAgABQgQAIQAEAACAAgAAgABAAAAAAAAAA=</HashCode>
+      <FileName>CGE\CGEScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGE.CGEMenu" Collapsed="true">
+    <Position X="1.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AooAAiAAAIAAIAEgAgIAAAAEAIAghBAABAQQAEAIAQY=</HashCode>
+      <FileName>CGE\CGEMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGE.CGELoading" Collapsed="true">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAACAAgAAIAAAAAAAAkAAAABAABAAAAAAA=</HashCode>
+      <FileName>CGE\CGELoading.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CGE.CGEDataGrid" Collapsed="true">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAIAAAAgAAIAAAAAAAAgABAABAAAAAAAAAA=</HashCode>
+      <FileName>CGE\CGEDataGrid.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

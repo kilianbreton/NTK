@@ -1,0 +1,112 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
+
+namespace NTK.Database.ORM
+{
+    public class PrimaryKey
+    {
+        public PrimaryKey() { }
+        public PrimaryKey(params String[] names) {
+           // Fields.AddRange(names);
+        }
+        public List<DBSColumn> Fields { get => Fields; set => Fields = value; }
+    }
+
+    public class ModelValues
+    {
+        public Dictionary<String,Object> Values { get => Values; set => Values = value; }
+
+
+
+
+
+    }
+    
+    public abstract class BaseModel
+    {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// ATTRIBUTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private static bool isInit = false;
+
+        protected String table;
+        protected PrimaryKey pk;
+        protected List<Relation> relations;
+        protected List<DBSColumn> fields;
+        protected NTKDatabase db;
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        public BaseModel()
+        {
+            if (!isInit)
+            {
+                init();
+                isInit = false;
+            }
+        }
+
+
+        public abstract void init();
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// PUBLIQUES ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+        public Object select(int id)
+        {
+            return null;
+        }
+
+        public List<Object> select(String field, String value)
+        {
+            return null;
+        }
+
+        public List<Object> all()
+        {
+            return null;
+        }
+
+        public bool make()
+        {
+            return false;
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// PRIVEES //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void getPKname()
+        {
+            this.pk = new PrimaryKey();
+            bool end = false;
+            int cpt = 0;
+            while (!end)//todo : FOR
+            {
+                if (fields[cpt].PrimaryKey)
+                {
+                    this.pk.Fields.Add(fields[cpt]);
+                   
+
+                }
+                else if (cpt > fields.Count) { end = true; }
+                else { cpt++; }
+            }
+        }
+
+        //TODO : Set PK
+    }
+}
