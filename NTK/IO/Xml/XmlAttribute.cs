@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NTK.IO.Xml
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class XmlAttribute
     {
         private String name;

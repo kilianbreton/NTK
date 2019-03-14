@@ -11,13 +11,24 @@ using System.Configuration.Assemblies;
 
 namespace NTK.IO
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class FileManager
     {
         private NTKDatabase db = null;
         private List<FMDirectory> dirs = new List<FMDirectory>();
 
      
-       
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="path"></param>
+       /// <param name="name"></param>
+       /// <param name="size"></param>
+       /// <param name="sourceName"></param>
+       /// <param name="targetName"></param>
+       /// <returns></returns>
         public bool upload(String path, String name, int size,String sourceName, String targetName)
         {
           
@@ -38,7 +49,11 @@ namespace NTK.IO
             return ret;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public String getPath(String name)
         {
             var msr = (MySqlDataReader)db.select("SELECT path FROM FileManager WHERE name ='"+name+"';");

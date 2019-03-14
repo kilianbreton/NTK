@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,17 +8,26 @@ using static NTK.Other.NTKF;
 
 namespace NTK.IO.Ini
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class IniDocument
     {
         private List<IniGroup> groups = new List<IniGroup>();
+        private String path;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="textOrPath"></param>
+        /// <param name="isPath"></param>
         public IniDocument(String textOrPath, bool isPath = true)
         {
             List<String> texts = new List<String>();
             if (isPath)
             {
                 texts.AddRange(System.IO.File.ReadAllLines(textOrPath));
+                this.path = textOrPath;
             }
             else
             {
@@ -43,18 +53,36 @@ namespace NTK.IO.Ini
 
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="vals"></param>
+        /// <returns></returns>
         public IniGroup addGroup(String name, params IniValue[] vals)
         {
-            return new IniGroup(name,vals);
+            var g = new IniGroup(name, vals);
+            groups.Add(g);
+            return g;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="vals"></param>
+        /// <returns></returns>
         public IniGroup addGroup(String name, List<IniValue> vals)
         {
-            return new IniGroup(name, vals);
+            var g = new IniGroup(name, vals);
+            groups.Add(g);
+            return g;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public IniGroup getGroup(String name)
         {
             IniGroup ret = null;
@@ -67,7 +95,10 @@ namespace NTK.IO.Ini
 
             return ret;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String print()
         {
             String ret = "";
@@ -79,6 +110,20 @@ namespace NTK.IO.Ini
             return ret;
         }
 
+        /// <summary>
+        /// Save File
+        /// </summary>
+        public void save()
+        {
+            var strm = File.Create(path);
+            var sw = new StreamWriter(strm);
+            sw.WriteLine(this.print());
+            sw.Flush();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public List<IniGroup> Groups { get => groups; set => groups = value; }
     }
 }

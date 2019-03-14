@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CGE.IN
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Menu : CGEObject
     {
         private String[] tab;
@@ -24,7 +27,10 @@ namespace CGE.IN
         private ConsoleColor selectForeColor = ConsoleColor.White;
         private bool canEsc=false;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tab"></param>
         public Menu(String[] tab)
         {
             this.tab = tab;
@@ -40,7 +46,10 @@ namespace CGE.IN
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override String show()
         {
             Console.CursorVisible = false;
@@ -137,13 +146,19 @@ namespace CGE.IN
             return tab[IndiceM];
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="margin"></param>
         public void setMarginsTxt(int margin)
         {
             marginLeftTxt = margin;
             marginRightTxt = margin;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void draw() 
         {
             var tmp = "";
@@ -172,6 +187,12 @@ namespace CGE.IN
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nb"></param>
+        /// <param name="str"></param>
+        /// <returns></returns>
         private String generStr(int nb,String str)
         {
             var ret = "";
@@ -182,6 +203,10 @@ namespace CGE.IN
             return ret;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
         private void setIndice(int i)
         {
             if (i < tab.Length)
@@ -190,38 +215,88 @@ namespace CGE.IN
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void start()
         {
             show();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
         public override void draw(int i = 0)
         {
             show();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bad"></param>
         public override void stop(bool bad = false)
         {
             show();
         }
 
-       
+
 
 
 
         //Getter & Setters---------------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
         public int MarginLeft { get => marginLeft; set => marginLeft = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int MarginLeftTxt { get => marginLeftTxt; set => marginLeftTxt = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int IndiceM { get => indiceM; set => indiceM = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int StartPosX { get => startPosX; set => startPosX = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int MoreWidth { get => moreWidth; set => moreWidth = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Center { get => center; set => center = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int MarginRightTxt { get => marginRightTxt; set => marginRightTxt = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int StartPosY { get => startPosY; set => startPosY = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleColor DefaultBackColor { get => defaultBackColor; set => defaultBackColor = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Maxlength { get => maxlength; set => maxlength = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleColor DefaultForeColor { get => defaultForeColor; set => defaultForeColor = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleColor SelectBackColor { get => selectBackColor; set => selectBackColor = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleColor SelectForeColor { get => selectForeColor; set => selectForeColor = value; }
     }
 }

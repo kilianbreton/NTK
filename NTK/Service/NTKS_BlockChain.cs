@@ -6,15 +6,22 @@ using System.Threading.Tasks;
 using NTK.Other;
 using NTK.P2P;
 
-namespace NTK.Services
+namespace NTK.Service
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class NTKS_BlockChain : P2PService
     {
         public override void c_authentification(NTKUser user)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="cmd"></param>
         public override void c_listen(NTKUser user,String cmd)
         {
             throw new NotImplementedException();
@@ -39,6 +46,8 @@ namespace NTK.Services
         {
             throw new NotImplementedException();
         }
+
+       
 
         public override void s_listen(NTKUser user)
         {

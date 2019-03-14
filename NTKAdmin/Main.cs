@@ -28,7 +28,6 @@ namespace NTKAdmin
         public Main()
         {
             InitializeComponent();
-           
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,7 +89,6 @@ namespace NTKAdmin
             }
         }
 
-
         private void manageStartPlug(IBasePlugin plug)
         {
             if (plug.getType().Equals(PluginType.FORM))
@@ -105,16 +103,13 @@ namespace NTKAdmin
             }
         }
 
-
-
-
         private void launchClient()
         {
-            client.Connect += new NTKClient.OnConnectEventHandler(client_connect);
-            client.GetService += new NTKClient.OnGetServiceEventHandler(client_getservice);
-            client.Identification += new NTKClient.OnIdentificationEventHandler(client_ident);
-            client.Error += new NTKClient.OnErrorEventHandler(client_error);
-            client.Stop += new NTKClient.OnStopEventHandler(client_stop);
+            client.Connect += new OnConnectEventHandler(client_connect);
+            client.GetService += new OnGetServiceEventHandler(client_getservice);
+            client.Identification += new OnIdentificationEventHandler(client_ident);
+            client.Error += new OnErrorEventHandler(client_error);
+            client.Stop += new OnStopEventHandler(client_stop);
             client.Logs = Log_NTK.getInstance(@"Logs\NTKClient.log");
             clientThread = new Thread(client.connect);
             clientThread.Start();
@@ -147,25 +142,27 @@ namespace NTKAdmin
         //------------------------ACTIONS APRES INITIALISATION DU SERVICE--------------------------
         private void client_getservice(object sender, GetServiceEventArgs args)
         {
-            client.Service.getUserEvent += new NTKService.OnGetUserEventHandler(service_getUserList);
-            client.Service.getGrpEvent += new NTKService.OnGetGrpEventHandler(service_getGrpList);
-            client.Service.getActuEvent += new NTKService.OnGetActuEventHandler(service_getActu);
-            client.Service.getMsgEvent += new NTKService.OnGetMsgEventHandler(service_getMsg);
+            client.Service.getUserEvent += new OnGetUserEventHandler(service_getUserList);
+            client.Service.getGrpEvent += new OnGetGrpEventHandler(service_getGrpList);
+            client.Service.getActuEvent += new OnGetActuEventHandler(service_getActu);
+            client.Service.getMsgEvent += new OnGetMsgEventHandler(service_getMsg);
            
         }
 
         //-------------------------ACTIONS APRES CONNEXION----------------------------------------
         private void client_connect(object sender, OnConnectEventArgs args)
         {
-            client.User.WriteMsg += new NTKUser.OnWriteEventHandler(client_WriteMsg);
-            client.User.ReadMsg += new NTKUser.OnReadEventHandler(client_ReadMsg);
+            client.User.WriteMsg += new OnWriteEventHandler(client_WriteMsg);
+            client.User.ReadMsg += new OnReadEventHandler(client_ReadMsg);
         }
 
+        //--------------------------ECRITURE------------------------------------------------------
         private void client_WriteMsg(object sender, MsgArgs args)
         {
 
             writeConsole(args.ReadText, Color.DodgerBlue);
         }
+        //--------------------------LECTURE-------------------------------------------------------
         private void client_ReadMsg(object sender, MsgArgs args)
         {
             writeConsole(args.ReadText, Color.Orange);
@@ -189,6 +186,7 @@ namespace NTKAdmin
                 dgw_users.Rows.Add(id++, e.getLogin(), e.getLVL(), e.getMail(), e.getPicid());
             }
         }
+        
         //-------------------------GET GRPS------------------------------------------------------
         private void service_getGrpList(object sender, GetGrpEventArgs e)
         {
@@ -201,8 +199,7 @@ namespace NTKAdmin
 
         }
 
-
-        //Methodesd'évènements :
+        //-------------------------GET ACTU------------------------------------------------------
         private void service_getActu(object sender, GetActuEventArgs args)
         {
             while (args.next())

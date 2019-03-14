@@ -174,7 +174,7 @@ namespace NTK.Service
             {
                 authentification = false,
                 stype = "DPT",
-                tables_prefix = "dpt1_",
+              
             };
          
 

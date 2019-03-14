@@ -8,7 +8,9 @@ using static CGE.NTKF;
 namespace CGE.IN
 {
 
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class TreeView : CGEObject
     {
         private List<TVNode> nodelist;
@@ -18,14 +20,21 @@ namespace CGE.IN
         private ConsoleColor selectForeColor = ConsoleColor.White;
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="node"></param>
         public TreeView(TVNode node)
         {
             this.Nodelist = new List<TVNode>();
             this.Nodelist.Add(node);
             Console.OutputEncoding = Encoding.Unicode;
         }
-
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
         public TreeView(List<TVNode> list)
         {
             this.Nodelist = list;
@@ -33,12 +42,19 @@ namespace CGE.IN
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
         public override void draw(int i = 0)
         {
             
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string show()
         {
             var end = false;
@@ -116,7 +132,10 @@ namespace CGE.IN
         }
 
 
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private int searchSelected()
         {
             int cpt = 0;
@@ -146,17 +165,34 @@ namespace CGE.IN
             return cpt;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bad"></param>
         public override void stop(bool bad = false)
         {
             throw new NotImplementedException();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleColor DefaultBackColor { get => defaultBackColor; set => defaultBackColor = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleColor DefaultForeColor { get => defaultForeColor; set => defaultForeColor = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleColor SelectBackColor { get => selectBackColor; set => selectBackColor = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleColor SelectForeColor { get => selectForeColor; set => selectForeColor = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<TVNode> Nodelist { get => nodelist; set => nodelist = value; }
     }
 }

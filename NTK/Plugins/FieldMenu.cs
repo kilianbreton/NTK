@@ -6,8 +6,38 @@ using System.Threading.Tasks;
 
 namespace NTK.Plugins
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum FieldMenu
     {
-        TOOL,SETTINGS,WINDOW,TAB,OTHER,CONTEXT,NEW
+        /// <summary>
+        /// 
+        /// </summary>
+        TOOL,
+        /// <summary>
+        /// 
+        /// </summary>
+        SETTINGS,
+        /// <summary>
+        /// 
+        /// </summary>
+        WINDOW,
+        /// <summary>
+        /// 
+        /// </summary>
+        TAB,
+        /// <summary>
+        /// 
+        /// </summary>
+        OTHER,
+        /// <summary>
+        /// 
+        /// </summary>
+        CONTEXT,
+        /// <summary>
+        /// 
+        /// </summary>
+        NEW
     }
 }

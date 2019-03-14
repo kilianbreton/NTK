@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NTK;
 using NTK.EventsArgs;
 using NTK.Other;
-
+using NTK.Service;
 
 namespace ServiceTest
 {

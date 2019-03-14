@@ -13,6 +13,7 @@ using NTK.Other;
 using System.IO;
 using NTK.IO;
 using NTK.Plugins;
+using NTK.Service;
 
 namespace NTKAdmin
 {

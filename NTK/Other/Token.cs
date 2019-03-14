@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace NTK.Other
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Token
     {
         private DateTime date;
         private String token;
         private String login;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="token"></param>
+        /// <param name="login"></param>
         public Token(string token, string login)
         {
             this.token = token;

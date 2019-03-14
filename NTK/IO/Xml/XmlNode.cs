@@ -8,6 +8,9 @@ using static NTK.Other.NTKF;
 
 namespace NTK.IO.Xml
 {
+    /// <summary>
+    /// Noeud (ou balise) Xml
+    /// </summary>
     public class XmlNode
     {
         private List<XmlNode> nodelist = new List<XmlNode>();
@@ -15,10 +18,10 @@ namespace NTK.IO.Xml
         private String name;
         int index = -1;
 
-        public List<XmlAttribute> Attributs { get; set; }
+   
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
@@ -29,13 +32,14 @@ namespace NTK.IO.Xml
         {
             this.name = name;
         }
+      
         /// <summary>
         /// Création d'un noeud (Balise)
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        /// <param name="attributs"></param>
-        /// <param name="child"></param>
+        /// <param name="name">Nom de la balise</param>
+        /// <param name="value">Valeur si il y en a une (null sinon)</param>
+        /// <param name="attributs">List des attributs</param>
+        /// <param name="child">Balise enfant</param>
         public XmlNode(String name, String value, List<XmlAttribute> attributs = null, XmlNode child = null)
         {
             this.name = name;
@@ -50,6 +54,7 @@ namespace NTK.IO.Xml
                 nodelist.Add(child);
             }
         }
+  
         /// <summary>
         /// Création d'un noeud (Balise)
         /// </summary>
@@ -64,12 +69,20 @@ namespace NTK.IO.Xml
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methodes Publiques ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool read()
         {
             return (++index < nodelist.Count);
         }
-
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public XmlNode getNode()
         {
             XmlNode ret = null;
@@ -98,10 +111,12 @@ namespace NTK.IO.Xml
                 text = delseps(text, "<!--", "-->");
             }
 
-            if (nbChar(text, '<') != nbChar(text, '>'))
+            if (text.Contains("<?xml"))
             {
-                throw new Exception("XmlNode Exception : Bad syntax !");
+                text = delseps(text, "<?xml", "?>");
             }
+
+          
 
             while (text.Contains("<") && text.Contains(">") && text.Contains("/"))//Si il y a une sous-balise (enfant)
             {
@@ -115,12 +130,12 @@ namespace NTK.IO.Xml
                     }
                     String childnameEnd = childname;
                     //------------------------------------Parseur d'arguments------------------------------------------------
-                    if (childname.IndexOf(" ") >= 0)//Si il y a un espace dans le nom il y a des arguments ou une erreur de syntaxe
+                    if (childname.Contains(" "))//Si il y a un espace dans le nom il y a des arguments ou une erreur de syntaxe
                     {
                         int nbEquals = nbChar(childname, '=');
                         int nbQuote = nbChar(childname, '"');
 
-                        if (nbQuote == (nbEquals * 2))//arg="value"  //il doit y avoir 2 fois plus de ' " ' que de ' = '
+                        if (nbQuote == (nbEquals * 2))//arg="value"   //il doit y avoir 2 fois plus de ' " ' que de ' = '
                         {
                             String temp = childname;
                             childnameEnd = subsep(childname, 0, " ");
@@ -185,32 +200,52 @@ namespace NTK.IO.Xml
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Attributs /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+   
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public bool haveAttributes()
         {
             return (Attributs != null);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="att"></param>
+        /// <returns></returns>
         public XmlNode addAttribute(XmlAttribute att)
         {
             initAtt();
             Attributs.Add(att);
             return this;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public XmlNode addAttribute(String name, String value)
         {
-           
             initAtt();
             Attributs.Add(new XmlAttribute(name, value));
             return this;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public XmlAttribute getAttribute(int id)
         {
             return Attributs[id];
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public XmlAttribute getAttribute(String name)
         {
             int compt = 0;
@@ -237,7 +272,11 @@ namespace NTK.IO.Xml
             }
             return ret;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public String getAttibuteV(String name)
         {
             return getAttribute(name).Value;
@@ -248,9 +287,9 @@ namespace NTK.IO.Xml
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// retourne true si l'enfant n°id existe
+        /// retourne true si l'enfant n°<c>id</c> existe
         /// </summary>
-        /// <param name="name"></param>
+        /// <param id="id"></param>
         /// <returns></returns>
         public bool isChildExist(int id)
         {
@@ -286,6 +325,11 @@ namespace NTK.IO.Xml
             return nodelist.Count;
         }
        
+        /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="name"></param>
+       /// <returns></returns>
         public List<XmlNode> getChildList(String name)
         {
             var ret = new List<XmlNode>();
@@ -299,7 +343,11 @@ namespace NTK.IO.Xml
             }
             return ret;
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<XmlNode> getChildList()
         {
             return nodelist;
@@ -545,7 +593,11 @@ namespace NTK.IO.Xml
 
              return ret;
         }
-
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String printWA()
         {
             String ret = "<" + name;
@@ -578,26 +630,46 @@ namespace NTK.IO.Xml
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // GETTERS & SETTERS /////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
         public void setName(String name)
         {
             this.name = name;
         }
-
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String getName()
         {
             return this.name;
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
         public void setValue(String value)
         {
             this.value = value;
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String getValue()
         {
             return this.value;
         }
+
+        /// <summary>
+        /// Liste des attributs
+        /// </summary>
+        public List<XmlAttribute> Attributs { get; set; }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methodes privées //////////////////////////////////////////////////////////////////////////////////////////////////

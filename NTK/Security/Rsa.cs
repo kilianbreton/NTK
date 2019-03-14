@@ -7,6 +7,9 @@ using System.Numerics;
 using System.Security.Cryptography;
 namespace NTK.Security
 {
+    /// <summary>
+    /// Rsa class deprecated
+    /// </summary>
     [Obsolete("Rsa class is deprecated, use NTKRsa")]
     public class Rsa
     {
@@ -19,6 +22,10 @@ namespace NTK.Security
         private RSAKeygen pub_key = new RSAKeygen();
         private RSAKeygen priv_key = new RSAKeygen();
         private BigInteger n;
+
+        /// <summary>
+        /// Constructor make random keys
+        /// </summary>
         public Rsa()
         {
             p.randomGenerator();

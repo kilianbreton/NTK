@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NTK;
 using NTK.Other;
-using NTK.Services;
+using NTK.Service;
 using NTK.IO;
 using System.Threading;
 using NTK.EventsArgs;
@@ -35,8 +35,8 @@ namespace CLIENT_NTK
         {
             client = new NTKClient(ip, port, login, pass);
             client.Lvl = USER_LVL.USER;
-            client.Connect += new NTKClient.OnConnectEventHandler(client_connect);
-            client.GetService += new NTKClient.OnGetServiceEventHandler(client_getservice);
+            client.Connect += new OnConnectEventHandler(client_connect);
+            client.GetService += new OnGetServiceEventHandler(client_getservice);
             //  client.Identification += new NTKClient.OnIdentificationEventHandler(client_ident);
 
             clientThread = new Thread(client.connect);
@@ -47,15 +47,15 @@ namespace CLIENT_NTK
         //-------------------------ACTIONS APRES CONNEXION----------------------------------------
         private void client_connect(object sender, OnConnectEventArgs args)
         {
-            client.User.WriteMsg += new NTKUser.OnWriteEventHandler(client_WriteMsg);
-            client.User.ReadMsg += new NTKUser.OnReadEventHandler(client_ReadMsg);
+            client.User.WriteMsg += new OnWriteEventHandler(client_WriteMsg);
+            client.User.ReadMsg += new OnReadEventHandler(client_ReadMsg);
         }
 
         //------------------------ACTIONS APRES INITIALISATION DU SERVICE--------------------------
         private void client_getservice(object sender, GetServiceEventArgs args)
         {
-            client.Service.getUserEvent += new NTKService.OnGetUserEventHandler(service_getUserList);
-            client.Service.getActuEvent += new NTKService.OnGetActuEventHandler(service_getActu);
+            client.Service.getUserEvent += new OnGetUserEventHandler(service_getUserList);
+            client.Service.getActuEvent += new OnGetActuEventHandler(service_getActu);
             /* client.Service.getGrpEvent += new NTKService.OnGetGrpEventHandler(service_getGrpList);
              client.Service.getMsgEvent += new NTKService.OnGetMsgEventHandler(service_getMsg);
  */

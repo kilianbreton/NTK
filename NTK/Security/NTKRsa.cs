@@ -8,13 +8,19 @@ using NTK.IO.Xml;
 
 namespace NTK.Security
 {
+    /// <summary>
+    /// Classe de chiffrement RSA
+    /// </summary>
     public class NTKRsa
     {
         private RSACryptoServiceProvider csp;
-        
-    
         private UTF8Encoding encoder = new UTF8Encoding();
-
+     
+        /// <summary>
+        /// Instanciation avec clé
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="priv"></param>
         public NTKRsa(String key, Boolean priv = true)
         {
             csp = new RSACryptoServiceProvider();
@@ -22,14 +28,23 @@ namespace NTK.Security
             
            
         }
-   /// <summary>
-   /// Create new Rsa cypher auto-generated Keys
-   /// </summary>
+      
+        /// <summary>
+        /// Create new Rsa cypher auto-generated Keys
+        /// </summary>
         public NTKRsa()
         {
             csp = new RSACryptoServiceProvider();
         }
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public String encrypt(String text)
         {
             var bytes = encoder.GetBytes(text);
@@ -37,18 +52,35 @@ namespace NTK.Security
             return Convert.ToBase64String(encText);
         }
   
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public String decrypt(String text)
         {
             var bytes = Convert.FromBase64String(text);
             return encoder.GetString(csp.Decrypt(bytes, false));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="algoOID"></param>
+        /// <returns></returns>
         public String signHash(byte[] text,String algoOID)
         {
             //var bytes = Encoding.UTF8.GetBytes(text);
             return encoder.GetString(csp.SignHash(text,algoOID));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="priv"></param>
+        /// <returns></returns>
         public String generateCert(String name,bool priv)
         {
             String pubkey = this.getKey();
@@ -68,11 +100,22 @@ namespace NTK.Security
             return xmlp.print();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="name"></param>
+        /// <param name="priv"></param>
         public void generateCert(String path,String name,bool priv)
         {
             System.IO.File.WriteAllText(path, this.generateCert(name, priv));
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="priv"></param>
+        /// <returns></returns>
         public String getKey(Boolean priv = false)
         {
             return csp.ToXmlString(priv);

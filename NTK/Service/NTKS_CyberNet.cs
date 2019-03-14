@@ -90,12 +90,9 @@ namespace NTK.Service
             {
                 authentification = false,
                 stype = "CN",
-                tables_prefix = "cn_",
+               
             };
-            c.queryServiceData = new List<String[]>();
-            c.queryServiceData.Add(new String[] { "select Login,sn_users.Name,sn_groups.name,LVL from sn_users INNER JOIN sn_groups ON GrpID = sn_groups.id","USERS" });
-            c.queryServiceData.Add(new String[] { "select * from sn_groups;" ,"GROUPS"});
-            
+           
             
             //c.tables.Add();
 

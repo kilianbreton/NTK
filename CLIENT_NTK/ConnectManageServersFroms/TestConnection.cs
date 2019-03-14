@@ -24,7 +24,7 @@ namespace CLIENT_NTK
             InitializeComponent();
             this.frm = frm;
             client = new NTKClient(adrs, port, login, pass,regkey,reg);
-            client.Identification += new NTKClient.OnIdentificationEventHandler(client_ident);
+            client.Identification += new OnIdentificationEventHandler(client_ident);
 
             thclient = new Thread(client.connect);
             thclient.Start();

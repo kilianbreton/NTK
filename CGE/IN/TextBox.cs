@@ -6,11 +6,48 @@ using System.Threading.Tasks;
 
 namespace CGE.IN
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum TBType
     {
-        Text,Int,Float,DateDMY,DateHHMMSS,Mail,Tel,Adress
+        /// <summary>
+        /// 
+        /// </summary>
+        Text,
+        /// <summary>
+        /// 
+        /// </summary>
+        Int,
+        /// <summary>
+        /// 
+        /// </summary>
+        Float,
+        /// <summary>
+        /// 
+        /// </summary>
+        DateDMY,
+        /// <summary>
+        /// 
+        /// </summary>
+        DateHHMMSS,
+        /// <summary>
+        /// 
+        /// </summary>
+        Mail,
+        /// <summary>
+        /// 
+        /// </summary>
+        Tel,
+        /// <summary>
+        /// 
+        /// </summary>
+        Adress
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class TextBox : CGEObject
     {
         private String name;
@@ -19,6 +56,14 @@ namespace CGE.IN
         private ConsoleColor back;
         private ConsoleColor text;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="block"></param>
+        /// <param name="back"></param>
+        /// <param name="text"></param>
         public TextBox(String name,TBType type,ConsoleColor block = ConsoleColor.DarkGray,
             ConsoleColor back = ConsoleColor.Cyan, ConsoleColor text = ConsoleColor.Black)
         {
@@ -29,11 +74,19 @@ namespace CGE.IN
             this.text = text;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
         public override void draw(int i = 0)
         {
             show();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string show()
         {
             var ret = "";
@@ -178,7 +231,10 @@ namespace CGE.IN
         }
 
       
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bad"></param>
         public override void stop(bool bad = false)
         {
             throw new NotImplementedException();

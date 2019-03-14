@@ -14,27 +14,86 @@ using static NTK.Other.NTKF;
 
 namespace NTK
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    public delegate void OnIdentificationEventHandler(object sender, IdentificationEventArgs args);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    public delegate void OnReadEventHandler(object sender, MsgArgs args);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    public delegate void OnWriteEventHandler(object sender, MsgArgs args);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    public delegate void OnGetServiceEventHandler(object sender, GetServiceEventArgs args);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    public delegate void OnConnectEventHandler(object sender, OnConnectEventArgs args);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    public delegate void OnErrorEventHandler(object sender, OnErrorEventArgs args);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    public delegate void OnStopEventHandler(object sender, StopEventArgs args);
    
+    
+    /// <summary>
+    /// Client tcp
+    /// </summary>
     public class NTKClient
     {
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// EVENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        public delegate void OnIdentificationEventHandler(object sender, IdentificationEventArgs args);
-        public delegate void OnReadEventHandler(object sender, MsgArgs args);
-        public delegate void OnWriteEventHandler(object sender, MsgArgs args);
-        public delegate void OnGetServiceEventHandler(object sender, GetServiceEventArgs args);
-        public delegate void OnConnectEventHandler(object sender, OnConnectEventArgs args);
-        public delegate void OnErrorEventHandler(object sender, OnErrorEventArgs args);
-        public delegate void OnStopEventHandler(object sender, StopEventArgs args);
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // EVENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnConnectEventHandler Connect;
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnIdentificationEventHandler Identification;
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnReadEventHandler ReadMsg;
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnGetServiceEventHandler GetService;
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnWriteEventHandler WriteMsg;
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnErrorEventHandler Error;
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnStopEventHandler Stop;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,16 +115,30 @@ namespace NTK
         private Log_NTK logs;
         private USER_LVL lvl;
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="adrs"></param>
+        /// <param name="port"></param>
         public NTKClient(String adrs,int port)
         {
             this.Adrs = adrs;
             this.Port = port;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="adrs"></param>
+        /// <param name="port"></param>
+        /// <param name="login"></param>
+        /// <param name="pass"></param>
+        /// <param name="seckey"></param>
+        /// <param name="reg"></param>
         public NTKClient(String adrs,int port, String login,String pass, String seckey = "none", bool reg = false)
         {
             this.Adrs = adrs;
@@ -79,10 +152,13 @@ namespace NTK
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// METHODES /////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHODES /////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   
+        /// <summary>
+        /// 
+        /// </summary>
         public void connect()
         {
             try
@@ -108,7 +184,11 @@ namespace NTK
             }
            
         }
-
+ 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="u"></param>
         public void listenLoop(NTKUser u)
         {
             bool find = false;
@@ -132,7 +212,7 @@ namespace NTK
                             case "BASIC":
                                 var conf = new ServiceConfig();
                                 conf.authentification = false;
-                                conf.ctype = ctype.ToString();
+                                
                                 service = new NTKS_Basic(conf);
                                 Console.WriteLine("- OK");
                                 break;
@@ -234,15 +314,10 @@ namespace NTK
             }
         }
 
-        private void ident_tls(NTKUser user)
-        {
-            addLogs(LogsTypes.NOTICE, "Sécurisation de la connexion");
-            NTKRsa rsa = new NTKRsa(user.readMsg(), false);
-            Random rnd = new Random();
-            user.writeMsg(rsa.encrypt(user.Cipher.getKey()));
-            user.Tls = true;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String readMsg()
         {
             String tmp = User.readMsg();
@@ -252,6 +327,10 @@ namespace NTK
             return tmp;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="msg"></param>
         public void writeMsg(String msg)
         {
             MsgArgs argsE = new MsgArgs(User.Login + " : " + msg);
@@ -260,17 +339,23 @@ namespace NTK
             User.writeMsg(msg);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void closeConnection()
         {
             writeMsg(NTKCommands.C_STOP);
             client.Close();
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// METHODES ASYNCHRONES /////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHODES ASYNCHRONES /////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task connectAsync()
         {
             try
@@ -297,6 +382,11 @@ namespace NTK
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="u"></param>
+        /// <returns></returns>
         public async Task listenLoopAsync(NTKUser u)
         {
             bool find = false;
@@ -320,7 +410,7 @@ namespace NTK
                             case "BASIC":
                                 var conf = new ServiceConfig();
                                 conf.authentification = false;
-                                conf.ctype = ctype.ToString();
+                            
                                 service = new NTKS_Basic(conf);
                                 Console.WriteLine("- OK");
                                 break;
@@ -422,16 +512,10 @@ namespace NTK
             }
         }
 
-        private async Task ident_tlsAsync(NTKUser user)
-        {
-            addLogs(LogsTypes.NOTICE, "Sécurisation de la connexion");
-            NTKRsa rsa = new NTKRsa(user.readMsg(), false);
-            Random rnd = new Random();
-            // user.Cipher = new NTKAes(NTKAes.CreateKey(rnd.Next(666666)));
-            await user.writeMsgAsync(rsa.encrypt(user.Cipher.getKey()));
-            user.Tls = true;
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task<String> readMsgAsync()
         {
             String tmp = await User.readMsgAsync();
@@ -441,6 +525,11 @@ namespace NTK
             return tmp;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <returns></returns>
         public async Task writeMsgAsync(String msg)
         {
             MsgArgs argsE = new MsgArgs(User.Login + " : " + msg);
@@ -449,6 +538,10 @@ namespace NTK
             await User.writeMsgAsync(msg);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public async Task closeConnectionAsync()
         {
             await writeMsgAsync(NTKCommands.C_STOP);
@@ -456,40 +549,64 @@ namespace NTK
         }
 
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// EVENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // EVENTS ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnIdentification(IdentificationEventArgs e)
         {
             if (Identification != null)
                 Identification(this, e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnGetService(GetServiceEventArgs e)
         {
             if (GetService != null)
                 GetService(this, e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnReadMsg(MsgArgs e)
         {
             if (ReadMsg != null)
                 ReadMsg(this, e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnWriteMsg(MsgArgs e)
         {
             if (WriteMsg != null)
                 WriteMsg(this, e);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnConnect(OnConnectEventArgs e)
         {
             if (Connect != null)
                 Connect(this, e);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnError(OnErrorEventArgs e)
         {
             if(Error != null)
@@ -498,6 +615,10 @@ namespace NTK
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnStop(StopEventArgs e)
         {
             if (Stop != null)
@@ -506,9 +627,18 @@ namespace NTK
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// METHODES PRIVEES /////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHODES PRIVEES /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void ident_tls(NTKUser user)
+        {
+            addLogs(LogsTypes.NOTICE, "Sécurisation de la connexion");
+            NTKRsa rsa = new NTKRsa(user.readMsg(), false);
+            Random rnd = new Random();
+            user.writeMsg(rsa.encrypt(user.Cipher.getKey()));
+            user.Tls = true;
+        }
 
         private void addLogs(String type, String text)
         {
@@ -519,21 +649,67 @@ namespace NTK
             }
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// GETTER ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        private async Task ident_tlsAsync(NTKUser user)
+        {
+            addLogs(LogsTypes.NOTICE, "Sécurisation de la connexion");
+            NTKRsa rsa = new NTKRsa(user.readMsg(), false);
+            Random rnd = new Random();
+            // user.Cipher = new NTKAes(NTKAes.CreateKey(rnd.Next(666666)));
+            await user.writeMsgAsync(rsa.encrypt(user.Cipher.getKey()));
+            user.Tls = true;
+        }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // GETTER ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// 
+        /// </summary>
         public NTKUser User { get => user; set => user = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Port { get => port; set => port = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Adrs { get => adrs; set => adrs = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Stype { get => stype; set => stype = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public CTYPE Ctype { get => ctype; set => ctype = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Seckey { get => seckey; set => seckey = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public TcpClient Client { get => client; set => client = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Login { get => login; set => login = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Pass { get => pass; set => pass = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public NTKService Service { get => service; set => service = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public Log_NTK Logs { get => logs; set => logs = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public USER_LVL Lvl { get => lvl; set => lvl = value; }
     }
 }

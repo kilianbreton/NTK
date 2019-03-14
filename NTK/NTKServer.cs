@@ -27,6 +27,9 @@ using static NTK.Separators;
 
 namespace NTK
 {
+    /// <summary>
+    /// Serveur tcp pouvant héberger un service
+    /// </summary>
     public sealed class NTKServer
     {
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -58,27 +61,47 @@ namespace NTK
         private List<IEncryptor> extEncryptor = new List<IEncryptor>();
         private List<IBasePlugin> extPlugins = new List<IBasePlugin>();
 
+        /// <summary>
+        /// Lecture d'un message sur le flux
+        /// </summary>
         public event EventHandler ReadMsg;
         
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        
+        /// <summary>
+        /// Créé un serveur basique
+        /// </summary>
+        /// <param name="port"></param>
+        /// <param name="ctype"></param>
         public NTKServer(int port, CTYPE ctype)
         {
             this.port = port;
             this.ctype = ctype;
             rsa = new NTKRsa();  
         }
-        
+    
+        /// <summary>
+        /// Constructeur avec fichier de configuration
+        /// </summary>
+        /// <param name="configPath">Chemin vers le fichier</param>
         public NTKServer(string configPath)
         {
             this.confpath = configPath;
             parse();
             rsa = new NTKRsa();
         }
-
+   
+        /// <summary>
+        /// Créé un serveur basique
+        /// </summary>
+        /// <param name="port">port d'écoute</param>
+        /// <param name="ctype">type d'authentification</param>
+        /// <param name="tls">communication chiffrée</param>
+        /// <param name="secKey">clé de sécurité</param>
+        /// <param name="db">connection à une base de données</param>
         public NTKServer(int port, CTYPE ctype, bool tls, String secKey, NTKDatabase db) {
             this.port = port;
             this.ctype = ctype;
@@ -87,12 +110,18 @@ namespace NTK
             this.database = db;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public NTKServer() { }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHODES PUBLIQUES ////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
+        /// <summary>
+        /// Methode de démarrage du serveur (Méthode bloquante) 
+        /// </summary>
         public void start()
         {
             addLogs(LogsTypes.NOTICE, "Server start");
@@ -159,7 +188,11 @@ namespace NTK
             }
 
         }
-      
+  
+        /// <summary>
+        /// Gére le protocole de chiffrement TLS
+        /// </summary>
+        /// <param name="user">Utilisateur</param>
         public void ident_tls(NTKUser user)
         {
             addLogs(LogsTypes.NOTICE, "TLS Identification : " + user.Name);
@@ -175,7 +208,11 @@ namespace NTK
              //   user.writeMsg("OK");
             }
         }
-
+ 
+        /// <summary>
+        /// Boucle d'écoute
+        /// </summary>
+        /// <param name="user">Utilisateur</param>
         public void basicListen(NTKUser user)
         {
             while (user.Client.Connected)
@@ -217,14 +254,7 @@ namespace NTK
                                 "INNER JOIN sn_groups ON GrpID = sn_groups.id", true);
                             user.writeMsg(answer);
                         }
-                        else if (tmp.Contains("GET SERVICE DATA"))
-                        {
-                            List<String[]> liste = service.Config.queryServiceData;
-                            for (int i = 0;i< liste.Count; i++)
-                            {
-                              user.writeMsg(database.queryOverNTK(liste[i][0], true, liste[i][1])); 
-                            }
-                        }
+                    
                         else
                         {
                             commandesClassiques(tmp, user);
@@ -714,7 +744,7 @@ namespace NTK
                 case "BASIC":
                     var conf = new ServiceConfig();
                     conf.authentification = false;
-                    conf.ctype = ctype.ToString();
+                  
                     service = new NTKS_Basic(conf);
                     Console.WriteLine(" [OK]");
                     break;
@@ -756,7 +786,6 @@ namespace NTK
                         conf = new ServiceConfig
                         {
                             authentification = false,
-                            ctype = ctype.ToString()
                         };
                         service = new NTKS_Basic(conf);
                         addLogs(LogsTypes.CRITICAL, "Default Service 'BASIC' loaded");
@@ -780,24 +809,82 @@ namespace NTK
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // GETTERS & SETTERS /////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+     
+        /// <summary>
+        /// 
+        /// </summary>
         public int Port {get => port; set {     if (!run) { port = value; }   }}
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get => name; set => name = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Stype { get => stype; set => stype = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public NTKService Service { get => service; }
+        /// <summary>
+        /// 
+        /// </summary>
         public CTYPE Ctype { get => ctype; set => ctype = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public bool Tls { get => tls; set => tls = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public bool Plugins { get => plugins; set => plugins = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<Token> Tokenlist { get => tokenlist; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<string> StopCodes { get => stopCodes; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<NTKUser> Userlist { get => userlist; set => userlist = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public NTKDatabase Database { get => database; set => database = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Confpath { get => confpath; set => confpath = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public NTKRsa Rsa { get => rsa; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string SecKey { get => secKey; set => secKey = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public bool Pause { get => pause; set => pause = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public bool Stop { get => stop; set => stop = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public XmlDocument Config { get => config; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<NTKService> ExtServices { get => extServices; set => extServices = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public Log_NTK Logs { get => logs; set => logs = value; }
     }
 }

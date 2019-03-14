@@ -1,0 +1,319 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CGE</name>
+    </assembly>
+    <members>
+        <member name="T:CGE.IN.TreeView">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.IN.TreeView.#ctor(CGE.IN.TVNode)">
+            <summary>
+            
+            </summary>
+            <param name="node"></param>
+        </member>
+        <member name="M:CGE.IN.TreeView.#ctor(System.Collections.Generic.List{CGE.IN.TVNode})">
+            <summary>
+            
+            </summary>
+            <param name="list"></param>
+        </member>
+        <member name="M:CGE.IN.TreeView.draw(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:CGE.IN.TreeView.show">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CGE.IN.TreeView.searchSelected">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CGE.IN.TreeView.stop(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="bad"></param>
+        </member>
+        <member name="P:CGE.IN.TreeView.DefaultBackColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.TreeView.DefaultForeColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.TreeView.SelectBackColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.TreeView.SelectForeColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.TreeView.Nodelist">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CGE.IN.DataList">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.IN.DataList.#ctor(System.String[0:,0:],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="grid"></param>
+            <param name="header"></param>
+        </member>
+        <member name="M:CGE.IN.DataList.draw(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:CGE.IN.DataList.print">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.IN.DataList.show">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CGE.IN.DataList.start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.IN.DataList.stop(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="bad"></param>
+        </member>
+        <member name="T:CGE.IN.Menu">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.IN.Menu.#ctor(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="tab"></param>
+        </member>
+        <member name="M:CGE.IN.Menu.show">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CGE.IN.Menu.setMarginsTxt(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="margin"></param>
+        </member>
+        <member name="M:CGE.IN.Menu.draw">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.IN.Menu.generStr(System.Int32,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="nb"></param>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGE.IN.Menu.setIndice(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:CGE.IN.Menu.start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.IN.Menu.draw(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:CGE.IN.Menu.stop(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="bad"></param>
+        </member>
+        <member name="P:CGE.IN.Menu.MarginLeft">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.MarginLeftTxt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.IndiceM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.StartPosX">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.MoreWidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.Center">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.MarginRightTxt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.StartPosY">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.DefaultBackColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.Maxlength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.DefaultForeColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.SelectBackColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.IN.Menu.SelectForeColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CGE.IN.TBType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CGE.IN.TBType.Text">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CGE.IN.TBType.Int">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CGE.IN.TBType.Float">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CGE.IN.TBType.DateDMY">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CGE.IN.TBType.DateHHMMSS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CGE.IN.TBType.Mail">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CGE.IN.TBType.Tel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CGE.IN.TBType.Adress">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CGE.IN.TextBox">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.IN.TextBox.#ctor(System.String,CGE.IN.TBType,System.ConsoleColor,System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="type"></param>
+            <param name="block"></param>
+            <param name="back"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:CGE.IN.TextBox.draw(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:CGE.IN.TextBox.show">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CGE.IN.TextBox.stop(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="bad"></param>
+        </member>
+        <member name="M:CGE.OUT.Alert.draw(System.Int32)">
+            Methodes Héritées /////////////////////////////////////////////////////////////////////////////////////
+        </member>
+    </members>
+</doc>

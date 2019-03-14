@@ -39,8 +39,8 @@ namespace CLIENT_NTK
 
         public void start()
         {
-            client.ReadMsg += new NTKClient.OnReadEventHandler(client_ReadMsg);
-            client.WriteMsg += new NTKClient.OnWriteEventHandler(client_WriteMsg);
+            client.ReadMsg += new OnReadEventHandler(client_ReadMsg);
+            client.WriteMsg += new OnWriteEventHandler(client_WriteMsg);
             client.GetService += new OnGetServiceEventHandler(client_getService);
             
             clientThread = new Thread(client.connect);
@@ -60,7 +60,7 @@ namespace CLIENT_NTK
             //TODO: Event decl
             writeConsole("service !!", Color.Red);
             this.service = (NTKS_SN) args.get;
-            this.service.getActuEvent += new NTKS_SN.OnGetActuEventHandler(service_getActu);
+            this.service.getActuEvent += new OnGetActuEventHandler(service_getActu);
         }
 
         private void client_WriteMsg(object sender, MsgArgs args)

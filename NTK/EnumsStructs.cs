@@ -6,65 +6,217 @@ using System.Text;
 namespace NTK
 {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// DECLARATIONS ENUMS & STRUCTS //////////////////////////////////////////////////////////////////////////////////////////
+    // DECLARATIONS ENUMS & STRUCTS //////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
+    /// <summary>
+    /// Statut d'identification
+    /// </summary>
     public enum Identification
     {
-        Success, PasswordError, RegKeyError, SecKeyError
+        /// <summary>
+        /// 
+        /// </summary>
+        Success,
+        /// <summary>
+        /// 
+        /// </summary>
+        PasswordError,
+        /// <summary>
+        /// 
+        /// </summary>
+        RegKeyError,
+        /// <summary>
+        /// 
+        /// </summary>
+        SecKeyError
     }
-
+  
+    /// <summary>
+    /// Niveau d'un utilisateur (droits)
+    /// </summary>
     public enum USER_LVL
     {
-        USER, ADMIN, SUPER_ADMIN, SUB_SERVER, BOT
+        /// <summary>
+        /// 
+        /// </summary>
+        USER,
+        /// <summary>
+        /// 
+        /// </summary>
+        ADMIN,
+        /// <summary>
+        /// 
+        /// </summary>
+        SUPER_ADMIN,
+        /// <summary>
+        /// 
+        /// </summary>
+        SUB_SERVER,
+        /// <summary>
+        /// 
+        /// </summary>
+        BOT
     }
-
+   
+    /// <summary>
+    /// Type d'authentification
+    /// </summary>
     public enum CTYPE
     {
-        BASIC, AUTH_USER_O, AUTH_ADM, AUTH_ADM_SUBS,OTHER
+        /// <summary>
+        /// Authentification basique : login uniquement
+        /// </summary>
+        BASIC,
+        /// <summary>
+        /// Authentification login, password avec un seul niveau utilisateur
+        /// </summary>
+        AUTH_USER_O,
+        /// <summary>
+        /// Authentification login, password User || Admin
+        /// </summary>
+        AUTH_ADM,
+        /// <summary>
+        /// Authentification Utilisateur Admin, Sous-serveurs
+        /// </summary>
+        AUTH_ADM_SUBS,
+        /// <summary>
+        /// Authentification du service
+        /// </summary>
+        OTHER
     }
 
-    
 
-
+    /// <summary>
+    /// Types de logs
+    /// </summary>
     public struct LogsTypes
     {
+        /// <summary>
+        /// Information
+        /// </summary>
         public const String NOTICE = "NOTICE";
+        /// <summary>
+        /// Erreur
+        /// </summary>
         public const String ERROR = "ERROR";
+        /// <summary>
+        /// Avertissement
+        /// </summary>
         public const String WARNING = "WARNING";
+        /// <summary>
+        /// Erreur critique
+        /// </summary>
         public const String CRITICAL = "CRITICAL";
     }
-
+   
+    /// <summary>
+    /// Séparateurs de commande
+    /// </summary>
     public struct Separators
     {
+        /// <summary>
+        /// ;
+        /// </summary>
         public const Char PV = ';';
+        /// <summary>
+        /// ,
+        /// </summary>
         public const Char V = ',';
+        /// <summary>
+        /// |
+        /// </summary>
         public const String PI = "|";
+        /// <summary>
+        /// {;}
+        /// </summary>
         public const String SPV = "{;}";
+        /// <summary>
+        /// {,}
+        /// </summary>
         public const String SV = "{,}";
+        /// <summary>
+        /// {|}
+        /// </summary>
         public const String SPI = "{|}";
     }
 
-    public struct NTKCommands  //Commandes
+    /// <summary>
+    /// Commandes de base de NTK
+    /// </summary>
+    public struct NTKCommands 
     {
-        public const String C_VERSION = "C_V_";                              //Informe le client de la version du serveur
-        public const String C_TYPE = "C_TYPE_";                             //Informe au client le type de connexion
-        public const String S_TYPE = "S_TYPE_";                            //Informe au client le service
-        public const String C_RL = "C_RL;";                               //Demande l'authentification
-        public const String C_E = "C_E_";                                //Erreur dans C (Connexion)
-        public const String C_TLS = "C_TLS_";                           //Informe si TLS est actif
-        public const String C_STOP = "C_STOP;";                        //Arrete la connection
-        public const String A_SUPERADM = "A_SUPER_ADMIN>";            //Commande de connexion en superadmin
-        public const String A_ADMIN = "A_ADMIN>";                    //Commande de connexion en admin
-        public const String A_SUBS = "A_SUBS>";                      //Commande de connexion en sous-serveur   A_SUBS>#Login,#Pass;
-        public const String A_REG = "A_REG>";                       //Commande d'inscription                   Voir doc
-        public const String A_USER = "A_USER>";                    //Commande de connexion en utilisateur      Voir doc
-        public const String A_TOKEN = "A_TOKEN>";                 //Commande de connexion en utilisateur      Voir doc
-        public const String A_BOT = "A_BOT>";                    //Commande de connexion en utilisateur      Voir doc
-
-        public const String A_OK = "A_OK;";                      //Authentification réussie
-        public const String A_BAD = "A_BAD;";                   //Authentification échouée
-        public const String ERROR = "E_";                      //Commande d'erreur     E_#Code;
-        public const String S_MSG = "S_MSG>";                 //Commande de message (S pour service)  Voir doc
+        /// <summary>
+        /// Informe le client de la version du serveur
+        /// </summary>
+        public const String C_VERSION = "C_V_";
+        /// <summary>
+        /// Informe au client le type de connexion
+        /// </summary>
+        public const String C_TYPE = "C_TYPE_";
+        /// <summary>
+        /// Informe au client le service
+        /// </summary>
+        public const String S_TYPE = "S_TYPE_";
+        /// <summary>
+        /// Demande l'authentification
+        /// </summary>
+        public const String C_RL = "C_RL;";
+        /// <summary>
+        /// Erreur dans C (Connexion)
+        /// </summary>
+        public const String C_E = "C_E_";
+        /// <summary>
+        /// Informe si TLS est actifs
+        /// </summary>
+        public const String C_TLS = "C_TLS_";
+        /// <summary>
+        /// Arrete la connection
+        /// </summary>
+        public const String C_STOP = "C_STOP;";
+        /// <summary>
+        /// Commande de connexion en superadmin
+        /// </summary>
+        public const String A_SUPERADM = "A_SUPER_ADMIN>";
+        /// <summary>
+        /// Commande de connexion en admin
+        /// </summary>
+        public const String A_ADMIN = "A_ADMIN>";                 
+        /// <summary>
+        /// Commande de connexion en sous-serveur   A_SUBS>#Login,#Pass;
+        /// </summary>
+        public const String A_SUBS = "A_SUBS>";
+        /// <summary>
+        /// Commande d'inscription   
+        /// </summary>
+        public const String A_REG = "A_REG>";
+        /// <summary>
+        /// Commande de connexion en utilisateur
+        /// </summary>
+        public const String A_USER = "A_USER>";
+        /// <summary>
+        /// Commande de connexion en utilisateur    
+        /// </summary>
+        public const String A_TOKEN = "A_TOKEN>";
+        /// <summary>
+        /// Commande de connexion en utilisateur 
+        /// </summary>
+        public const String A_BOT = "A_BOT>";
+        /// <summary>
+        /// Authentification réussie
+        /// </summary>
+        public const String A_OK = "A_OK;";
+        /// <summary>
+        /// Authentification échouée
+        /// </summary>
+        public const String A_BAD = "A_BAD;";
+        /// <summary>
+        /// Commande d'erreur     E_#Code;
+        /// </summary>
+        public const String ERROR = "E_";
+        /// <summary>
+        /// Commande de message (S pour service)
+        /// </summary>
+        public const String S_MSG = "S_MSG>";             
     }
 }

@@ -1,0 +1,3215 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NTK</name>
+    </assembly>
+    <members>
+        <member name="T:NTK.BlockChain.Block`1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:NTK.BlockChain.Block`1.compute(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="nonce"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.BlockChain.Block`1.compute(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="regex"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Database.ORM.PrimaryKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Database.ORM.ModelValues">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Database.ORM.BaseModel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Database.ORM.BaseModel.#ctor">
+            <summary>
+            
+            </summary>        
+        </member>
+        <member name="M:NTK.Database.ORM.BaseModel.init">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Database.ORM.BaseModel.select(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.ORM.BaseModel.select(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="field"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.ORM.BaseModel.getPKname">
+            PRIVEES //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        </member>
+        <member name="F:NTK.Database.DBStruct.name">
+            ATTRIBUTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        </member>
+        <member name="M:NTK.Database.DBStruct.#ctor(System.String,System.String,System.String)">
+            CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        </member>
+        <member name="T:NTK.Database.Format">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Format.NAME_SIMPLEDATE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Format.NAME_FULLDATE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Format.NAME">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Format.FULLDATE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Format.DATE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Database.Encryption">
+            <summary>
+            Algorithmes de chiffrements
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Encryption.DES">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Encryption.TripleDES">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Encryption.AES">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Encryption.RSA">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.Encryption.SimpleAxb">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Database.NTKDatabase">
+            <summary>
+            Classe abstraite de connexion à une base de données
+            </summary>
+        </member>
+        <member name="F:NTK.Database.NTKDatabase.logs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Database.NTKDatabase.instance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.select(System.String,System.String[0:,0:],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="changebase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.closeConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.insert(System.String,System.String[0:,0:],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="changebase"></param>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.createDb(System.String,System.Boolean)">
+            <summary>
+            Création de base de données. useit = selectionner la nouvelle base.
+            </summary>
+            <param name="name"></param>
+            <param name="useit"></param>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.createDb(NTK.Database.DBStruct)">
+            <summary>
+            Création de base de données. à partir d'un objet DBStruct.
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.queryOverNTK(System.String,System.Boolean,System.String)">
+            <summary>
+            requête select retournant un script XML
+            </summary>
+            <param name="query"></param>
+            <param name="withCol"></param>
+            <param name="dataName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.backUp(System.String,NTK.Database.Format,NTK.Database.Encryption)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="format"></param>
+            <param name="encryption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.backUp(System.String,System.String,NTK.Database.Format,NTK.Database.Encryption)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="path"></param>
+            <param name="format"></param>
+            <param name="encryption"></param>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.tryConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.selectAsync(System.String,System.String[0:,0:],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="changebase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.closeConnectionAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.insertAsync(System.String,System.String[0:,0:],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="changebase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.createDbAsync(System.String,System.Boolean)">
+            <summary>
+            Création de base de données. useit = selectionner la nouvelle base.
+            </summary>
+            <param name="name"></param>
+            <param name="useit"></param>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.createDbAsync(NTK.Database.DBStruct)">
+            <summary>
+            Création de base de données. à partir d'un objet DBStruct.
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.queryOverNTKAsync(System.String,System.Boolean,System.String)">
+            <summary>
+            requête select retournant un script XML
+            </summary>
+            <param name="query"></param>
+            <param name="withCol"></param>
+            <param name="dataName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.backUpAsync(System.String,NTK.Database.Format,NTK.Database.Encryption)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="format"></param>
+            <param name="encryption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.backUpAsync(System.String,System.String,NTK.Database.Format,NTK.Database.Encryption)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="path"></param>
+            <param name="format"></param>
+            <param name="encryption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.tryConnectionAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKDatabase.getInstance">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.Database.NTKDatabase.Logs">
+            <summary>
+            
+            </summary>
+        </member>
+        <!-- Commentaire XML incorrect pour le membre "M:NTK.Database.NTKD_Sqlite.#ctor(System.String,System.Boolean,System.Boolean)" -->
+        <member name="T:NTK.Database.NTKD_MySql">
+            <summary>
+            Classe de connexion à une base Mysql
+            </summary>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.#ctor(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="host"></param>
+            <param name="user"></param>
+            <param name="pass"></param>
+            <param name="name"></param>
+            <param name="test"></param>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.getInstance(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="host"></param>
+            <param name="user"></param>
+            <param name="pass"></param>
+            <param name="name"></param>
+            <param name="test"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.isNull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.overrideInstance(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="host"></param>
+            <param name="user"></param>
+            <param name="pass"></param>
+            <param name="name"></param>
+            <param name="test"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.select(System.String,System.String[0:,0:],System.String)">
+            <summary>
+            Requête mysql select 
+            </summary>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="changebase"></param>
+            <returns>MysqlDataReader</returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.closeConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.insert(System.String,System.String[0:,0:],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="changebase"></param>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.createDb(System.String,System.Boolean)">
+            <summary>
+            Création de base de données. useit = selectionner la nouvelle base.
+            </summary>
+            <param name="name"></param>
+            <param name="useit"></param>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.createDb(NTK.Database.DBStruct)">
+            <summary>
+            Création de base de données. à partir d'un objet DBStruct.
+            </summary>
+            <param name="db"></param>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.queryOverNTK(System.String,System.Boolean,System.String)">
+            <summary>
+            requête select retournant un script XML
+            </summary>
+            <param name="query"></param>
+            <param name="withCol"></param>
+            <param name="dataName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.tryConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.backUp(System.String,NTK.Database.Format,NTK.Database.Encryption)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="format"></param>
+            <param name="encryption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.backUp(System.String,System.String,NTK.Database.Format,NTK.Database.Encryption)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="path"></param>
+            <param name="format"></param>
+            <param name="encryption"></param>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.selectAsync(System.String,System.String[0:,0:],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="changebase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.closeConnectionAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.insertAsync(System.String,System.String[0:,0:],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="param"></param>
+            <param name="changebase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.createDbAsync(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="useit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.createDbAsync(NTK.Database.DBStruct)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.queryOverNTKAsync(System.String,System.Boolean,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="query"></param>
+            <param name="withCol"></param>
+            <param name="dataName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.backUpAsync(System.String,NTK.Database.Format,NTK.Database.Encryption)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="format"></param>
+            <param name="encryption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.backUpAsync(System.String,System.String,NTK.Database.Format,NTK.Database.Encryption)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <param name="path"></param>
+            <param name="format"></param>
+            <param name="encryption"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.NTKD_MySql.tryConnectionAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- Commentaire XML incorrect pour le membre "M:NTK.Database.NTKD_SqlServer.#ctor(System.String,System.String,System.String,System.String,System.Boolean)" -->
+        <member name="T:NTK.EventsArgs.IEventEnum">
+            <summary>
+            Evènement itérable
+            </summary>
+        </member>
+        <member name="M:NTK.EventsArgs.IEventEnum.next">
+            <summary>
+            Passe à l'enregistrement suivant
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.IEventEnum.get(System.String)">
+            <summary>
+            obtient le champ de nom <c>name</c>
+            </summary>
+            <param name="name">champ</param>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.EventsArgs.ConnectionEventArgs">
+            <summary>
+            Changement d'état de la connection
+            </summary>
+        </member>
+        <member name="M:NTK.EventsArgs.ConnectionEventArgs.#ctor(System.Data.ConnectionState)">
+            <summary>
+            Constructeur
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="P:NTK.EventsArgs.ConnectionEventArgs.State">
+            <summary>
+            Etat
+            </summary>
+        </member>
+        <member name="T:NTK.EventsArgs.GetActuEventArgs">
+            <summary>
+            Obtention de la liste des actualités
+            </summary>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.#ctor(System.String)">
+            <summary>
+            Constructeur 
+            </summary>
+            <param name="data">Résultat d'une requête 'Query Over NTK' (XML)</param>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.next">
+            <summary>
+            Passe à l'actualité suivante
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getUserName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getGrpName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getDate">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getPicid">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getMSG">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getTitle">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getWriterUser">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getWriterGrp">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetActuEventArgs.getID">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.EventsArgs.GetGrpEventArgs">
+            <summary>
+            Obtient la liste des groupes
+            </summary>
+        </member>
+        <member name="M:NTK.EventsArgs.GetGrpEventArgs.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:NTK.EventsArgs.GetGrpEventArgs.next">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetGrpEventArgs.getName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetGrpEventArgs.getType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.EventsArgs.GetGrpEventArgs.getDescription">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.IO.DllLoader">
+            <summary>
+            Charge des instance de classe dans des librairies de manière dynamique
+            </summary>
+        </member>
+        <member name="M:NTK.IO.DllLoader.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.DllLoader.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:NTK.IO.DllLoader.getClassInstance``1(System.String)">
+            <summary>
+            Retourne l'instance de la classe de nom <c>name</c> implémentant la classe T
+            </summary>
+            <code>
+            DllLoader dll = new DllLoader("path");
+            </code>
+            <exception cref="T:NTK.IO.InvalidTypeException">quand la classe obtenue n'implémente pas la classe attendu</exception>
+            <typeparam name="T">Classe abstraite</typeparam>
+            <param name="name">Nom de la classe concrête</param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.DllLoader.getClassInstancelike``1(System.String)">
+            <summary>
+            Obtient une liste d'instances de classes implémentant la classe T contenant la valeur like dans leur nom
+            </summary>
+            <code>
+            DllLoader dll = new DllLoader("path");
+            </code>
+            <exception cref="T:NTK.IO.InvalidTypeException">quand la classe obtenue n'implémente pas la classe attendu</exception>
+            <typeparam name="T">Classe abstraite</typeparam>
+            <param name="like">Préfixe ou suffixe du nom de/des classe(s) concrête(s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.DllLoader.getAllInstances``1">
+            <summary>
+            Obtient la liste des classes implémentant la classe T
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.IO.FileManager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.FileManager.upload(System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="name"></param>
+            <param name="size"></param>
+            <param name="sourceName"></param>
+            <param name="targetName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.FileManager.getPath(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.FileManager.DirSize(System.IO.DirectoryInfo)">
+            <summary>
+            Size = octets
+            </summary>
+            <param name="d"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.IO.Html.HtmlDocument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlDocument.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlDocument.addLinkHeader(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlDocument.getNode(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlDocument.print">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.IO.Html.TitleType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.IO.Html.TitleType.H1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.IO.Html.TitleType.H2">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.IO.Html.TitleType.H3">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.IO.Html.TitleType.H4">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.IO.Html.TitleType.H5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.IO.Html.HtmlNode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.#ctor(System.String)">
+            <summary>
+            Création d'un noeud (Balise)
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.#ctor(System.String,System.String)">
+            <summary>
+            Création d'un noeud (Balise)
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.#ctor(System.String,System.String,System.Collections.Generic.List{NTK.IO.Xml.XmlAttribute},NTK.IO.Xml.XmlNode)">
+            <summary>
+            Création d'un noeud (Balise)
+            </summary>
+            <param name="name">Nom de la balise</param>
+            <param name="value">Valeur si il y en a une (null sinon)</param>
+            <param name="attributs">List des attributs</param>
+            <param name="child">Balise enfant</param>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addLink(System.String,System.String,NTK.IO.Xml.XmlAttribute[])">
+            <summary>
+            Ajoute une balise de lien (A)
+            </summary>
+            <param name="link"></param>
+            <param name="value"></param>
+            <param name="att"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addTitle(System.String,NTK.IO.Html.TitleType,NTK.IO.Xml.XmlAttribute[])">
+            <summary>
+            
+            </summary>
+            <param name="value">Libellé</param>
+            <param name="type">Type de titre H1,H2...</param>
+            <param name="att">Attributs</param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addParagraph(System.String,NTK.IO.Xml.XmlAttribute[])">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="att"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addTable(NTK.IO.Xml.XmlAttribute[])">
+            <summary>
+            
+            </summary>
+            <param name="att"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addTableHeader(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="titles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addTableValuesLine(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="titles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addList(NTK.IO.Xml.XmlAttribute[])">
+            <summary>
+            
+            </summary>
+            <param name="att"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addListNode(System.String,NTK.IO.Xml.XmlAttribute[])">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <param name="att"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addImg(System.String,NTK.IO.Xml.XmlAttribute[])">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="att"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Html.HtmlNode.addBody(NTK.IO.Xml.XmlAttribute[])">
+            <summary>
+            
+            </summary>
+            <param name="att"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.IO.Html.TemplateParser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Html.TemplateParser.#ctor(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="pathOrText">code Html ou chemin vers fichier html</param>
+            <param name="isPath">true si c'est un chemin</param>
+        </member>
+        <member name="M:NTK.IO.Html.TemplateParser.parse">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.IO.Ini.IniDocument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.#ctor(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="textOrPath"></param>
+            <param name="isPath"></param>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.addGroup(System.String,NTK.IO.Ini.IniValue[])">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="vals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.addGroup(System.String,System.Collections.Generic.List{NTK.IO.Ini.IniValue})">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="vals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.getGroup(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.print">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.save">
+            <summary>
+            Save File
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Ini.IniDocument.Groups">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.IO.Ini.IniGroup">
+            <summary>
+            Groupe de valeurs d'un fichier Ini
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.#ctor(System.String)">
+            <summary>
+            Création d'un groupe
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.#ctor(System.String,NTK.IO.Ini.IniValue[])">
+            <summary>
+            Création d'un groupe
+            </summary>
+            <param name="name"></param>
+            <param name="vals"></param>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.#ctor(System.String,System.Collections.Generic.List{NTK.IO.Ini.IniValue})">
+            <summary>
+            Création d'un groupe
+            </summary>
+            <param name="name"></param>
+            <param name="vals"></param>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.#ctor">
+            <summary>
+            Constructeur vide
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.next">
+            <summary>
+            Incrémente l'index pour la méthode get
+            </summary>
+            <returns>True si il y a une valeur</returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.get">
+            <summary>
+            retourne l'object IniValue correspondant à la valeur de l'index (méthode next)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.getValueLine(System.String)">
+            <summary>
+            retourne l'objet <c>IniValue</c> de nom #name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.getValue(System.String)">
+            <summary>
+            retourne la valeur de la variable <c>name</c>
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.print">
+            <summary>
+            Génère un fichier ini
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.IO.Ini.IniGroup.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Ini.IniGroup.Values">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.IO.Ini.IniValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Ini.IniValue.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NTK.IO.Ini.IniValue.print">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.IO.Ini.IniValue.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Ini.IniValue.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.IO.InvalidTypeException">
+            <summary>
+            Erreur de chargement dynamique d'une classe
+            </summary>
+        </member>
+        <member name="M:NTK.IO.InvalidTypeException.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="abs">Classe abstraite</param>
+            <param name="real">Classe obtenue</param>
+        </member>
+        <member name="T:NTK.IO.IS.ISParser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.IO.LogLine">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.LogLine.#ctor(System.String,System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="text"></param>
+            <param name="date"></param>
+        </member>
+        <member name="M:NTK.IO.LogLine.toText">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.IO.LogLine.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.IO.LogLine.Text">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.IO.LogLine.Date">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.IO.Log">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.IO.Log.lines">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.IO.Xml.XmlNode">
+            <summary>
+            Noeud (ou balise) Xml
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.#ctor(System.String)">
+            <summary>
+            Création d'un noeud (Balise)
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.#ctor(System.String,System.String,System.Collections.Generic.List{NTK.IO.Xml.XmlAttribute},NTK.IO.Xml.XmlNode)">
+            <summary>
+            Création d'un noeud (Balise)
+            </summary>
+            <param name="name">Nom de la balise</param>
+            <param name="value">Valeur si il y en a une (null sinon)</param>
+            <param name="attributs">List des attributs</param>
+            <param name="child">Balise enfant</param>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.#ctor(System.String,System.String)">
+            <summary>
+            Création d'un noeud (Balise)
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.read">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getNode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.parseNode(System.String,System.String,System.Collections.Generic.List{NTK.IO.Xml.XmlAttribute})">
+            <summary>
+            Methode utilisée par le parseur de XmlDocument
+            </summary>
+            <param name="text"></param>
+            <param name="name"></param>
+            <param name="attList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.haveAttributes">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.addAttribute(NTK.IO.Xml.XmlAttribute)">
+            <summary>
+            
+            </summary>
+            <param name="att"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.addAttribute(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getAttribute(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getAttribute(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getAttibuteV(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.isChildExist(System.Int32)">
+            <summary>
+            retourne true si l'enfant n°<c>id</c> existe
+            </summary>
+            <param id="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.isChildExist(System.String)">
+            <summary>
+            retourne true si l'enfant de nom name existe
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.count">
+            <summary>
+            Retourne le nombre n'enfant
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildList(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildList">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChild(System.Int32)">
+            <summary>
+            Ontient l'enfant n°id du noeud
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChild(System.String)">
+            <summary>
+            Ontient l'enfant "name" du noeud
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildN(System.Int32)">
+            <summary>
+            Obtient le nom de l'enfant n°id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildV(System.Int32)">
+            <summary>
+            Obtient la valeur de l'enfant n°id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildV(System.String)">
+            <summary>
+            Obtient la valeur de l'enfant "name"
+            </summary>
+            <param name="name"></param>
+            <returns>(Stringà value</returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.addChild(NTK.IO.Xml.XmlNode)">
+            <summary>
+            Ajout un enfant XmlNode
+            </summary>
+            <param name="child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.addChild(System.String)">
+            <summary>
+            Créé un enfant XmlNode de nom Name
+            </summary>
+            <param name="name"></param>
+            <returns>le boeud créé</returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.addChild(System.String,System.String)">
+            <summary>
+            Créé un enfant XmlNode de nom name et de valeur value
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns>le noeud créé</returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.deleteChild(System.Int32)">
+            <summary>
+            Supprime le noeud n°id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.deleteChild(System.String)">
+            <summary>
+            Supprime le noeud de nom name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.print">
+            <summary>
+            Génère le noeud Xml
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.printWA">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.setName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.setValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlNode.Attributs">
+            <summary>
+            Liste des attributs
+            </summary>
+        </member>
+        <member name="T:NTK.IO.Xml.XmlDocument">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.#ctor(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="pathortext"></param>
+            <param name="ispath"></param>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.read">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.getNode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.getAttributs">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.count">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.getNode(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.getNode(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.addNode(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.addNode(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.addNode(NTK.IO.Xml.XmlNode)">
+            <summary>
+            
+            </summary>
+            <param name="child"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.deleteNode(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.deleteNode(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.write(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.print">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.printWA">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlDocument.save">
+            <summary>
+            Save File
+            </summary>
+        </member>
+        <member name="T:NTK.IO.Xml.XmlAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Identification">
+            <summary>
+            Statut d'identification
+            </summary>
+        </member>
+        <member name="F:NTK.Identification.Success">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Identification.PasswordError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Identification.RegKeyError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Identification.SecKeyError">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.USER_LVL">
+            <summary>
+            Niveau d'un utilisateur (droits)
+            </summary>
+        </member>
+        <member name="F:NTK.USER_LVL.USER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.USER_LVL.ADMIN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.USER_LVL.SUPER_ADMIN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.USER_LVL.SUB_SERVER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.USER_LVL.BOT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.CTYPE">
+            <summary>
+            Type d'authentification
+            </summary>
+        </member>
+        <member name="F:NTK.CTYPE.BASIC">
+            <summary>
+            Authentification basique : login uniquement
+            </summary>
+        </member>
+        <member name="F:NTK.CTYPE.AUTH_USER_O">
+            <summary>
+            Authentification login, password avec un seul niveau utilisateur
+            </summary>
+        </member>
+        <member name="F:NTK.CTYPE.AUTH_ADM">
+            <summary>
+            Authentification login, password User || Admin
+            </summary>
+        </member>
+        <member name="F:NTK.CTYPE.AUTH_ADM_SUBS">
+            <summary>
+            Authentification Utilisateur Admin, Sous-serveurs
+            </summary>
+        </member>
+        <member name="F:NTK.CTYPE.OTHER">
+            <summary>
+            Authentification du service
+            </summary>
+        </member>
+        <member name="T:NTK.LogsTypes">
+            <summary>
+            Types de logs
+            </summary>
+        </member>
+        <member name="F:NTK.LogsTypes.NOTICE">
+            <summary>
+            Information
+            </summary>
+        </member>
+        <member name="F:NTK.LogsTypes.ERROR">
+            <summary>
+            Erreur
+            </summary>
+        </member>
+        <member name="F:NTK.LogsTypes.WARNING">
+            <summary>
+            Avertissement
+            </summary>
+        </member>
+        <member name="F:NTK.LogsTypes.CRITICAL">
+            <summary>
+            Erreur critique
+            </summary>
+        </member>
+        <member name="T:NTK.Separators">
+            <summary>
+            Séparateurs de commande
+            </summary>
+        </member>
+        <member name="F:NTK.Separators.PV">
+            <summary>
+            ;
+            </summary>
+        </member>
+        <member name="F:NTK.Separators.V">
+            <summary>
+            ,
+            </summary>
+        </member>
+        <member name="F:NTK.Separators.PI">
+            <summary>
+            |
+            </summary>
+        </member>
+        <member name="F:NTK.Separators.SPV">
+            <summary>
+            {;}
+            </summary>
+        </member>
+        <member name="F:NTK.Separators.SV">
+            <summary>
+            {,}
+            </summary>
+        </member>
+        <member name="F:NTK.Separators.SPI">
+            <summary>
+            {|}
+            </summary>
+        </member>
+        <member name="T:NTK.NTKCommands">
+            <summary>
+            Commandes de base de NTK
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.C_VERSION">
+            <summary>
+            Informe le client de la version du serveur
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.C_TYPE">
+            <summary>
+            Informe au client le type de connexion
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.S_TYPE">
+            <summary>
+            Informe au client le service
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.C_RL">
+            <summary>
+            Demande l'authentification
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.C_E">
+            <summary>
+            Erreur dans C (Connexion)
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.C_TLS">
+            <summary>
+            Informe si TLS est actifs
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.C_STOP">
+            <summary>
+            Arrete la connection
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_SUPERADM">
+            <summary>
+            Commande de connexion en superadmin
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_ADMIN">
+            <summary>
+            Commande de connexion en admin
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_SUBS">
+            <summary>
+            Commande de connexion en sous-serveur   A_SUBS>#Login,#Pass;
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_REG">
+            <summary>
+            Commande d'inscription   
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_USER">
+            <summary>
+            Commande de connexion en utilisateur
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_TOKEN">
+            <summary>
+            Commande de connexion en utilisateur    
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_BOT">
+            <summary>
+            Commande de connexion en utilisateur 
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_OK">
+            <summary>
+            Authentification réussie
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.A_BAD">
+            <summary>
+            Authentification échouée
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.ERROR">
+            <summary>
+            Commande d'erreur     E_#Code;
+            </summary>
+        </member>
+        <member name="F:NTK.NTKCommands.S_MSG">
+            <summary>
+            Commande de message (S pour service)
+            </summary>
+        </member>
+        <member name="T:NTK.Other.LogLine_NTK">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Other.LogLine_NTK.#ctor(System.String,System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="text"></param>
+            <param name="date"></param>
+        </member>
+        <member name="M:NTK.Other.LogLine_NTK.#ctor(System.Object,System.String,System.String,System.DateTime)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="type"></param>
+            <param name="text"></param>
+            <param name="date"></param>
+        </member>
+        <member name="M:NTK.Other.LogLine_NTK.toText">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Other.Log_NTK">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Other.Log_NTK.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+        </member>
+        <member name="M:NTK.Other.Log_NTK.getInstance(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="overrideInstance"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.Log_NTK.isNull">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.Log_NTK.add(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="type"></param>
+            <param name="text"></param>
+        </member>
+        <member name="M:NTK.Other.Log_NTK.flush">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Other.Token">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Other.Token.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="token"></param>
+            <param name="login"></param>
+        </member>
+        <member name="T:NTK.Other.NTKF">
+            <summary>
+            Static functions class
+            </summary>
+        </member>
+        <member name="M:NTK.Other.NTKF.delseps(System.String,System.String,System.String)">
+            <summary>
+            retourne la chaine text sans sep1, sep2 et le contenu entre les 2
+            </summary>
+            <param name="text"></param>
+            <param name="sep1"></param>
+            <param name="sep2"></param>
+            <returns></returns>
+        </member>
+        <!-- Commentaire XML incorrect pour le membre "M:NTK.Other.NTKF.subsep(System.String,System.String,System.String)" -->
+        <member name="M:NTK.Other.NTKF.subsep(System.String,System.Int32,System.String)">
+            <summary>
+            Coupe la chaine text du caractère n° sep1 au sep2(String)
+            </summary>
+            <param name="text"></param>
+            <param name="sep1"></param>
+            <param name="sep2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.subsep(System.String,System.String)">
+            <summary>
+            Coupe la chaine text du sep1 juqu'à la fin
+            </summary>
+            <param name="text"></param>
+            <param name="sep1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.nbChar(System.String,System.Char)">
+            <summary>
+            retourne le nombre de charactères lettre dans une chaine
+            </summary>
+            <param name="chaine"></param>
+            <param name="lettre"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.verifArgs(System.String,System.Boolean)">
+            <summary>
+            Vérifie si les arguments contiennent des chaines interdites (séparateurs)
+            </summary>
+            <param name="text"></param>
+            <param name="special"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.setCtype(System.String)">
+            <summary>
+            String -> enum
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.setULVL(System.String)">
+            <summary>
+            String -> Enum
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.sha256(System.String)">
+            <summary>
+            Retourne le Hash sha256 de text
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.generateToken(System.Int32,System.Boolean)">
+            <summary>
+            Génère une chaine aléatoire de longueur length
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.getUserid(System.String,System.Collections.Generic.List{NTK.NTKUser})">
+            <summary>
+            Retourne l'id d'un utilisateur dans une liste grâce à son login
+            </summary>
+            <param name="login"></param>
+            <param name="lst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Other.NTKF.generStr(System.Int32,System.Char)">
+            <summary>
+            Retourne une chaine de longueur nb uniquement composé de str
+            </summary>
+            <param name="nb"></param>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.NTKUser">
+            <summary>
+            Utilisateur d'un flux NTK
+            </summary>
+        </member>
+        <member name="E:NTK.NTKUser.ReadMsg">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.NTKUser.WriteMsg">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.NTKUser.#ctor(System.String,System.Net.Sockets.TcpClient)">
+            <summary>
+            Créé un utilisateur connecté
+            </summary>
+            <param name="login"></param>
+            <param name="client"></param>
+        </member>
+        <member name="M:NTK.NTKUser.#ctor(System.String)">
+            <summary>
+            Créé un utilisateur en attente
+            </summary>
+            <param name="login"></param>
+        </member>
+        <member name="M:NTK.NTKUser.readMsg">
+            <summary>
+            Lecture d'un message
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKUser.writeMsg(System.String)">
+            <summary>
+            Ecriture d'un message
+            </summary>
+            <param name="text">Message</param>
+        </member>
+        <member name="M:NTK.NTKUser.readMsgAsync">
+            <summary>
+            Lecture d'un message
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKUser.writeMsgAsync(System.String)">
+            <summary>
+            Ecriture d'un message
+            </summary>
+            <param name="text">Message</param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKUser.reciveFile(System.String)">
+            <summary>
+            Réception d'un fichier
+            </summary>
+            <param name="path">Chemin de destination</param>
+        </member>
+        <member name="M:NTK.NTKUser.sendFile(System.String,System.String)">
+            <summary>
+            envoi d'un fichier
+            </summary>
+            <param name="path">Fichier</param>
+            <param name="targetLogin">Cible (Utilisateur)</param>
+        </member>
+        <member name="M:NTK.NTKUser.OnReadMsg(NTK.EventsArgs.MsgArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.NTKUser.OnWriteMsg(NTK.EventsArgs.MsgArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:NTK.NTKUser.Login">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Pass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Seckey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Lvl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Cipher">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Client">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Stream">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Streamw">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Streamr">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Tls">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKUser.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.P2P.P2PService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.P2P.P2PService.p2pClientServer_Listen(NTK.NTKUser)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="M:NTK.P2P.P2PService.p2pClientServer_Authentification(NTK.NTKUser)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="T:NTK.P2P.P2PUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.P2P.P2PUser.#ctor(System.String,System.Net.Sockets.TcpClient)">
+            <summary>
+            
+            </summary>
+            <param name="login"></param>
+            <param name="client"></param>
+        </member>
+        <member name="T:NTK.Plugins.IBasePlugin">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Plugins.IBasePlugin.setContexte(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="contexte"></param>
+        </member>
+        <member name="M:NTK.Plugins.IBasePlugin.setMain(System.Windows.Forms.Form)">
+            <summary>
+            
+            </summary>
+            <param name="main"></param>
+        </member>
+        <member name="M:NTK.Plugins.IBasePlugin.getName">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Plugins.IBasePlugin.getField">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Plugins.IBasePlugin.getType">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Plugins.IPluginForm">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Plugins.IPluginForm.getStage">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Plugins.IPluginIntegrated">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Plugins.IPluginIntegrated.getStage">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Plugins.PluginType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.PluginType.FORM">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.PluginType.TOOLBAR">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.PluginType.TAB">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Plugins.FieldMenu">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.FieldMenu.TOOL">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.FieldMenu.SETTINGS">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.FieldMenu.WINDOW">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.FieldMenu.TAB">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.FieldMenu.OTHER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.FieldMenu.CONTEXT">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.FieldMenu.NEW">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Security.IAsymEncryptor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.encryptPublic(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.decryptPublic(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.encryptPublic(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.decryptPublic(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.encryptPrivate(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.decryptPrivate(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.encryptPrivate(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.decryptPrivate(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.genKey">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.setKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:NTK.Security.IAsymEncryptor.getKey">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Security.IEncryptor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Security.IEncryptor.encrypt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IEncryptor.decrypt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IEncryptor.decrypt(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IEncryptor.encrypt(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IEncryptor.setKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:NTK.Security.IEncryptor.getKey">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Security.IHash">
+            <summary>
+            Interface pour algorithme de hashage
+            </summary>
+        </member>
+        <member name="M:NTK.Security.IHash.getName">
+            <summary>
+            Retourne le nom de l'algorithme
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IHash.getHash(System.String)">
+            <summary>
+            Obtient le hash de data
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.IHash.getHash(System.Byte[])">
+            <summary>
+            Obtient le hash de data
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Security.AesKey">
+            <summary>
+            Clée AES
+            </summary>
+        </member>
+        <member name="F:NTK.Security.AesKey.key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.Security.AesKey.iv">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Security.AesKey.makeXml">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Security.NTKAes">
+            <summary>
+            Classe de chiffrement AES
+            </summary>
+        </member>
+        <member name="M:NTK.Security.NTKAes.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strKey"></param>
+            <param name="strIv"></param>
+        </member>
+        <member name="M:NTK.Security.NTKAes.#ctor(System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+            <param name="iv"></param>
+        </member>
+        <member name="M:NTK.Security.NTKAes.#ctor(NTK.Security.AesKey)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:NTK.Security.NTKAes.encrypt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="clearText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKAes.decrypt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="cipherText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKAes.CreateKey(System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="salt"></param>
+            <param name="keyBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKAes.generateString(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKAes.decrypt(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKAes.encrypt(System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKAes.setKey(NTK.Security.AesKey)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:NTK.Security.NTKAes.getKey">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKAes.setKey(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:NTK.Security.NTKAes.NTK#Security#IEncryptor#getKey">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.Security.NTKAes.AesKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Security.NTKRsa">
+            <summary>
+            Classe de chiffrement RSA
+            </summary>
+        </member>
+        <member name="M:NTK.Security.NTKRsa.#ctor(System.String,System.Boolean)">
+            <summary>
+            Instanciation avec clé
+            </summary>
+            <param name="key"></param>
+            <param name="priv"></param>
+        </member>
+        <member name="M:NTK.Security.NTKRsa.#ctor">
+            <summary>
+            Create new Rsa cypher auto-generated Keys
+            </summary>
+        </member>
+        <member name="M:NTK.Security.NTKRsa.encrypt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKRsa.decrypt(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKRsa.signHash(System.Byte[],System.String)">
+            <summary>
+            
+            </summary>
+            <param name="text"></param>
+            <param name="algoOID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKRsa.generateCert(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="priv"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Security.NTKRsa.generateCert(System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <param name="name"></param>
+            <param name="priv"></param>
+        </member>
+        <member name="M:NTK.Security.NTKRsa.getKey(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="priv"></param>
+            <returns></returns>
+        </member>
+        <member name="T:NTK.Security.Rsa">
+            <summary>
+            Rsa class deprecated
+            </summary>
+        </member>
+        <member name="M:NTK.Security.Rsa.#ctor">
+            <summary>
+            Constructor make random keys
+            </summary>
+        </member>
+        <member name="T:NTK.Service.ServicelistenFunction">
+            <summary>
+            Pointeur vers méthode d'écoute
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="T:NTK.Service.OnGetActuEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:NTK.Service.OnGetUserEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:NTK.Service.OnGetMsgEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:NTK.Service.OnGetGrpEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:NTK.Service.NTKService">
+            <summary>
+            Service (protocole) de communication
+            </summary>
+        </member>
+        <member name="E:NTK.Service.NTKService.getActuEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.Service.NTKService.getUserEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.Service.NTKService.getGrpEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.Service.NTKService.getMsgEvent">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Service.NTKService.#ctor(NTK.Service.ServiceConfig)">
+            <summary>
+            Initialisation d'un service avec configuration
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:NTK.Service.NTKService.#ctor(NTK.NTKServer)">
+            <summary>
+            
+            </summary>
+            <param name="serv"></param>
+        </member>
+        <member name="M:NTK.Service.NTKService.#ctor(NTK.NTKClient)">
+            <summary>
+            
+            </summary>
+            <param name="client"></param>
+        </member>
+        <member name="M:NTK.Service.NTKService.#ctor">
+            <summary>
+            Initialisation d'un service avec une configuration interne
+            </summary>
+        </member>
+        <member name="M:NTK.Service.NTKService.initialize(System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:NTK.Service.NTKService.s_authentification(NTK.NTKUser,System.Collections.Generic.List{NTK.NTKUser},NTK.Service.ServicelistenFunction)">
+            <summary>
+            Methode d'authentification coté serveur
+            </summary>
+            <remarks>
+            Si l'authentification réussie, utilisez listen(user); sinon user.IsBad; avant de sortir de la méthode.
+            </remarks>  
+            <permission cref="T:System.Security.PermissionSet">PUBLIC</permission>
+            <param name="user">Utilisateur</param>
+            <param name="userlist">Liste des utilisateurs</param>
+            <param name="listen">Méthode d'écoute selectionnée par le serveur</param>
+        </member>
+        <member name="M:NTK.Service.NTKService.s_listen(NTK.NTKUser)">
+            <summary>
+            Methode d'écoute coté serveur
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="M:NTK.Service.NTKService.c_authentification(NTK.NTKUser)">
+            <summary>
+            Methode d'authentification coté client
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="M:NTK.Service.NTKService.c_listen(NTK.NTKUser,System.String)">
+            <summary>
+            Methode d'écoute coté client
+            </summary>
+            <param name="user"></param>
+            <param name="cmd"></param>
+        </member>
+        <member name="M:NTK.Service.NTKService.waitEndCommand(System.String,System.String,NTK.NTKUser)">
+            <summary>
+            
+            </summary>
+            <param name="startCommand"></param>
+            <param name="endString"></param>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Service.NTKService.OnGetActu(NTK.EventsArgs.GetActuEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.Service.NTKService.OnGetUser(NTK.EventsArgs.GetUserEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:NTK.Service.NTKService.Config">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Service.NTKS_BlockChain">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Service.NTKS_BlockChain.c_listen(NTK.NTKUser,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="cmd"></param>
+        </member>
+        <member name="T:NTK.Service.NTKS_Basic">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Service.SNCmd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Service.SNUser">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Service.SNUser.#ctor(System.String,System.Net.Sockets.TcpClient)">
+            <summary>
+            
+            </summary>
+            <param name="login"></param>
+            <param name="client"></param>
+        </member>
+        <member name="P:NTK.Service.SNUser.GrpId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.Service.SNUser.Db">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Service.NTKS_SN">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.#ctor(NTK.NTKServer)">
+            <summary>
+            
+            </summary>
+            <param name="serv"></param>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.#ctor(NTK.NTKClient)">
+            <summary>
+            
+            </summary>
+            <param name="cli"></param>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.s_authentification(NTK.NTKUser,System.Collections.Generic.List{NTK.NTKUser},NTK.Service.ServicelistenFunction)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="userlist"></param>
+            <param name="listen"></param>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.basicCommands(NTK.Service.SNUser,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="cmd"></param>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.s_listen(NTK.NTKUser)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.c_authentification(NTK.NTKUser)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.c_listen(NTK.NTKUser,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="cmd"></param>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.setUser(NTK.NTKUser,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="user"></param>
+            <param name="grpId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.basicConfig(NTK.Database.NTKDatabase)">
+            <summary>
+            
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Service.NTKS_SN.initialize(System.Object[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="P:NTK.Service.NTKS_SN.Db">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.Service.ServiceConfig">
+            <summary>
+            Configuration d'un service NTK
+            </summary>
+        </member>
+        <member name="F:NTK.Service.ServiceConfig.name">
+            <summary>
+            Nom complet du service
+            </summary>
+        </member>
+        <member name="F:NTK.Service.ServiceConfig.stype">
+            <summary>
+            Identifiant du service
+            </summary>
+        </member>
+        <member name="F:NTK.Service.ServiceConfig.authentification">
+            <summary>
+            Si le serveur doit utiliser l'authentification du service
+            </summary>
+        </member>
+        <member name="F:NTK.Service.ServiceConfig.useBasicListen">
+            <summary>
+            utilise un boucle d'écoute simple à la place de s_listen
+            </summary>
+        </member>
+        <member name="F:NTK.Service.ServiceConfig.table">
+            <summary>
+            Liste des tables
+            </summary>
+        </member>
+        <member name="F:NTK.Service.ServiceConfig.database">
+            <summary>
+            Structure de base de données
+            </summary>
+        </member>
+        <member name="F:NTK.Service.ServiceConfig.dbq">
+            <summary>
+            Connection à une base de données
+            </summary>
+        </member>
+        <member name="T:NTK.OnIdentificationEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTK.OnReadEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTK.OnWriteEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTK.OnGetServiceEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTK.OnConnectEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTK.OnErrorEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTK.OnStopEventHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:NTK.NTKClient">
+            <summary>
+            Client tcp
+            </summary>
+        </member>
+        <member name="E:NTK.NTKClient.Connect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.NTKClient.Identification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.NTKClient.ReadMsg">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.NTKClient.GetService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.NTKClient.WriteMsg">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.NTKClient.Error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.NTKClient.Stop">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:NTK.NTKClient.user">
+            PROPRIETES ///////////////////////////////////////////////////////////////////////////////////////////////////
+        </member>
+        <member name="M:NTK.NTKClient.#ctor(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="adrs"></param>
+            <param name="port"></param>
+        </member>
+        <member name="M:NTK.NTKClient.#ctor(System.String,System.Int32,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="adrs"></param>
+            <param name="port"></param>
+            <param name="login"></param>
+            <param name="pass"></param>
+            <param name="seckey"></param>
+            <param name="reg"></param>
+        </member>
+        <member name="M:NTK.NTKClient.connect">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.NTKClient.listenLoop(NTK.NTKUser)">
+            <summary>
+            
+            </summary>
+            <param name="u"></param>
+        </member>
+        <member name="M:NTK.NTKClient.readMsg">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKClient.writeMsg(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+        </member>
+        <member name="M:NTK.NTKClient.closeConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.NTKClient.connectAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKClient.listenLoopAsync(NTK.NTKUser)">
+            <summary>
+            
+            </summary>
+            <param name="u"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKClient.readMsgAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKClient.writeMsgAsync(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKClient.closeConnectionAsync">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKClient.OnIdentification(NTK.EventsArgs.IdentificationEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.NTKClient.OnGetService(NTK.EventsArgs.GetServiceEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.NTKClient.OnReadMsg(NTK.EventsArgs.MsgArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.NTKClient.OnWriteMsg(NTK.EventsArgs.MsgArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.NTKClient.OnConnect(NTK.EventsArgs.OnConnectEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.NTKClient.OnError(NTK.EventsArgs.OnErrorEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.NTKClient.OnStop(NTK.EventsArgs.StopEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="P:NTK.NTKClient.User">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Port">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Adrs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Stype">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Ctype">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Seckey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Client">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Login">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Pass">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Service">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Logs">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKClient.Lvl">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:NTK.NTKServer">
+            <summary>
+            Serveur tcp pouvant héberger un service
+            </summary>
+        </member>
+        <member name="F:NTK.NTKServer.port">
+            ATTRIBUTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        </member>
+        <member name="E:NTK.NTKServer.ReadMsg">
+            <summary>
+            Lecture d'un message sur le flux
+            </summary>
+        </member>
+        <member name="M:NTK.NTKServer.#ctor(System.Int32,NTK.CTYPE)">
+            <summary>
+            Créé un serveur basique
+            </summary>
+            <param name="port"></param>
+            <param name="ctype"></param>
+        </member>
+        <member name="M:NTK.NTKServer.#ctor(System.String)">
+            <summary>
+            Constructeur avec fichier de configuration
+            </summary>
+            <param name="configPath">Chemin vers le fichier</param>
+        </member>
+        <member name="M:NTK.NTKServer.#ctor(System.Int32,NTK.CTYPE,System.Boolean,System.String,NTK.Database.NTKDatabase)">
+            <summary>
+            Créé un serveur basique
+            </summary>
+            <param name="port">port d'écoute</param>
+            <param name="ctype">type d'authentification</param>
+            <param name="tls">communication chiffrée</param>
+            <param name="secKey">clé de sécurité</param>
+            <param name="db">connection à une base de données</param>
+        </member>
+        <member name="M:NTK.NTKServer.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.NTKServer.start">
+            <summary>
+            Methode de démarrage du serveur (Méthode bloquante) 
+            </summary>
+        </member>
+        <member name="M:NTK.NTKServer.ident_tls(NTK.NTKUser)">
+            <summary>
+            Gére le protocole de chiffrement TLS
+            </summary>
+            <param name="user">Utilisateur</param>
+        </member>
+        <member name="M:NTK.NTKServer.basicListen(NTK.NTKUser)">
+            <summary>
+            Boucle d'écoute
+            </summary>
+            <param name="user">Utilisateur</param>
+        </member>
+        <member name="P:NTK.NTKServer.Port">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Stype">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Service">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Ctype">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Tls">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Plugins">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Tokenlist">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.StopCodes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Userlist">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Database">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Confpath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Rsa">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.SecKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Pause">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Stop">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Config">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.ExtServices">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServer.Logs">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

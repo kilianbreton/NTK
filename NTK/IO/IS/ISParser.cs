@@ -11,6 +11,9 @@ using static NTK.Other.NTKF;
 
 namespace NTK.IO.IS
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ISParser
     {
 

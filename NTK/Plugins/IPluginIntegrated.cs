@@ -7,9 +7,15 @@ using System.Windows.Forms;
 
 namespace NTK.Plugins
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IPluginIntegrated : IBasePlugin
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         UserControl getStage();
     }
 }

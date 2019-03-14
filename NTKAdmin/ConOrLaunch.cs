@@ -12,6 +12,7 @@ using NTK.IO.Xml;
 using NTK;
 using NTK.Plugins;
 using System.Diagnostics;
+using NTK.Service;
 
 namespace NTKAdmin
 {

@@ -16,16 +16,22 @@ using static NTK.Other.NTKF;
 
 namespace NTK
 {
-   
+    /// <summary>
+   /// Utilisateur d'un flux NTK
+   /// </summary>
     public class NTKUser
     {
-        public delegate void OnReadEventHandler(object sender, MsgArgs args);
-        public delegate void OnWriteEventHandler(object sender, MsgArgs args);
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnReadEventHandler ReadMsg;
+        /// <summary>
+        /// 
+        /// </summary>
         public event OnWriteEventHandler WriteMsg;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ATTRIBUTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // ATTRIBUTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private int id = 0;
@@ -46,9 +52,14 @@ namespace NTK
         private const int MSG_BUFFERSIZE = 64;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+       
+        /// <summary>
+        /// Créé un utilisateur connecté
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="client"></param>
         public NTKUser(String login, TcpClient client)
         {
             this.login = login;
@@ -58,7 +69,11 @@ namespace NTK
             this.streamr = new StreamReader(stream);
             cipher = new NTKAes(NTKAes.CreateKey(741));
         }
-
+        
+        /// <summary>
+        /// Créé un utilisateur en attente
+        /// </summary>
+        /// <param name="login"></param>
         public NTKUser(String login)
         {
             this.login = login;
@@ -67,7 +82,11 @@ namespace NTK
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHODES PUBLIQUES ////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+      
+        /// <summary>
+        /// Lecture d'un message
+        /// </summary>
+        /// <returns></returns>
         public String readMsg()
         {
             String ret = "";
@@ -92,6 +111,10 @@ namespace NTK
             return ret;
         }
 
+        /// <summary>
+        /// Ecriture d'un message
+        /// </summary>
+        /// <param name="text">Message</param>
         public void writeMsg(String text)
         {
             MsgArgs argsE = new MsgArgs(this.login +" : "+ text);
@@ -116,6 +139,10 @@ namespace NTK
             }
         }
 
+        /// <summary>
+        /// Lecture d'un message
+        /// </summary>
+        /// <returns></returns>
         public async Task<String> readMsgAsync()
         {
             String ret = "";
@@ -140,7 +167,12 @@ namespace NTK
             Console.WriteLine(this.login + " : " + ret);
             return ret;
         }
-
+      
+        /// <summary>
+        /// Ecriture d'un message
+        /// </summary>
+        /// <param name="text">Message</param>
+        /// <returns></returns>
         public async Task writeMsgAsync(String text)
         {
             MsgArgs argsE = new MsgArgs(this.login + " : " + text);
@@ -164,7 +196,11 @@ namespace NTK
                 Console.WriteLine(this.login + " : Disconnected");
             }
         }
-
+        
+        /// <summary>
+        /// Réception d'un fichier
+        /// </summary>
+        /// <param name="path">Chemin de destination</param>
         public void reciveFile(String path)
         {
             byte[] RecData = new byte[FILE_BUFFERSIZE];
@@ -197,7 +233,12 @@ namespace NTK
                 }
             }
         }
-
+        
+        /// <summary>
+        /// envoi d'un fichier
+        /// </summary>
+        /// <param name="path">Fichier</param>
+        /// <param name="targetLogin">Cible (Utilisateur)</param>
         public void sendFile(String path,String targetLogin)
         {
             byte[] SendingBuffer = null;
@@ -241,15 +282,24 @@ namespace NTK
 
 
 
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // EVENTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnReadMsg(MsgArgs e)
         {
             if (ReadMsg != null)
                 ReadMsg(this, e);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
         protected virtual void OnWriteMsg(MsgArgs e)
         {
             if (WriteMsg != null)
@@ -261,18 +311,53 @@ namespace NTK
         // GETTERS & SETTERS /////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Login { get => login; set => login = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get => name; set => name = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Pass { get => pass; set => pass = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string Seckey { get => seckey; set => seckey = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public USER_LVL Lvl { get => lvl; set => lvl = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public IEncryptor Cipher { get => cipher; set => cipher = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public TcpClient Client { get => client; }
+        /// <summary>
+        /// 
+        /// </summary>
         public NetworkStream Stream { get => stream; }
+        /// <summary>
+        /// 
+        /// </summary>
         public StreamWriter Streamw { get => streamw;}
+        /// <summary>
+        /// 
+        /// </summary>
         public StreamReader Streamr { get => streamr;}
+        /// <summary>
+        /// 
+        /// </summary>
         public bool Tls { get => tls; set => tls = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Id { get => id; set => id = value; }
     }
 }

@@ -12,7 +12,9 @@ using NTK.IO;
 
 namespace NTK.Service
 {
- 
+    /// <summary>
+    /// 
+    /// </summary>
     public enum SNCmd
     {
         //GET
@@ -28,21 +30,37 @@ namespace NTK.Service
     }
 
     
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class SNUser : NTKUser
     {
         private int grpId;
         private NTKDatabase db;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="client"></param>
         public SNUser(String login, TcpClient client) : base(login, client) {
             
 
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public int GrpId { get => grpId; set => grpId = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public NTKDatabase Db { get => db; set => db = value; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class NTKS_SN : NTKService
     {
         private FileManager fmanager;
@@ -50,14 +68,21 @@ namespace NTK.Service
         private const int GET_LIMIT = 60;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="serv"></param>
         public NTKS_SN(NTKServer serv) : base(serv) {
             base.Config = basicConfig();
             this.db = serv.Database;
         }
-       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cli"></param>
         public NTKS_SN(NTKClient cli) : base(cli)
         {
             base.Config = basicConfig();
@@ -70,14 +95,21 @@ namespace NTK.Service
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// /!\ Not Implemented /!\
+        /// 
         /// </summary>
         /// <param name="user"></param>
-        public override void s_authentification(NTKUser user, List<NTKUser> userlist = null, ServicelistenFunction listen = null)
+        /// <param name="userlist"></param>
+        /// <param name="listen"></param>
+        public override void s_authentification(NTKUser user, List<NTKUser> userlist, ServicelistenFunction listen)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="cmd"></param>
         public void basicCommands(SNUser user, String cmd)
         {
             /////////////////////////////////////////////////////
@@ -275,6 +307,10 @@ namespace NTK.Service
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
         public override void s_listen(NTKUser user)
         {
             SNUser snu = setUser(user, 1);
@@ -329,12 +365,20 @@ namespace NTK.Service
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
         public override void c_authentification(NTKUser user)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="cmd"></param>
         public override void c_listen(NTKUser user,String cmd)
         {
      //       String cmd = user.readMsg();
@@ -379,7 +423,12 @@ namespace NTK.Service
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="grpId"></param>
+        /// <returns></returns>
         public static SNUser setUser(NTKUser user, int grpId)
         {
             SNUser ret = new SNUser(user.Login, user.Client);
@@ -389,13 +438,18 @@ namespace NTK.Service
             return ret;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
         public static ServiceConfig basicConfig(NTKDatabase db = null)
         {
             var c = new ServiceConfig
             {
                 authentification = false,
                 stype = "SN",
-                tables_prefix = "sn_",
+             
                 database = new DBStruct("SN", "myisam"),
                 dbq = db,
                 useBasicListen = false
@@ -449,6 +503,10 @@ namespace NTK.Service
             return c;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="args"></param>
         public override void initialize(params object[] args)
         {
             
@@ -517,6 +575,9 @@ namespace NTK.Service
         }
 
         //--------------------------------------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
         public NTKDatabase Db { get => db; set => db = value; }
 
     }

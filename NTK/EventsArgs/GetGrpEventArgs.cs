@@ -7,12 +7,19 @@ using NTK.IO.Xml;
 
 namespace NTK.EventsArgs
 {
+    /// <summary>
+    /// Obtient la liste des groupes
+    /// </summary>
     public class GetGrpEventArgs : EventArgs, IEventEnum
     {
         private XmlNode root;
         private int indice = -1;
         private int indiceMax = 0;
-
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="data"></param>
         public GetGrpEventArgs(String data)
         {
             XmlDocument xmlp = new XmlDocument(data, false);
@@ -20,22 +27,36 @@ namespace NTK.EventsArgs
             this.indiceMax = root.getChild(0).count() - 1;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public Boolean next()
         {
             indice++;
             return (indice <= indiceMax);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String getName()
         {
             return root.getChild("Name").getChildV(indice);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String getType()
         {
             return root.getChild("Login").getChildV(indice);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String getDescription()
         {
             return root.getChild("description").getChildV(indice);

@@ -21,6 +21,7 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 using ServiceTest;
 using NTK.IO.Xml;
+using NTK.IO.Html;
 using NTK.IO.IS;
 using NTK.IO.Ini;
 using NTK.Security;
@@ -32,38 +33,24 @@ namespace NTKCGETester
     {
         static void Main(string[] args)
         {
-            
+            HtmlDocument htmld = new HtmlDocument();
+            htmld.addLinkHeader("stylesheet", "css/treeview.css");
 
-            // NTKServer server = new NTKServer(@"D:\Programmation\NTK\Config\server.xml");
-            IniDocument ind = new IniDocument(@"C:\wamp64\bin\php\php7.1.9\php.ini");
-            /*     foreach(IniGroup grp in ind.Groups)
-                 {
-                     Console.WriteLine("* " + grp.Name.ToUpper());
-                     foreach(IniValue val in grp.Values)
-                     {
-                         Console.WriteLine("  - " + val.Name + " = " + val.Value);
-                     }
-                 }*/
-            ind.getGroup("SQL");
-            Console.WriteLine(ind.print());
+            var body = htmld.getNode(0).addBody();
+            body.addTitle("Class", TitleType.H1);
+            body.addLink("http://google.com", "Google");
+
+            var list = body.addList();
+            list.addListNode("value");
+            list.addListNode("value2");
+
+            var table = body.addTable();
+            table.addTableHeader("id", "name", "lastname", "birthdate");
+            table.addTableValuesLine("1", "kilian", "breton", "07/04/1998");
+            table.addTableValuesLine("2", "arnaud", "breton", "07/04/1998");
+
+            Console.WriteLine(htmld.print());
             Console.ReadKey();
-
-
-
-            Type test = typeof(MVisiteur);
-
-            var tab = test.GetMembers();
-            foreach(MemberInfo prop in tab)
-            {
-                Console.WriteLine(prop.Name);
-            }
-
-          //  var lst = MVisiteur.all();
-          
-            
-            Console.ReadLine();
-         
-            
         }
 
 

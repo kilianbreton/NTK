@@ -8,6 +8,9 @@ using static NTK.Other.NTKF;
 
 namespace NTK.Service
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class NTKS_Basic : NTKService
     {
         public NTKS_Basic(ServiceConfig config) : base(config) { }
@@ -17,7 +20,7 @@ namespace NTK.Service
          * Partie serveur *
          ******************/
 
-        public override void s_authentification(NTKUser user, List<NTKUser> userlist = null, ServicelistenFunction listen = null)       {
+        public override void s_authentification(NTKUser user, List<NTKUser> userlist, ServicelistenFunction listen)       {
             var umsg = user.readMsg();
             var login = subsep(umsg, ">", ";");
             if (alreadyConnected(login,userlist))

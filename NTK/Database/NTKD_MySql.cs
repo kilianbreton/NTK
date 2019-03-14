@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace NTK.Database
 {
+    /// <summary>
+    /// Classe de connexion à une base Mysql
+    /// </summary>
     public class NTKD_MySql : NTKDatabase
     {
         private String host;
@@ -19,9 +22,17 @@ namespace NTK.Database
         private MySqlConnection mysqlc;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS & SINGLETON ////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS & SINGLETON /////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="user"></param>
+        /// <param name="pass"></param>
+        /// <param name="name"></param>
+        /// <param name="test"></param>
         private NTKD_MySql(String host, String user, String pass, String name, Boolean test = false)
         {
             this.host = host;
@@ -31,6 +42,15 @@ namespace NTK.Database
             InitMysqlConnexion();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="user"></param>
+        /// <param name="pass"></param>
+        /// <param name="name"></param>
+        /// <param name="test"></param>
+        /// <returns></returns>
         public static NTKDatabase getInstance(String host, String user, String pass, String name, Boolean test = false)
         {
             if (instance == null)
@@ -40,11 +60,24 @@ namespace NTK.Database
             return instance;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static bool isNull()
         {
             return (instance == null);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="host"></param>
+        /// <param name="user"></param>
+        /// <param name="pass"></param>
+        /// <param name="name"></param>
+        /// <param name="test"></param>
+        /// <returns></returns>
         public static NTKDatabase overrideInstance(String host, String user, String pass, String name, Boolean test = false)
         {
             instance = new NTKD_MySql(host, user, pass, name, test);
@@ -98,11 +131,20 @@ namespace NTK.Database
             return ret;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void closeConnection()
         {
             this.mysqlc.Close();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="param"></param>
+        /// <param name="changebase"></param>
         public override void insert(String query, String[,] param = null, String changebase = null)
         {
             try
@@ -152,8 +194,7 @@ namespace NTK.Database
         /// <summary>
         /// Création de base de données. à partir d'un objet DBStruct.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="useit"></param>
+        /// <param name="db"></param>
         public override void createDb(DBStruct db)
         {
             insert("CREATE DATABASE IF NOT EXISTS `" + db.Name + "`;\n");
@@ -166,8 +207,10 @@ namespace NTK.Database
         /// <summary>
         /// requête select retournant un script XML
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="useit"></param>
+        /// <param name="query"></param>
+        /// <param name="withCol"></param>
+        /// <param name="dataName"></param>
+        /// <returns></returns>
         public override String queryOverNTK(String query, Boolean withCol = false, String dataName = null)
         {
             String ret = "";
@@ -249,7 +292,9 @@ namespace NTK.Database
 
             return ret;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public override void tryConnection()
         {
             try
@@ -273,12 +318,24 @@ namespace NTK.Database
                 addLogs(LogsTypes.CRITICAL, e.Message, "Server");
             }
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="format"></param>
+        /// <param name="encryption"></param>
+        /// <returns></returns>
         public override string backUp(string db, Format format, Encryption encryption)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="path"></param>
+        /// <param name="format"></param>
+        /// <param name="encryption"></param>
         public override void backUp(string db, string path, Format format, Encryption encryption)
         {
             throw new NotImplementedException();
@@ -289,7 +346,13 @@ namespace NTK.Database
         // METHODES PUBLIQUES ASYNCHRONES ////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="param"></param>
+        /// <param name="changebase"></param>
+        /// <returns></returns>
         public override Task<IDataReader> selectAsync(string query, string[,] param = null, string changebase = null)
         {
             Task<IDataReader> ret = null;
@@ -324,42 +387,82 @@ namespace NTK.Database
             
             return ret;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override Task closeConnectionAsync()
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="param"></param>
+        /// <param name="changebase"></param>
+        /// <returns></returns>
         public override Task insertAsync(string query, string[,] param = null, string changebase = null)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="useit"></param>
+        /// <returns></returns>
         public override Task createDbAsync(string name, bool useit = true)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns></returns>
         public override Task createDbAsync(DBStruct db)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="withCol"></param>
+        /// <param name="dataName"></param>
+        /// <returns></returns>
         public override Task<string> queryOverNTKAsync(string query, bool withCol = false, string dataName = null)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="format"></param>
+        /// <param name="encryption"></param>
+        /// <returns></returns>
         public override Task<string> backUpAsync(string db, Format format, Encryption encryption)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="path"></param>
+        /// <param name="format"></param>
+        /// <param name="encryption"></param>
+        /// <returns></returns>
         public override Task backUpAsync(string db, string path, Format format, Encryption encryption)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override Task tryConnectionAsync()
         {
             throw new NotImplementedException();

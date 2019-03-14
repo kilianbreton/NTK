@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,22 +10,32 @@ using static NTK.Other.NTKF;
 
 namespace NTK.IO.Xml
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class XmlDocument
     {
         int index = -1;
         private List<XmlNode> nodelist = new List<XmlNode>();
         private String[,] attributs;
+        private String path;
    
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pathortext"></param>
+        /// <param name="ispath"></param>
         public XmlDocument(String pathortext, bool ispath = true)
         {
             String text;
             if (ispath)
             {
                 text = System.IO.File.ReadAllText(pathortext);
+                this.path = pathortext;
             }
             else
             {
@@ -36,11 +47,18 @@ namespace NTK.IO.Xml
             {
                 text = delseps(text, "<!--", "-->");
             }
+            if (text.Contains("<?xml"))
+            {
+                text = delseps(text, "<?xml", "?>");
+            }
             XmlNode tmpDoc = XmlNode.parseNode(text,"root");
 
             this.nodelist = tmpDoc.getChildList();
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public XmlDocument() { }
 
     
@@ -49,12 +67,19 @@ namespace NTK.IO.Xml
         // METHODES PUBLIQUES ////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-     
+        /// <summary>
+         /// 
+         /// </summary>
+         /// <returns></returns>
         public bool read()
         {
             return (++index < nodelist.Count);
         }
-
+ 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public XmlNode getNode()
         {
             XmlNode ret = null;
@@ -66,17 +91,29 @@ namespace NTK.IO.Xml
             return ret;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String[,] getAttributs()
         {
             return attributs;
         }
-
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public int count()
         {
             return nodelist.Count;
         }
-   
+    
+        /// <summary>
+       /// 
+       /// </summary>
+       /// <param name="id"></param>
+       /// <returns></returns>
         public XmlNode getNode(int id)
         {
             XmlNode ret;
@@ -92,7 +129,12 @@ namespace NTK.IO.Xml
             }
             return ret;
         }
-
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public XmlNode getNode(String name)
         {
             int compt = 0;
@@ -123,27 +165,48 @@ namespace NTK.IO.Xml
             }
             return ret;
         }
-
+   
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public XmlNode addNode(String name)
         {
             var newChild = new XmlNode(name);
             nodelist.Add(newChild);
             return newChild;
         }
-
+   
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public XmlNode addNode(String name,String value)
         {
             var newChild = new XmlNode(name, value);
             nodelist.Add(newChild);
             return newChild;
         }
-
+   
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="child"></param>
+        /// <returns></returns>
         public XmlNode addNode(XmlNode child)
         {
             nodelist.Add(child);
             return child;
         }
-
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool deleteNode(int id)
         {
             bool ret;
@@ -160,6 +223,11 @@ namespace NTK.IO.Xml
             return ret;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public bool deleteNode(String name)
         {
             int compt = 0;
@@ -179,12 +247,20 @@ namespace NTK.IO.Xml
             }
             return find;
         }
-
+  
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
         public void write(String path)
         {
             System.IO.File.WriteAllText(path, print());
         }
-
+  
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public String print()
         {
             String ret = "";
@@ -194,7 +270,11 @@ namespace NTK.IO.Xml
             }
             return ret;
         }
-     
+ 
+        /// <summary>
+         /// 
+         /// </summary>
+         /// <returns></returns>
         public String printWA()
         {
             String ret = "";
@@ -203,6 +283,17 @@ namespace NTK.IO.Xml
                 ret = ret + nodelist[i].printWA();
             }
             return ret;
+        }
+
+        /// <summary>
+        /// Save File
+        /// </summary>
+        public void save()
+        {
+            var strm = File.Create(path);
+            var sw = new StreamWriter(strm);
+            sw.WriteLine(this.print());
+            sw.Flush();
         }
     }
 }

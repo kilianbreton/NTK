@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace CGE.IN
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DataList :CGEObject
     {
         private String[,] grid;
         private bool header;
         private int[] maxLength;
         private int indiceL = 0;
-
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="header"></param>
         public DataList(String[,] grid, bool header = false)
         {
             this.grid = grid;
@@ -20,11 +28,18 @@ namespace CGE.IN
             Console.OutputEncoding = Encoding.Unicode;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
         public override void draw(int i = 0)
         {
             throw new NotImplementedException();
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
         private void print()
         {
 
@@ -94,17 +109,28 @@ namespace CGE.IN
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string show()
         {
             print();
             return "0";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void start()
         {
             print();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bad"></param>
         public override void stop(bool bad = false)
         {
             

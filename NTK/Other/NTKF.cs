@@ -10,6 +10,9 @@ using NTK.Database.ORM;
 
 namespace NTK.Other
 {
+    /// <summary>
+    /// Static functions class
+    /// </summary>
     public sealed class NTKF
     {
         public static int seed = 48521;

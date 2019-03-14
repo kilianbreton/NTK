@@ -15,11 +15,23 @@ using static NTK.Other.NTKF;
 
 namespace NTK.Security
 {
- 
+    /// <summary>
+    /// Clée AES
+    /// </summary>
     public struct AesKey
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public byte[] key;
+        /// <summary>
+        /// 
+        /// </summary>
         public byte[] iv;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string makeXml()
         {
             return "<key>" + Convert.ToBase64String(key) + "</key><iv>" + Convert.ToBase64String(iv) + "</iv>";
@@ -29,9 +41,12 @@ namespace NTK.Security
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /// CLASSE ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // CLASSE ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
+    /// <summary>
+    /// Classe de chiffrement AES
+    /// </summary>
     public sealed class NTKAes : IEncryptor
     {
 
@@ -42,10 +57,14 @@ namespace NTK.Security
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="strKey"></param>
+        /// <param name="strIv"></param>
         public NTKAes(String strKey, String strIv)
         {
            
@@ -57,6 +76,11 @@ namespace NTK.Security
             commonBuilder();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="iv"></param>
         public NTKAes(byte[] key, byte[] iv)
         {
           
@@ -67,6 +91,11 @@ namespace NTK.Security
             };
             commonBuilder();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
         public NTKAes(AesKey key)
         {
             AesKey = key;
@@ -77,6 +106,11 @@ namespace NTK.Security
         // METHODES PUBLIQUES ////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="clearText"></param>
+        /// <returns></returns>
         public string encrypt(string clearText)
         {
 
@@ -105,6 +139,11 @@ namespace NTK.Security
             return Convert.ToBase64String(CipherBytes);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cipherText"></param>
+        /// <returns></returns>
         public string decrypt(string cipherText)
         {
 
@@ -137,6 +176,12 @@ namespace NTK.Security
         // METHODES PUBLIQUES STATIQUES //////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="salt"></param>
+        /// <param name="keyBytes"></param>
+        /// <returns></returns>
         public static AesKey CreateKey(int salt, int keyBytes = 32)
         {
             const int Iterations = 300;
@@ -152,6 +197,11 @@ namespace NTK.Security
             return ret;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static String generateString(int length)
         {
             Random rnd = new Random();
@@ -164,28 +214,14 @@ namespace NTK.Security
             return new String(chars);
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // METHODES PRIVEES //////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-        private void commonBuilder()
-        {
-            rijndael = new RijndaelManaged();
-            
-            // Définit le mode utilisé
-            rijndael.Mode = CipherMode.CBC;
-
-            // Crée le chiffreur AES - Rijndael
-            aesEncryptor = rijndael.CreateEncryptor(AesKey.key, AesKey.iv);
-
-            decryptor = rijndael.CreateDecryptor(AesKey.key, AesKey.iv);
-        }
-
-        
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public byte[] decrypt(byte[] text)
-        {        
+        {
 
             MemoryStream ms = new MemoryStream(text);
             CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read);
@@ -200,7 +236,11 @@ namespace NTK.Security
 
             return plainTextData;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         public byte[] encrypt(byte[] text)
         {
             // Place le texte à chiffrer dans un tableau d'octets
@@ -225,30 +265,66 @@ namespace NTK.Security
             // Place les données chiffrées dans une chaine encodée en Base64
             return CipherBytes;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
         public void setKey(AesKey key)
         {
             this.aesKey = key;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public AesKey getKey()
         {
             return aesKey;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="key"></param>
         public void setKey(string key)
         {
             this.aesKey.key = Encoding.UTF8.GetBytes(subsep(key, "<key>", "</key>"));
             this.aesKey.iv = Encoding.UTF8.GetBytes(subsep(key, "<iv>", "</iv>"));
-          
-        }
 
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         string IEncryptor.getKey()
         {
             return this.aesKey.makeXml();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
         public AesKey AesKey { get => aesKey; set => aesKey = value; }
+
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHODES PRIVEES //////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        private void commonBuilder()
+        {
+            rijndael = new RijndaelManaged();
+            
+            // Définit le mode utilisé
+            rijndael.Mode = CipherMode.CBC;
+
+            // Crée le chiffreur AES - Rijndael
+            aesEncryptor = rijndael.CreateEncryptor(AesKey.key, AesKey.iv);
+
+            decryptor = rijndael.CreateDecryptor(AesKey.key, AesKey.iv);
+        }
+
+        
+      
 
     }
 }

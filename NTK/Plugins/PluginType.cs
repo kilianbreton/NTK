@@ -6,8 +6,22 @@ using System.Threading.Tasks;
 
 namespace NTK.Plugins
 {
-   public enum PluginType
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum PluginType
     {
-        FORM,TOOLBAR,TAB
+        /// <summary>
+        /// 
+        /// </summary>
+        FORM,
+        /// <summary>
+        /// 
+        /// </summary>
+        TOOLBAR,
+        /// <summary>
+        /// 
+        /// </summary>
+        TAB
     }
 }
