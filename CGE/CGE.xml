@@ -315,5 +315,40 @@
         <member name="M:CGE.OUT.Alert.draw(System.Int32)">
             Methodes Héritées /////////////////////////////////////////////////////////////////////////////////////
         </member>
+        <member name="T:CGE.OUT.DataGrid">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.OUT.DataGrid.#ctor(System.String[0:,0:],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="grid"></param>
+            <param name="header"></param>
+        </member>
+        <member name="M:CGE.OUT.DataGrid.draw(System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="i"></param>
+        </member>
+        <member name="M:CGE.OUT.DataGrid.print">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CGE.OUT.DataGrid.show">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CGE.OUT.DataGrid.stop(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="bad"></param>
+        </member>
     </members>
 </doc>

@@ -53,6 +53,25 @@ namespace NTK.IO.Ini
 
 
         }
+    
+
+        /// <summary>
+        /// Recherche si un groupe éxiste
+        /// </summary>
+        /// <param name="name">nom du groupe</param>
+        /// <returns></returns>
+        public bool isGroupExist(String name)
+        {
+            int cpt = 0;
+            bool ret = false;
+            while(cpt < groups.Count && !ret)
+            {
+                if (groups[cpt].Name.Equals(name)) { ret = true; }
+                cpt++;
+            }
+            return ret;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -65,6 +84,7 @@ namespace NTK.IO.Ini
             groups.Add(g);
             return g;
         }
+      
         /// <summary>
         /// 
         /// </summary>
@@ -95,6 +115,7 @@ namespace NTK.IO.Ini
 
             return ret;
         }
+      
         /// <summary>
         /// 
         /// </summary>
@@ -120,6 +141,8 @@ namespace NTK.IO.Ini
             sw.WriteLine(this.print());
             sw.Flush();
         }
+
+        
 
         /// <summary>
         /// 

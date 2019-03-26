@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace NTK.Database
 {
+    /// <summary>
+    /// Classe de connection à Sqlite
+    /// </summary>
     public class NTKD_Sqlite : NTKDatabase
     {
-        private static NTKD_Sqlite instance;
         private SQLiteConnection con;
         private String path;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// CONSTRUCTEURS & SINGLETON ////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS & SINGLETON ////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -28,8 +30,14 @@ namespace NTK.Database
         }
 
 
-
-        public static NTKD_Sqlite getInstance(String path, bool isNew = false, bool compress = false)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="isNew"></param>
+        /// <param name="compress"></param>
+        /// <returns></returns>
+        public static NTKDatabase getInstance(String path, bool isNew = false, bool compress = false)
         {
             if (instance == null)
             {
@@ -39,23 +47,44 @@ namespace NTK.Database
         }
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static bool isNull()
         {
             return (instance == null);
         }
-
-        public static NTKD_Sqlite overrideInstance(String path, bool isNew = false, bool compress = false)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="isNew"></param>
+        /// <param name="compress"></param>
+        /// <returns></returns>
+        public static NTKDatabase overrideInstance(String path, bool isNew = false, bool compress = false)
         {
             instance = new NTKD_Sqlite(path,isNew,compress);
             return instance;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="format"></param>
+        /// <param name="encryption"></param>
+        /// <returns></returns>
         public override string backUp(string db, Format format, Encryption encryption)
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="path"></param>
+        /// <param name="format"></param>
+        /// <param name="encryption"></param>
         public override void backUp(string db, string path, Format format, Encryption encryption)
         {
             throw new NotImplementedException();

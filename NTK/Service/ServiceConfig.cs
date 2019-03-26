@@ -39,6 +39,6 @@ namespace NTK.Service
         /// <summary>
         /// Connection à une base de données
         /// </summary>
-        public NTKDatabase dbq;
+        public NTKDatabase dbc;
     }
 }

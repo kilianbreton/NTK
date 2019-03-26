@@ -103,7 +103,7 @@ namespace CS_HTMLDoc
         public Documentation (String path,String language,String template = null)
         {
             commonBuilder(path);
-            IniDocument inid = new IniDocument("chd.ini");
+            IniDocument inid = new IniDocument(AppDomain.CurrentDomain.BaseDirectory + "\\chd.ini");
             var l = inid.getGroup(language);
             this.lang = new Lang()
             {

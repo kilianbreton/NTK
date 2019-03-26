@@ -11,6 +11,10 @@ using static NTK.Other.NTKF;
 
 namespace NTK.IO
 {
+    /// <summary>
+    /// Parseur de fichier IS 
+    /// </summary>
+    [Obsolete]
     public class InstallScript
     {
  

@@ -84,6 +84,8 @@
             this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.p2PToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installScriptsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.transfererToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fichierToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -500,7 +502,7 @@
             this.optionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(255, 19);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(239, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(389, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -509,7 +511,8 @@
             this.fichierToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.fichierToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ouvrirToolStripMenuItem,
-            this.quitterToolStripMenuItem});
+            this.quitterToolStripMenuItem,
+            this.transfererToolStripMenuItem});
             this.fichierToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.fichierToolStripMenuItem.Name = "fichierToolStripMenuItem";
             this.fichierToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
@@ -518,13 +521,13 @@
             // ouvrirToolStripMenuItem
             // 
             this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.ouvrirToolStripMenuItem.Text = "Ouvrir";
             // 
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(130, 26);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.quitterToolStripMenuItem.Text = "Quitter";
             // 
             // afficherToolStripMenuItem
@@ -671,6 +674,21 @@
             this.installScriptsToolStripMenuItem1.Size = new System.Drawing.Size(196, 26);
             this.installScriptsToolStripMenuItem1.Text = "InstallScripts";
             // 
+            // transfererToolStripMenuItem
+            // 
+            this.transfererToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fichierToolStripMenuItem1});
+            this.transfererToolStripMenuItem.Name = "transfererToolStripMenuItem";
+            this.transfererToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.transfererToolStripMenuItem.Text = "Transferer";
+            // 
+            // fichierToolStripMenuItem1
+            // 
+            this.fichierToolStripMenuItem1.Name = "fichierToolStripMenuItem1";
+            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
+            this.fichierToolStripMenuItem1.Text = "Fichier";
+            this.fichierToolStripMenuItem1.Click += new System.EventHandler(this.fichierToolStripMenuItem1_Click);
+            // 
             // Main
             // 
             this.AcceptButton = this.button1;
@@ -754,5 +772,7 @@
         private System.Windows.Forms.ToolStripMenuItem p2PToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem installScriptsToolStripMenuItem1;
         protected System.Windows.Forms.ToolStripMenuItem fenêtreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem transfererToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fichierToolStripMenuItem1;
     }
 }

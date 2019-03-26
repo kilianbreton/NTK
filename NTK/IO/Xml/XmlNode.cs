@@ -111,7 +111,7 @@ namespace NTK.IO.Xml
                 text = delseps(text, "<!--", "-->");
             }
 
-            if (text.Contains("<?xml"))
+            if (text.Contains("<?xml"))     //TODO: Gestion entête
             {
                 text = delseps(text, "<?xml", "?>");
             }
@@ -123,8 +123,8 @@ namespace NTK.IO.Xml
                 try
                 {       
                     bool endBalType = false;
-                    String childname = subsep(text, "<", ">");
-                    if (childname.Contains("/"))
+                    String childname = subsep(text, "<", ">");  //Récupération du nom (avec arguments)
+                    if (childname.Contains("/"))    //Si balise auto-fermante
                     {
                         endBalType = true;
                     }

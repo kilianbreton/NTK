@@ -1,0 +1,208 @@
+\hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model}{}\section{N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model Class Reference}
+\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model}\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+
+
+ 
+
+
+Inheritance diagram for N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d4/dca/class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a17abd002e7bda84ef89d04f5dc222fe6}{Base\+Model}} ()
+\item 
+abstract void \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a62c00da7e4c99a778e04b0af16dc3938}{init}} ()
+\item 
+Object \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad9992bd978af3383673ed717d33fc927}{select}} (int id)
+\item 
+List$<$ Object $>$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad846e735f4153d31b4e9127343edf3c3}{select}} (String field, String value)
+\item 
+List$<$ Object $>$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad3ca5afeb20a25305948eac6035d91fa}{all}} ()
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_af9bc8b16291df7fa9120b1f21206c148}{make}} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_afcf18c824f83a0d998e3cd3fbbbf18ca}{table}}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_primary_key}{Primary\+Key}} \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ae91649682c0969735cbd9b897160a97a}{pk}}
+\item 
+List$<$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_relation}{Relation}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a9eb1dab4f5bee3bbea414ffc19e5fbbc}{relations}}
+\item 
+List$<$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_s_column}{D\+B\+S\+Column}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_add7958e53601b80ab0b4892c4169d9fd}{fields}}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a6a7d6eaf7ae1fd93a652c835b3907398}{db}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+Definition at line 36 of file Base\+Model.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a17abd002e7bda84ef89d04f5dc222fe6}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a17abd002e7bda84ef89d04f5dc222fe6}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!BaseModel@{BaseModel}}
+\index{BaseModel@{BaseModel}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{BaseModel()}{BaseModel()}}
+{\footnotesize\ttfamily N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+Base\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+
+
+
+Definition at line 58 of file Base\+Model.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad3ca5afeb20a25305948eac6035d91fa}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad3ca5afeb20a25305948eac6035d91fa}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!all@{all}}
+\index{all@{all}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{all()}{all()}}
+{\footnotesize\ttfamily List$<$Object$>$ N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+all (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 98 of file Base\+Model.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a62c00da7e4c99a778e04b0af16dc3938}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a62c00da7e4c99a778e04b0af16dc3938}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!init@{init}}
+\index{init@{init}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily abstract void N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+
+
+
+
+Implemented in \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_m_visiteur_a6dd427b0024d9765aa329b010d0b7ecd}{N\+T\+K.\+Database.\+O\+R\+M.\+M\+Visiteur}}.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_af9bc8b16291df7fa9120b1f21206c148}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_af9bc8b16291df7fa9120b1f21206c148}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!make@{make}}
+\index{make@{make}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{make()}{make()}}
+{\footnotesize\ttfamily bool N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+make (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 103 of file Base\+Model.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad9992bd978af3383673ed717d33fc927}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad9992bd978af3383673ed717d33fc927}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!select@{select}}
+\index{select@{select}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{select()}{select()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Object N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+select (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 83 of file Base\+Model.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad846e735f4153d31b4e9127343edf3c3}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ad846e735f4153d31b4e9127343edf3c3}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!select@{select}}
+\index{select@{select}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{select()}{select()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily List$<$Object$>$ N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+select (\begin{DoxyParamCaption}\item[{String}]{field,  }\item[{String}]{value }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em field} & \\
+\hline
+{\em value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 93 of file Base\+Model.\+cs.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a6a7d6eaf7ae1fd93a652c835b3907398}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a6a7d6eaf7ae1fd93a652c835b3907398}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!db@{db}}
+\index{db@{db}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+db\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 48 of file Base\+Model.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_add7958e53601b80ab0b4892c4169d9fd}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_add7958e53601b80ab0b4892c4169d9fd}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!fields@{fields}}
+\index{fields@{fields}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{fields}{fields}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_s_column}{D\+B\+S\+Column}}$>$ N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+fields\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 47 of file Base\+Model.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ae91649682c0969735cbd9b897160a97a}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_ae91649682c0969735cbd9b897160a97a}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!pk@{pk}}
+\index{pk@{pk}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{pk}{pk}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_primary_key}{Primary\+Key}} N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+pk\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 45 of file Base\+Model.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a9eb1dab4f5bee3bbea414ffc19e5fbbc}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_a9eb1dab4f5bee3bbea414ffc19e5fbbc}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!relations@{relations}}
+\index{relations@{relations}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{relations}{relations}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_o_r_m_1_1_relation}{Relation}}$>$ N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+relations\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 46 of file Base\+Model.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_afcf18c824f83a0d998e3cd3fbbbf18ca}\label{class_n_t_k_1_1_database_1_1_o_r_m_1_1_base_model_afcf18c824f83a0d998e3cd3fbbbf18ca}} 
+\index{NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}!table@{table}}
+\index{table@{table}!NTK.Database.ORM.BaseModel@{NTK.Database.ORM.BaseModel}}
+\subsubsection{\texorpdfstring{table}{table}}
+{\footnotesize\ttfamily String N\+T\+K.\+Database.\+O\+R\+M.\+Base\+Model.\+table\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 44 of file Base\+Model.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+N\+T\+K/\+Database/\+O\+R\+M/\mbox{\hyperlink{_base_model_8cs}{Base\+Model.\+cs}}\end{DoxyCompactItemize}

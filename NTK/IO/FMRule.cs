@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NTK.IO
 {
+    /// <summary>
+    /// Règle/Droit sur répertoire
+    /// </summary>
     public class FMRule
     {
         private USER_LVL utype;

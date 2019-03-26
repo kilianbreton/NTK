@@ -131,7 +131,6 @@
     <Compile Include="IO\IS\Function.cs" />
     <Compile Include="IO\IS\ISParser.cs" />
     <Compile Include="IO\Log.cs" />
-    <Compile Include="NTKContext.cs" />
     <Compile Include="Other\Log_NTK.cs" />
     <Compile Include="Other\NTKServicesList.cs" />
     <Compile Include="Other\Language.cs" />

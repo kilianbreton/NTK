@@ -17,10 +17,6 @@ namespace NTK.Other
     {
         public static int seed = 48521;
         private static Dictionary<int, String> stopCodes;
-        public NTKF() {}
-
-
-
 
         /////////////////////////////////////////////////////////////////////////////
 
@@ -35,8 +31,9 @@ namespace NTK.Other
         {
             return NTKF.subsep(text, 0, sep1) + NTKF.subsep(text, sep2);
         }
+      
         /// <summary>
-        /// Retourne le contenu entre les séparateurs sep1 & sep2 de la chaine text
+        /// Retourne le contenu entre les séparateurs sep1 et sep2 de la chaine text
         /// </summary>
         /// <param name="text"></param>
         /// <param name="sep1"></param>
@@ -62,6 +59,7 @@ namespace NTK.Other
             int lengthCut = text.IndexOf(sep2) - sep1;
             return text.Substring(sep1, lengthCut);
         }
+  
         /// <summary>
         /// Coupe la chaine text du sep1 juqu'à la fin
         /// </summary>
@@ -216,7 +214,7 @@ namespace NTK.Other
 
             for (int i = 0; i < length; i++)
             {
-                chars[i] = (char)rnd.Next((int)'-', (int)'z' + 1);
+                chars[i] = (char)rnd.Next((int)startRnd, (int)'z' + 1);
             }
 
             return new string(chars);
@@ -254,8 +252,12 @@ namespace NTK.Other
             return cpt;
         }
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="userlist"></param>
+        /// <returns></returns>
         public static bool alreadyConnected(String login, List<NTKUser> userlist)
         {
             bool ret = false;
@@ -276,10 +278,6 @@ namespace NTK.Other
             }
             return ret;
         }
-
-
-
-
 
         /// <summary>
         /// Retourne une chaine de longueur nb uniquement composé de str
@@ -322,7 +320,6 @@ namespace NTK.Other
             return ret;
         }
 
-
         public static void initModels()
         {
           
@@ -355,7 +352,5 @@ namespace NTK.Other
                 return "UNKNOW CODE";
             }
         }
-
-
     }
 }

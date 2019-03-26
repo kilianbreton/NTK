@@ -26,6 +26,7 @@ using NTK.IO.IS;
 using NTK.IO.Ini;
 using NTK.Security;
 using System.Security.Cryptography;
+using static NTK.Other.NTKF;
 
 namespace NTKCGETester
 {
@@ -33,23 +34,15 @@ namespace NTKCGETester
     {
         static void Main(string[] args)
         {
-            HtmlDocument htmld = new HtmlDocument();
-            htmld.addLinkHeader("stylesheet", "css/treeview.css");
+         //   Console.WriteLine(sha256("mdp"));
+            for(int i = 0; i < 100; i++)
+            {
+                var iv = NTKAes.CreateKey(100).iv;
+                Console.WriteLine(Encoding.Default.GetString(iv) + "   :   " + iv.Length);
+            }
+         
 
-            var body = htmld.getNode(0).addBody();
-            body.addTitle("Class", TitleType.H1);
-            body.addLink("http://google.com", "Google");
-
-            var list = body.addList();
-            list.addListNode("value");
-            list.addListNode("value2");
-
-            var table = body.addTable();
-            table.addTableHeader("id", "name", "lastname", "birthdate");
-            table.addTableValuesLine("1", "kilian", "breton", "07/04/1998");
-            table.addTableValuesLine("2", "arnaud", "breton", "07/04/1998");
-
-            Console.WriteLine(htmld.print());
+            
             Console.ReadKey();
         }
 

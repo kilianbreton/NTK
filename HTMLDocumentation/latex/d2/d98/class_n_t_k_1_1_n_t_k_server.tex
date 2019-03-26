@@ -1,0 +1,541 @@
+\hypertarget{class_n_t_k_1_1_n_t_k_server}{}\section{N\+T\+K.\+N\+T\+K\+Server Class Reference}
+\label{class_n_t_k_1_1_n_t_k_server}\index{NTK.NTKServer@{NTK.NTKServer}}
+
+
+Serveur tcp pouvant héberger un service  
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a32ce62eba342ab051bce35ccc0c0add6}{N\+T\+K\+Server}} (int port, \mbox{\hyperlink{namespace_n_t_k_a8fa28c7c4270bbb81ee96b4f632fdbec}{C\+T\+Y\+PE}} ctype)
+\begin{DoxyCompactList}\small\item\em Créé un serveur basique \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a2a7d90608e8ba206e00af847158ce413}{N\+T\+K\+Server}} (string config\+Path)
+\begin{DoxyCompactList}\small\item\em Constructeur avec fichier de configuration \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_adbec0e1fa41f08f6c15b69a243f47fa2}{N\+T\+K\+Server}} (int port, \mbox{\hyperlink{namespace_n_t_k_a8fa28c7c4270bbb81ee96b4f632fdbec}{C\+T\+Y\+PE}} ctype, bool tls, String sec\+Key, \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} db)
+\begin{DoxyCompactList}\small\item\em Créé un serveur basique \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a0f4f0d0a4065e9982ea6a1c66a69aed3}{N\+T\+K\+Server}} ()
+\item 
+void \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a7590bf94a2e539571a154f16d65d6ea5}{start}} ()
+\begin{DoxyCompactList}\small\item\em Methode de démarrage du serveur (Méthode bloquante) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a6795dea242e466797582ba362fcbe63f}{ident\+\_\+tls}} (\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} user)
+\begin{DoxyCompactList}\small\item\em Gére le protocole de chiffrement T\+LS \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a916c59bcf5c272de1b7fa35c77de9ce2}{basic\+Listen}} (\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} user)
+\begin{DoxyCompactList}\small\item\em Boucle d\textquotesingle{}écoute \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a0c98a3dd7c9f238f5ebbb8300a97791a}{Port}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a19911075c54f7892305b453118be9d04}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_ad2ace232f3d05447f74c1a078bc04042}{Stype}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service}{N\+T\+K\+Service}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a4ea3c6041753673441953f1167c640b8}{Service}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+\mbox{\hyperlink{namespace_n_t_k_a8fa28c7c4270bbb81ee96b4f632fdbec}{C\+T\+Y\+PE}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_aa40f4790ecbcdf3f944af7bc00075914}{Ctype}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a0e7e43bbf11b31e6bdaebcae46071c86}{Tls}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a3fc3ec7327660b891e316e401e44838a}{Plugins}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+List$<$ \mbox{\hyperlink{class_n_t_k_1_1_other_1_1_token}{Token}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_adc563330fa6178c43c1f411b8c8ca536}{Tokenlist}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+List$<$ string $>$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_acade77c57244684e307b41cbfc31a203}{Stop\+Codes}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+List$<$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_ae483c2086cbfb5995a3784af3a28917e}{Userlist}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_ae590145453fd070aa1ec1d13172b4222}{Database}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_adf9893981505868234cf63cf656c0a22}{Confpath}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_security_1_1_n_t_k_rsa}{N\+T\+K\+Rsa}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a8980901f62a2080be6b10fe0e065b9cb}{Rsa}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_aba18109128da621464d494d345cdd988}{Sec\+Key}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a9f6983c1dc27aa8d614ea8ff806cf666}{Pause}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_aade70269bd47c8e71fdc31fe03edda61}{Stop}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_xml_1_1_xml_document}{Xml\+Document}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_aeffb548abcde3baa2c4c8e8e86840359}{Config}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+List$<$ \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service}{N\+T\+K\+Service}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a3178c120d84bb1bcdc75b04fa5d0c94c}{Ext\+Services}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_other_1_1_log___n_t_k}{Log\+\_\+\+N\+TK}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a42f4c64e1d3c4a007696bb013ca1e95c}{Logs}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a0f59045464675f975f77bbda6042c390}{Header}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Si le serveur doit envoyer une entête \mbox{\hyperlink{namespace_n_t_k}{N\+TK}} avant d\textquotesingle{}executer le service \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_aa2366e0763f42b453394c5f082f79a02}{Run}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Si le serveur est lancé \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+Event\+Handler \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_server_a2261cd274407c3c06daa569c09f5119a}{Read\+Msg}}
+\begin{DoxyCompactList}\small\item\em Lecture d\textquotesingle{}un message sur le flux \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Serveur tcp pouvant héberger un service 
+
+
+
+Definition at line 33 of file N\+T\+K\+Server.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a32ce62eba342ab051bce35ccc0c0add6}\label{class_n_t_k_1_1_n_t_k_server_a32ce62eba342ab051bce35ccc0c0add6}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!NTKServer@{NTKServer}}
+\index{NTKServer@{NTKServer}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{NTKServer()}{NTKServer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily N\+T\+K.\+N\+T\+K\+Server.\+N\+T\+K\+Server (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{\mbox{\hyperlink{namespace_n_t_k_a8fa28c7c4270bbb81ee96b4f632fdbec}{C\+T\+Y\+PE}}}]{ctype }\end{DoxyParamCaption})}
+
+
+
+Créé un serveur basique 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & \\
+\hline
+{\em ctype} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 80 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a2a7d90608e8ba206e00af847158ce413}\label{class_n_t_k_1_1_n_t_k_server_a2a7d90608e8ba206e00af847158ce413}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!NTKServer@{NTKServer}}
+\index{NTKServer@{NTKServer}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{NTKServer()}{NTKServer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily N\+T\+K.\+N\+T\+K\+Server.\+N\+T\+K\+Server (\begin{DoxyParamCaption}\item[{string}]{config\+Path }\end{DoxyParamCaption})}
+
+
+
+Constructeur avec fichier de configuration 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\+Path} & Chemin vers le fichier\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 91 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_adbec0e1fa41f08f6c15b69a243f47fa2}\label{class_n_t_k_1_1_n_t_k_server_adbec0e1fa41f08f6c15b69a243f47fa2}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!NTKServer@{NTKServer}}
+\index{NTKServer@{NTKServer}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{NTKServer()}{NTKServer()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily N\+T\+K.\+N\+T\+K\+Server.\+N\+T\+K\+Server (\begin{DoxyParamCaption}\item[{int}]{port,  }\item[{\mbox{\hyperlink{namespace_n_t_k_a8fa28c7c4270bbb81ee96b4f632fdbec}{C\+T\+Y\+PE}}}]{ctype,  }\item[{bool}]{tls,  }\item[{String}]{sec\+Key,  }\item[{\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}}}]{db }\end{DoxyParamCaption})}
+
+
+
+Créé un serveur basique 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & port d\textquotesingle{}écoute\\
+\hline
+{\em ctype} & type d\textquotesingle{}authentification\\
+\hline
+{\em tls} & communication chiffrée\\
+\hline
+{\em sec\+Key} & clé de sécurité\\
+\hline
+{\em db} & connection à une base de données\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 106 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a0f4f0d0a4065e9982ea6a1c66a69aed3}\label{class_n_t_k_1_1_n_t_k_server_a0f4f0d0a4065e9982ea6a1c66a69aed3}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!NTKServer@{NTKServer}}
+\index{NTKServer@{NTKServer}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{NTKServer()}{NTKServer()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily N\+T\+K.\+N\+T\+K\+Server.\+N\+T\+K\+Server (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+
+
+
+Definition at line 117 of file N\+T\+K\+Server.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a916c59bcf5c272de1b7fa35c77de9ce2}\label{class_n_t_k_1_1_n_t_k_server_a916c59bcf5c272de1b7fa35c77de9ce2}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!basicListen@{basicListen}}
+\index{basicListen@{basicListen}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{basicListen()}{basicListen()}}
+{\footnotesize\ttfamily void N\+T\+K.\+N\+T\+K\+Server.\+basic\+Listen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}}]{user }\end{DoxyParamCaption})}
+
+
+
+Boucle d\textquotesingle{}écoute 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & Utilisateur\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 220 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a6795dea242e466797582ba362fcbe63f}\label{class_n_t_k_1_1_n_t_k_server_a6795dea242e466797582ba362fcbe63f}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!ident\_tls@{ident\_tls}}
+\index{ident\_tls@{ident\_tls}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{ident\_tls()}{ident\_tls()}}
+{\footnotesize\ttfamily void N\+T\+K.\+N\+T\+K\+Server.\+ident\+\_\+tls (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}}]{user }\end{DoxyParamCaption})}
+
+
+
+Gére le protocole de chiffrement T\+LS 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & Utilisateur\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 200 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a7590bf94a2e539571a154f16d65d6ea5}\label{class_n_t_k_1_1_n_t_k_server_a7590bf94a2e539571a154f16d65d6ea5}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!start@{start}}
+\index{start@{start}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily void N\+T\+K.\+N\+T\+K\+Server.\+start (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Methode de démarrage du serveur (Méthode bloquante) 
+
+
+
+Definition at line 126 of file N\+T\+K\+Server.\+cs.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_aeffb548abcde3baa2c4c8e8e86840359}\label{class_n_t_k_1_1_n_t_k_server_aeffb548abcde3baa2c4c8e8e86840359}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Config@{Config}}
+\index{Config@{Config}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Config}{Config}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_xml_1_1_xml_document}{Xml\+Document}} N\+T\+K.\+N\+T\+K\+Server.\+Config\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 885 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_adf9893981505868234cf63cf656c0a22}\label{class_n_t_k_1_1_n_t_k_server_adf9893981505868234cf63cf656c0a22}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Confpath@{Confpath}}
+\index{Confpath@{Confpath}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Confpath}{Confpath}}
+{\footnotesize\ttfamily string N\+T\+K.\+N\+T\+K\+Server.\+Confpath\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 865 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_aa40f4790ecbcdf3f944af7bc00075914}\label{class_n_t_k_1_1_n_t_k_server_aa40f4790ecbcdf3f944af7bc00075914}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Ctype@{Ctype}}
+\index{Ctype@{Ctype}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Ctype}{Ctype}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_n_t_k_a8fa28c7c4270bbb81ee96b4f632fdbec}{C\+T\+Y\+PE}} N\+T\+K.\+N\+T\+K\+Server.\+Ctype\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 837 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_ae590145453fd070aa1ec1d13172b4222}\label{class_n_t_k_1_1_n_t_k_server_ae590145453fd070aa1ec1d13172b4222}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Database@{Database}}
+\index{Database@{Database}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Database}{Database}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} N\+T\+K.\+N\+T\+K\+Server.\+Database\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 861 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a3178c120d84bb1bcdc75b04fa5d0c94c}\label{class_n_t_k_1_1_n_t_k_server_a3178c120d84bb1bcdc75b04fa5d0c94c}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!ExtServices@{ExtServices}}
+\index{ExtServices@{ExtServices}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{ExtServices}{ExtServices}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service}{N\+T\+K\+Service}}$>$ N\+T\+K.\+N\+T\+K\+Server.\+Ext\+Services\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 889 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a0f59045464675f975f77bbda6042c390}\label{class_n_t_k_1_1_n_t_k_server_a0f59045464675f975f77bbda6042c390}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Header@{Header}}
+\index{Header@{Header}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Header}{Header}}
+{\footnotesize\ttfamily bool N\+T\+K.\+N\+T\+K\+Server.\+Header\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Si le serveur doit envoyer une entête \mbox{\hyperlink{namespace_n_t_k}{N\+TK}} avant d\textquotesingle{}executer le service 
+
+
+
+Definition at line 897 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a42f4c64e1d3c4a007696bb013ca1e95c}\label{class_n_t_k_1_1_n_t_k_server_a42f4c64e1d3c4a007696bb013ca1e95c}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Logs@{Logs}}
+\index{Logs@{Logs}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Logs}{Logs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_other_1_1_log___n_t_k}{Log\+\_\+\+N\+TK}} N\+T\+K.\+N\+T\+K\+Server.\+Logs\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 893 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a19911075c54f7892305b453118be9d04}\label{class_n_t_k_1_1_n_t_k_server_a19911075c54f7892305b453118be9d04}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Name@{Name}}
+\index{Name@{Name}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily string N\+T\+K.\+N\+T\+K\+Server.\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 825 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a9f6983c1dc27aa8d614ea8ff806cf666}\label{class_n_t_k_1_1_n_t_k_server_a9f6983c1dc27aa8d614ea8ff806cf666}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Pause@{Pause}}
+\index{Pause@{Pause}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Pause}{Pause}}
+{\footnotesize\ttfamily bool N\+T\+K.\+N\+T\+K\+Server.\+Pause\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 877 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a3fc3ec7327660b891e316e401e44838a}\label{class_n_t_k_1_1_n_t_k_server_a3fc3ec7327660b891e316e401e44838a}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Plugins@{Plugins}}
+\index{Plugins@{Plugins}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Plugins}{Plugins}}
+{\footnotesize\ttfamily bool N\+T\+K.\+N\+T\+K\+Server.\+Plugins\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 845 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a0c98a3dd7c9f238f5ebbb8300a97791a}\label{class_n_t_k_1_1_n_t_k_server_a0c98a3dd7c9f238f5ebbb8300a97791a}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Port@{Port}}
+\index{Port@{Port}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Port}{Port}}
+{\footnotesize\ttfamily int N\+T\+K.\+N\+T\+K\+Server.\+Port\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 821 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a8980901f62a2080be6b10fe0e065b9cb}\label{class_n_t_k_1_1_n_t_k_server_a8980901f62a2080be6b10fe0e065b9cb}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Rsa@{Rsa}}
+\index{Rsa@{Rsa}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Rsa}{Rsa}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_security_1_1_n_t_k_rsa}{N\+T\+K\+Rsa}} N\+T\+K.\+N\+T\+K\+Server.\+Rsa\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 869 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_aa2366e0763f42b453394c5f082f79a02}\label{class_n_t_k_1_1_n_t_k_server_aa2366e0763f42b453394c5f082f79a02}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Run@{Run}}
+\index{Run@{Run}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Run}{Run}}
+{\footnotesize\ttfamily bool N\+T\+K.\+N\+T\+K\+Server.\+Run\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+Si le serveur est lancé 
+
+
+
+Definition at line 901 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_aba18109128da621464d494d345cdd988}\label{class_n_t_k_1_1_n_t_k_server_aba18109128da621464d494d345cdd988}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!SecKey@{SecKey}}
+\index{SecKey@{SecKey}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{SecKey}{SecKey}}
+{\footnotesize\ttfamily string N\+T\+K.\+N\+T\+K\+Server.\+Sec\+Key\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 873 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a4ea3c6041753673441953f1167c640b8}\label{class_n_t_k_1_1_n_t_k_server_a4ea3c6041753673441953f1167c640b8}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Service@{Service}}
+\index{Service@{Service}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Service}{Service}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service}{N\+T\+K\+Service}} N\+T\+K.\+N\+T\+K\+Server.\+Service\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 833 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_aade70269bd47c8e71fdc31fe03edda61}\label{class_n_t_k_1_1_n_t_k_server_aade70269bd47c8e71fdc31fe03edda61}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Stop@{Stop}}
+\index{Stop@{Stop}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Stop}{Stop}}
+{\footnotesize\ttfamily bool N\+T\+K.\+N\+T\+K\+Server.\+Stop\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 881 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_acade77c57244684e307b41cbfc31a203}\label{class_n_t_k_1_1_n_t_k_server_acade77c57244684e307b41cbfc31a203}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!StopCodes@{StopCodes}}
+\index{StopCodes@{StopCodes}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{StopCodes}{StopCodes}}
+{\footnotesize\ttfamily List$<$string$>$ N\+T\+K.\+N\+T\+K\+Server.\+Stop\+Codes\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 853 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_ad2ace232f3d05447f74c1a078bc04042}\label{class_n_t_k_1_1_n_t_k_server_ad2ace232f3d05447f74c1a078bc04042}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Stype@{Stype}}
+\index{Stype@{Stype}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Stype}{Stype}}
+{\footnotesize\ttfamily string N\+T\+K.\+N\+T\+K\+Server.\+Stype\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 829 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a0e7e43bbf11b31e6bdaebcae46071c86}\label{class_n_t_k_1_1_n_t_k_server_a0e7e43bbf11b31e6bdaebcae46071c86}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Tls@{Tls}}
+\index{Tls@{Tls}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Tls}{Tls}}
+{\footnotesize\ttfamily bool N\+T\+K.\+N\+T\+K\+Server.\+Tls\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 841 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_adc563330fa6178c43c1f411b8c8ca536}\label{class_n_t_k_1_1_n_t_k_server_adc563330fa6178c43c1f411b8c8ca536}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Tokenlist@{Tokenlist}}
+\index{Tokenlist@{Tokenlist}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Tokenlist}{Tokenlist}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_n_t_k_1_1_other_1_1_token}{Token}}$>$ N\+T\+K.\+N\+T\+K\+Server.\+Tokenlist\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 849 of file N\+T\+K\+Server.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_ae483c2086cbfb5995a3784af3a28917e}\label{class_n_t_k_1_1_n_t_k_server_ae483c2086cbfb5995a3784af3a28917e}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!Userlist@{Userlist}}
+\index{Userlist@{Userlist}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{Userlist}{Userlist}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}$>$ N\+T\+K.\+N\+T\+K\+Server.\+Userlist\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 857 of file N\+T\+K\+Server.\+cs.
+
+
+
+\subsection{Event Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_server_a2261cd274407c3c06daa569c09f5119a}\label{class_n_t_k_1_1_n_t_k_server_a2261cd274407c3c06daa569c09f5119a}} 
+\index{NTK.NTKServer@{NTK.NTKServer}!ReadMsg@{ReadMsg}}
+\index{ReadMsg@{ReadMsg}!NTK.NTKServer@{NTK.NTKServer}}
+\subsubsection{\texorpdfstring{ReadMsg}{ReadMsg}}
+{\footnotesize\ttfamily Event\+Handler N\+T\+K.\+N\+T\+K\+Server.\+Read\+Msg}
+
+
+
+Lecture d\textquotesingle{}un message sur le flux 
+
+
+
+Definition at line 68 of file N\+T\+K\+Server.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+N\+T\+K/\mbox{\hyperlink{_n_t_k_server_8cs}{N\+T\+K\+Server.\+cs}}\end{DoxyCompactItemize}

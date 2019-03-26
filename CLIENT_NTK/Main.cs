@@ -14,6 +14,10 @@ using NTK.IO;
 using System.Threading;
 using NTK.EventsArgs;
 using CLIENT_NTK.UserControls;
+using static NTK.Separators;
+using static NTK.NTKCommands;
+using static NTK.Other.NTKF;
+
 
 namespace CLIENT_NTK
 {
@@ -63,12 +67,23 @@ namespace CLIENT_NTK
 
         private void client_WriteMsg(object sender, MsgArgs args)
         {
-
-            writeConsole(args.ReadText, Color.DodgerBlue);
+            var txt = args.ReadText;
+            if (txt.Contains(S_MSG) && txt.Contains(SPV) && txt.Contains(SV))
+            {
+                var login = subsep(txt, S_MSG, SV);
+                txt = login + " : " + subsep(txt, SV, SPV);
+                writeConsole(txt, Color.DodgerBlue);
+            }    
         }
         private void client_ReadMsg(object sender, MsgArgs args)
         {
-            writeConsole(args.ReadText, Color.Orange);
+            var txt = args.ReadText;
+            if (txt.Contains(S_MSG) && txt.Contains(SPV) && txt.Contains(SV))
+            {
+                var login = subsep(txt, S_MSG, SV);
+                txt = login + " : " + subsep(txt, SV, SPV); 
+                writeConsole(txt, Color.Orange);
+            }
         }
 
         private void service_getActu(object sender, GetActuEventArgs args)
@@ -138,7 +153,7 @@ namespace CLIENT_NTK
 
         private void button1_Click(object sender, EventArgs e)
         {
-            client.writeMsg(textBox1.Text);
+            client.writeMsg(S_MSG + client.User.Login + SV + textBox1.Text + SPV);
             textBox1.Clear();
         }
     }

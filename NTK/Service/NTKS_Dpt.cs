@@ -76,7 +76,7 @@ namespace NTK.Service
                         msr.Read();
                         path = msr.GetString("path");
                         user.writeMsg("FIND");
-                        user.sendFile(path, "CURRENT");
+                        user.sendFile(path);
                     }
                     else
                     {
@@ -104,7 +104,7 @@ namespace NTK.Service
                             msr.Read();
                             path = "fm.Directory" + msr.GetString("pathdir")+"\\"+progname+"."+version+".zip";
                             user.writeMsg("OK");
-                            user.reciveFile(path);
+                            user.reciveFile(path,0);
                             db.insert("INSERT INTO softwares (name,devs,version,path) VALUES (" + progname + "," + user.Login+","+version+","+path+");");
                             user.writeMsg("OK");
                         }
@@ -138,7 +138,7 @@ namespace NTK.Service
                             msr.Read();
                             user.writeMsg("FIND");
                             path = msr.GetString("path");
-                            user.sendFile(path, "CURRENT");
+                            user.sendFile(path);
                            
                         }
                         else

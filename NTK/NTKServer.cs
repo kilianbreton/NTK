@@ -33,9 +33,10 @@ namespace NTK
     public sealed class NTKServer
     {
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// ATTRIBUTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // ATTRIBUTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
+        //Config
         private int port;
         private String name;
         private String stype;
@@ -43,16 +44,24 @@ namespace NTK
         private CTYPE ctype;
         private bool tls = false;
         private bool plugins = false;
-        private NTKDatabase database;
-        private String confpath;
-        private NTKRsa rsa;
         private String secKey;
-        private bool pause = false;
-        private bool stop = false;
+        private String confpath;
+        private bool fileTransfert = true;
+        //Security
+        private NTKRsa rsa;
+        private string asymName;
+        private string symetricName;
+        private IEncryptor defaultEncryptor = null;
+        //IO
         private XmlDocument config;
         private Log_NTK logs;
+        private NTKDatabase database;
+        private bool header = true;
+        //Etat
         private bool run = false;
-
+        private bool pause = false;
+        private bool stop = false;
+        //Listes
         private List<Token> tokenlist = new List<Token>();
         private List<String> stopCodes = new List<String>();
         private List<NTKUser> userlist = new List<NTKUser>();
@@ -136,13 +145,12 @@ namespace NTK
                 Console.ForegroundColor = ConsoleColor.Gray;
 
                 IPAddress localAddr = IPAddress.Parse("127.0.0.1");
-                TcpListener server = new TcpListener(port);
+                TcpListener server = new TcpListener(new IPEndPoint(IPAddress.Parse("127.0.0.1"), port));
                 server.Start();
                 
-
-
                 //Todo : load dll dynamic
                 loadService();
+
                 if (ctype == CTYPE.OTHER && !service.Config.authentification)
                 {
                     throw new Exception("Aucune méthode d'authentification n'a été toruvée : \nCTYPE = Other & Service.Authentification = false" );
@@ -157,27 +165,30 @@ namespace NTK
                     try {
                         //Création d'un utilisateur temporaire avec un login aléatoire
                         TcpClient client = server.AcceptTcpClient();
-                        NTKUser newUser = new NTKUser(generateToken(8,true), client);
-                    
+                        NTKUser newUser = new NTKUser(generateToken(8, true), client);
+         
                         addLogs(LogsTypes.NOTICE, "New user " + newUser.Login);
 
                         //--------------Entête NTK--------------------------
-                        newUser.writeMsg(C_VERSION + typeof(NTKServer).Assembly.GetName().Version + ";");
-                        newUser.writeMsg(C_TYPE + ctype + ";");
-                        newUser.writeMsg(S_TYPE + stype + ";");
-                        newUser.writeMsg(C_TLS + tls + ";");
-                
+                        if (header)
+                        {
+                            newUser.writeMsg(C_VERSION + typeof(NTKServer).Assembly.GetName().Version + PV);
+                            newUser.writeMsg(C_TYPE + ctype + PV);
+                            newUser.writeMsg(S_TYPE + stype + PV);
+                            newUser.writeMsg(C_TLS + tls + PV);
+                        }
+                       
                         //Chiffrement de la communication
                         ident_tls(newUser);
 
-                        //Selection de l'authentification et de l'écoute + -> Thread
+                        //Selection de l'authentification et de l'écoute -> Thread
                         Thread myThread = new Thread(new ParameterizedThreadStart(selectServiceLisAuth));
                         myThread.Start(newUser);
                     }
                     catch(Exception e)
                     {
                        
-                        Console.WriteLine("EndOf : UserThread");
+                        Console.WriteLine("EndOf : UserThread\n" + e.ToString());
                     }
                }
                 
@@ -185,6 +196,7 @@ namespace NTK
             catch (SocketException e)
             {
                 Console.WriteLine("SocketException: {0}", e);
+
             }
 
         }
@@ -215,87 +227,76 @@ namespace NTK
         /// <param name="user">Utilisateur</param>
         public void basicListen(NTKUser user)
         {
-            while (user.Client.Connected)
+            while (user.Client.Connected && !user.IsBad)
             {
                 var tmp = user.readMsg();
                 if (!pause)
                 {
-                    if (user.Lvl == USER_LVL.SUPER_ADMIN)//Commandes SUPER ADMIN------------------------------------------------------------
-                    {
-                        if (tmp.Contains("C_DO_PAUSE;"))
-                        {
-                            pause = true;
-                        }
-                        else if (tmp.Contains("C_DO_STOP_"))    //C_DO_STOP_CODE; Code d'arret
-                        {
-                            writeToAll("C_STOP;",true);
-                           
-                            stop = true;
-                        }
-                        else if (tmp.Contains("QON>"))
-                        {
-                            //QON>select * from sn_users;
-                            //QON = Query Over NTK 
-                            // permet des commande SQL à travers NTK qui retourn le résultat en XML
-                            var query = subsep(tmp, "QON>", ";");
-                            var answer = database.queryOverNTK(query);
-                            user.writeMsg(answer);
-                        }
-                        else if (tmp.Contains("QONC>"))
-                        {
-                           
-                            var query = subsep(tmp, "QONC>", ";");
-                            var answer = database.queryOverNTK(query,true);
-                            user.writeMsg(answer);
-                        }
-                        else if (tmp.Contains("GET USERS;"))
-                        {
-                            var answer = database.queryOverNTK("select Login,sn_users.Name,sn_groups.name,LVL from sn_users " +
-                                "INNER JOIN sn_groups ON GrpID = sn_groups.id", true);
-                            user.writeMsg(answer);
-                        }
                     
-                        else
-                        {
+                    switch (user.Lvl) {
+                        //SUPER_ADMIN--------------------------------------------------------------
+                        case USER_LVL.SUPER_ADMIN:
+                            if (tmp.Contains("C_DO_PAUSE;"))
+                            {
+                                pause = true;
+                            }
+                            else if (tmp.Contains("C_DO_STOP_"))    //C_DO_STOP_CODE; Code d'arret
+                            {
+                                writeToAll("C_STOP;", true);
+
+                                stop = true;
+                            }
+                            else if (tmp.Contains("QON>"))
+                            {
+                                //QON>select * from sn_users;
+                                //QON = Query Over NTK 
+                                // permet des commande SQL à travers NTK qui retourne le résultat en XML
+                                var query = subsep(tmp, "QON>", ";");
+                                var answer = database.queryOverNTK(query);
+                                user.writeMsg(answer);
+                            }
+                            else if (tmp.Contains("QONC>"))
+                            {
+                                var query = subsep(tmp, "QONC>", ";");
+                                var answer = database.queryOverNTK(query, true);
+                                user.writeMsg(answer);
+                            }
+                            else if (tmp.Contains("GET USERS;"))
+                            {
+                                var answer = database.queryOverNTK("select Login,sn_users.Name,sn_groups.name,LVL from sn_users " +
+                                    "INNER JOIN sn_groups ON GrpID = sn_groups.id", true);
+                                user.writeMsg(answer);
+                            }
+                         
+                            else
+                            {
+                                commandesClassiques(tmp, user);
+                            }
+                            break;
+                       
+                        
+                        //Commandes ADMIN----------------------------------------------------------------
+                        case USER_LVL.ADMIN:
+
+                            if (tmp.Contains(""))
+                            {
+
+                            }
+                            else if (tmp.Contains(""))
+                            {
+
+                            }
+                            else
+                            {
+                                commandesClassiques(tmp, user);
+                            }
+                            break;
+                        //AUTRE--------------------------------------------------------------------------
+                        default:
                             commandesClassiques(tmp, user);
-                        }
-                      
-                    }
-                    else if (user.Lvl == USER_LVL.ADMIN)//Commandes ADMIN----------------------------------------------------------------
-                    {
-                        if (tmp.Contains(""))
-                        {
-
-                        }
-                        else if (tmp.Contains(""))
-                        {
-
-                        }
-                    }
-                    else if (user.Lvl == USER_LVL.USER || user.Lvl == USER_LVL.ADMIN || user.Lvl == USER_LVL.SUPER_ADMIN)//Commandes USER------------------------------------------------------------------
-                    {
-                        if (tmp.Contains(""))
-                        {
-
-                        }
-                        else if (tmp.Contains(""))
-                        {
-
-                        }
-
-                    }
-                    else if (user.Lvl == USER_LVL.SUB_SERVER)//Commande Sous-Serveur----------------------------------------------------
-                    {
-                        if (tmp.Contains(""))
-                        {
-
-                        }
-                        else if (tmp.Contains(""))
-                        {
-
-                        }
-                    }
-
+                            break;
+                }
+               
 
                 }
                 else // Pause ---------------------------
@@ -316,7 +317,6 @@ namespace NTK
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHODES PRIVEES //////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
       
         //========================================[IDENTIFICATION]==========================================================
 
@@ -342,81 +342,52 @@ namespace NTK
                 switch (ctype)
                 {
                     case CTYPE.BASIC:
-                        identification_AUTHADMSUBS(u, listenfunction);
-                        break;
-                    case CTYPE.AUTH_USER_O:
-                        identification_AUTHADMSUBS(u, listenfunction);
-                        break;
-                    case CTYPE.AUTH_ADM:
-                        identification_AUTHADMSUBS(u, listenfunction);
-                        break;
-                    case CTYPE.AUTH_ADM_SUBS:
-                        identification_AUTHADMSUBS(u, listenfunction);
+                        identification_BASIC(u, listenfunction);
                         break;
                     case CTYPE.OTHER:
                         service.s_authentification(u, userlist, listenfunction);
+                        break;
+                    default:
+                        identification_GLOBAL(u, listenfunction);
                         break;
                 }
             }
             catch (Exception e)
             {
-
+                Console.WriteLine(e.Message);
+                addLogs(LogsTypes.CRITICAL, e.Message);
             }
         }
 
-        private void identification_AUTHADMSUBS(NTKUser user, ServicelistenFunction func = null)
+        private void identification_GLOBAL(NTKUser user, ServicelistenFunction func)
         {
-            bool inIndent = false;
             bool connected = false;
             int nbtent = 0;
+            //Boucle d'authentification
             while (!connected && user.Client.Connected && nbtent <=3)
             {
-                if (!inIndent)
-                {
-                    user.writeMsg(C_RL);
-                }
-
+                user.writeMsg(C_RL);
+                
+                //Authentification
                 String umsg = user.readMsg();
                 OnReadMsg(new MsgArgs(umsg));
 
-                if (umsg.Contains(A_SUPERADM))
+                if (umsg.Contains(A_SUPERADM) && CTYPE.AUTH_USER_O != ctype)
                 {
                     bool retid = id_admin(user, umsg);
                     connected = retid;
-                    inIndent = !retid;
                 }
                 else if (umsg.Contains(A_USER))
                 {
-                    if (ctype == CTYPE.BASIC)
-                    {
-                        var login = subsep(umsg, ">", ";");
-                        if (alreadyConnected(login))
-                        {
-                            user.writeMsg(A_BAD);
-                        }
-                        else
-                        {
-                            user.writeMsg(A_OK);
-                        }
-                    }
-                    else
-                    {
-                        bool retid = id_user(user, umsg);
-                        connected = retid;
-                        inIndent = !retid;
-                    }
+                    bool retid = id_user(user, umsg);
+                    connected = retid;
                 }
                 else if (umsg.Contains(A_BOT))
-                {                
+                {
                 }
-                else if(umsg.Contains(A_SUBS)){
+                else if (umsg.Contains(A_SUBS) && ctype == CTYPE.AUTH_ADM_SUBS){
                     bool retid = id_subserver(user, umsg);
                     connected = retid;
-                    inIndent = !retid;
-                }
-                else if (plugins)
-                {
-                    ///Gestion des NiveauUtilisateurs des plugins
                 }
                 else
                 {
@@ -425,8 +396,10 @@ namespace NTK
 
                 nbtent++;
             }
-          
-            if(nbtent > 3)
+
+
+            //3 tentatives max
+            if (nbtent > 3 || !connected)
             {
                 user = null;    //Echec de connexion suppression de l'utilisateur
             }
@@ -436,24 +409,67 @@ namespace NTK
                 //Génération d'un token:
                 tokenlist.Add(new Token(generateToken(128), user.Login));
 
+                //Boucle d'écoute (délégué) choisi par selectServiceLisAuth(user)
+                func(user);
 
-                if (func == null)
-                {
-                    basicListen(user);
-                }
-                else
-                {
-                    // /!\ Délégué /!\
-                    func(user);
-                    connected = false;
-                    nbtent = 999;
-                }
-
+                //Déconnexion à la sortie de la fonction d'écoute
+                connected = false;
+                nbtent = 999;
             }
-            
-            
-         
         }
+
+        private void identification_BASIC(NTKUser user, ServicelistenFunction func)
+        {
+            bool connected = false;
+            int nbtent = 0;
+            //Boucle d'auhtentification
+            while (!connected && user.Client.Connected && nbtent <= 3)
+            {
+             
+                user.writeMsg(C_RL);
+              
+
+                //Authentification
+                String umsg = user.readMsg();
+                OnReadMsg(new MsgArgs(umsg));
+
+                if (umsg.Contains(A_USER))
+                {
+                    var login = subsep(umsg, ">", ";");
+                    if (alreadyConnected(login))
+                    {
+                        user.writeMsg(A_BAD);
+                    }
+                    else
+                    {
+                        user.writeMsg(A_OK);
+                        connected = true;
+                        user.Login = login;
+                        user.Name = login;
+                    }
+                }
+                nbtent++;
+            }
+            if (nbtent > 3 || !connected)
+            {
+                user = null;    //Echec de connexion suppression de l'utilisateur
+            }
+            else
+            {
+                userlist.Add(user);
+                //TODO : Classe TokenList pour gérer les redondances
+                //Génération d'un token:
+                tokenlist.Add(new Token(generateToken(128), user.Login));
+
+                //Boucle d'écoute (délégué) choisi par selectServiceLisAuth(user)
+                func(user);
+
+                //Déconnexion à la sortie de la fonction d'écoute
+                connected = false;
+                nbtent = 999;
+            }
+        }
+
 
         private bool id_user(NTKUser user, string umsg)
         {
@@ -594,41 +610,74 @@ namespace NTK
 
         private void commandesClassiques(String tmp, NTKUser user)
         {
-            if (tmp.Contains("MSG>") && tmp.Contains("{;}"))
+            if (tmp.Contains("MSG>") && tmp.Contains(SPV))
             {
-                //MSG> est une commande de message globale
-
-                for (int i = 0; i < userlist.Count; i++)
-                {
-                    userlist[i].writeMsg(tmp);
+                try { 
+                    //MSG>Salut !{;}
+                    //MSG> est une commande de message globale
+                    tmp = "MSG>" + user.Name + SV + subsep(tmp, "MSG>", SPV) + SPV;
+                    writeToAll(tmp);
                 }
+                catch (Exception)
+                {
+                    user.writeMsg(E_SYNTAX);
+                }
+            }
+            else if (tmp.Contains("MSG_") && tmp.Contains(SPV) && tmp.Contains(CD))
+            {
+                try
+                {
+                    //MSG_#Target>#msg{;}
+                    //MSG_#login> est une commande de message privé
+                    var login = subsep(tmp, "MSG_", ">");
+                    var content = subsep(tmp, ">", SPV);
+                    getUser(login).writeMsg("MSG_" + user.Login + ">" + content + SPV);
+                }
+                catch (Exception)
+                {
+                    user.writeMsg(E_SYNTAX);
+                }
+            }
+            else if (tmp.Contains("GET USERS;"))
+            {
+                var xmld = new XmlDocument();
+                var root = xmld.addNode("USERLIST");
+                foreach(NTKUser ul in userlist)
+                {
+                    var node = root.addChild(ul.Login);
+                    node.addChild("Name",ul.Name);
+                    node.addChild("Lvl",ul.Lvl.ToString());
+                }
+                user.writeMsg("UL_" + xmld.print() + SPV);
 
             }
-            else if (tmp.Contains("MSG_") && tmp.Contains( "{;}") && tmp.Contains( ">"))
+            else if (tmp.Contains("SEND>") && tmp.Contains(SV) && tmp.Contains(SPV) && fileTransfert)
             {
-                //MSG> est une commande de message privé
-                var login = subsep(tmp, "MSG_", ">");
-                var content = subsep(tmp, ">", "{;}");
-                bool stop = false;
-                bool find = false;
-                int cpt = 0;
-                while (!stop)
+                //  SEND>size{,}Hash{,}ext{,}Target{;}
+                var lst = subsep(tmp, "SEND>", SPV).Split(new String[] { SV },StringSplitOptions.None);
+
+                long.TryParse(lst[0], out long size);
+                String hash = lst[1];
+                String ext = lst[2];
+                String target = lst[3];
+
+                var path = @"D:\Programmation\NTK\Files\" + user.Name + "" + hash + "." + ext;
+
+                Console.WriteLine(path);
+                user.reciveFile(path, size);
+
+                if (!target.Equals("none"))
                 {
-                    if (!(cpt < userlist.Count))
-                    {
-                        stop = true;
-                    }
-                    else if (userlist[cpt].Login.Equals(login))
-                    {
-                        find = true;
-                        stop = true;
-                    }
-                    cpt++;
+                    getUser(target).sendFile(path);
                 }
-                if (find)
-                {
-                    userlist[cpt].writeMsg("MSG_" + user.Login + ">" + content + "{;}");
-                }
+            }
+            else if (tmp.Equals("GET SERVICE ASSEMBLY;")){
+                user.writeMsg("SEND>servAssembly{,}dll{;}");
+                user.sendFile("TODO : MANAGE PATHS ASSEMBLIES");
+            }
+            else if (tmp.Contains("DISCONNECT;"))
+            {
+                user.IsBad=true;
             }
         }
 
@@ -648,18 +697,29 @@ namespace NTK
             bool ret = false;
             int cpt = 0;
 
-            while((!ret) && cpt < userlist.Count)
+            while(cpt < userlist.Count && !ret)
             {
                 if (login.Equals(userlist[cpt].Login))
                 {
                     ret = true;
                 }
+                cpt++;
             }
 
-            //    return ret;
-            return false;
+            return ret;
         }
       
+        private NTKUser getUser(String name)
+        {
+            NTKUser ret = null;
+            int cpt = 0;
+
+            while (cpt < userlist.Count && !userlist[cpt].Name.Equals(name)) { cpt++; }
+            if (userlist[cpt].Name.Equals(name)) {ret = userlist[cpt]; }
+
+            return ret;
+        }
+
         private void purgeTokens()
         {
             for(int i = tokenlist.Count-1; i >=0; i--)
@@ -705,7 +765,12 @@ namespace NTK
                     case "service":
                         stype = node.getAttibuteV("name");
                         break;
+                    case "FileTransfert":
+                        bool.TryParse(node.getValue(), out fileTransfert);
+                        break;
                     case "database":
+                        //setDatabase(node);
+                        
                         if (node.getChildV("type").Equals("MYSQL"))
                         {
                             database = NTKD_MySql.getInstance(node.getChildV("host"), node.getChildV("user"), node.getChildV("pass"), node.getChildV("name"), true);
@@ -713,16 +778,19 @@ namespace NTK
                         break;
                     case "logs":
                         if (node.isChildExist("NTK")) { this.logs = Log_NTK.getInstance(node.getChildV("NTK")); }
-                        if (node.isChildExist("Database")) { this.database.Logs = Log_Database.getInstance(node.getChildV("Database")); }
+                        if (node.isChildExist("Database") && database != null) {
+                            this.database.Logs = Log_Database.getInstance(node.getChildV("Database"));
+                        }
                         break;
                     default:
                         break;
                 }
             }
-           
-       
-            database.tryConnection();
 
+            if (database != null)
+            {
+                database.tryConnection();
+            }
         }
 
         private void addLogs(String type, String text)
@@ -742,9 +810,12 @@ namespace NTK
             switch (stype)
             {
                 case "BASIC":
-                    var conf = new ServiceConfig();
-                    conf.authentification = false;
-                  
+                    var conf = new ServiceConfig
+                    {
+                        authentification = false,
+                        useBasicListen = true
+                    };
+
                     service = new NTKS_Basic(conf);
                     Console.WriteLine(" [OK]");
                     break;
@@ -753,7 +824,7 @@ namespace NTK
                     Console.WriteLine(" [OK]");
                     break;
                 case "SN":
-                    service = new NTKS_SN(this);
+                    service = new NTKS_SN(NTKS_SN.basicConfig(), userlist);
                     Console.WriteLine(" [OK]");
                     break;
                 case "DPT":
@@ -781,7 +852,7 @@ namespace NTK
                     {
                         Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine(" [BAD]");
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.DarkGray;
                         addLogs(LogsTypes.CRITICAL, "Service '" + stype + "' not found");
                         conf = new ServiceConfig
                         {
@@ -794,6 +865,29 @@ namespace NTK
                     break;
             }
             Console.ForegroundColor = ConsoleColor.Gray;
+        }
+
+        private void setDatabase(XmlNode cfg)
+        {
+            var type = cfg.getChildV("type").ToUpper();
+            switch (type)
+            {
+                case "MYSQL":
+                    break;
+                case "SQLITE":
+                    break;
+                case "SQLSERVER":
+                    break;
+                default:
+                    int cpt = 0;
+                    while(cpt < extDatabase.Count && !extDatabase[cpt].GetType().Name.Equals(type)) { cpt++; }
+                    if (extDatabase[cpt].GetType().Name.Equals(type))
+                    {
+
+                    }
+                    break;
+            
+            }
         }
 
         //===================================================[EVENTS]=======================================================
@@ -886,5 +980,29 @@ namespace NTK
         /// 
         /// </summary>
         public Log_NTK Logs { get => logs; set => logs = value; }
+        /// <summary>
+        /// Si le serveur doit envoyer une entête NTK avant d'executer le service
+        /// </summary>
+        public bool Header { get => header; set => header = value; }
+        /// <summary>
+        /// Si le serveur est lancé
+        /// </summary>
+        public bool Run { get => run;}
+        /// <summary>
+        /// Liste des classes (externes) de connection à une base de données 
+        /// </summary>
+        public List<NTKDatabase> ExtDatabase { get => extDatabase; set => extDatabase = value; }
+        /// <summary>
+        /// Liste des classes (externes) de chiffrement
+        /// </summary>
+        public List<IEncryptor> ExtEncryptor { get => extEncryptor; set => extEncryptor = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<IBasePlugin> ExtPlugins { get => extPlugins; set => extPlugins = value; }
+        /// <summary>
+        /// Si le transfert de fichiers est toléré
+        /// </summary>
+        public bool FileTransfert { get => fileTransfert; set => fileTransfert = value; }
     }
 }

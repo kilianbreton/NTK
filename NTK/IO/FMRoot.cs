@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace NTK.IO
 {
+    /// <summary>
+    /// Racine FileManager
+    /// </summary>
     public class FMRoot
     {
         private String name;

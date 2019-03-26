@@ -12,7 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using NTK.Security;
 using NTK.EventsArgs;
+using System.Threading;
 using static NTK.Other.NTKF;
+using static NTK.Separators;
 
 namespace NTK
 {
@@ -46,6 +48,7 @@ namespace NTK
         private StreamWriter streamw;
         private StreamReader streamr;
         private Boolean tls = false;
+        private Boolean isBad = false;
       
         //Constantes
         private const int FILE_BUFFERSIZE = 1024;
@@ -60,14 +63,17 @@ namespace NTK
         /// </summary>
         /// <param name="login"></param>
         /// <param name="client"></param>
-        public NTKUser(String login, TcpClient client)
+        /// <param name="cipher"></param>
+        public NTKUser(String login, TcpClient client, IEncryptor cipher = null)
         {
             this.login = login;
             this.client = client;
             this.stream = client.GetStream();
             this.streamw = new StreamWriter(stream);
             this.streamr = new StreamReader(stream);
-            cipher = new NTKAes(NTKAes.CreateKey(741));
+            if (cipher == null)
+                cipher = new NTKAes();
+            this.cipher = cipher;
         }
         
         /// <summary>
@@ -90,24 +96,19 @@ namespace NTK
         public String readMsg()
         {
             String ret = "";
-            try
+           
+            if (Tls)
             {
-                if (Tls)
-                {
-                    ret = cipher.decrypt(streamr.ReadLine());
-                }
-                else
-                {
-                    ret = Streamr.ReadLine();
-                }
+                ret = cipher.decrypt(streamr.ReadLine());
             }
-            catch (Exception e)
-            {
-            
+            else
+            { 
+                ret = Streamr.ReadLine();
             }
-            MsgArgs argsE = new MsgArgs(ret);
-            OnReadMsg(argsE);
+          
+            OnReadMsg(new MsgArgs(ret));
             Console.WriteLine(this.login + " : " +ret);
+
             return ret;
         }
 
@@ -119,24 +120,18 @@ namespace NTK
         {
             MsgArgs argsE = new MsgArgs(this.login +" : "+ text);
             OnWriteMsg(argsE);
-            try
+         
+            Console.WriteLine(text);
+            if (Tls)
             {
-                Console.WriteLine(text);
-                if (Tls)
-                {
-                    Streamw.WriteLine(cipher.encrypt(text));
-                    Streamw.Flush();            
-                }
-                else
-                {
-                    Streamw.WriteLine(text);
-                    Streamw.Flush();
-                }
+                Streamw.WriteLine(cipher.encrypt(text));
+                Streamw.Flush();            
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(this.login + " : Disconnected");
-            }
+                Streamw.WriteLine(text);
+                Streamw.Flush();
+            }         
         }
 
         /// <summary>
@@ -197,90 +192,60 @@ namespace NTK
             }
         }
         
-        /// <summary>
-        /// Réception d'un fichier
-        /// </summary>
-        /// <param name="path">Chemin de destination</param>
-        public void reciveFile(String path)
-        {
-            byte[] RecData = new byte[FILE_BUFFERSIZE];
-            int RecBytes;
-
-            for (; ; )
-            {
-           
-                try
-                {    
-                    
-                    if (path != string.Empty)
-                    {
-                        int totalrecbytes = 0;
-                        FileStream Fs = new FileStream(path, FileMode.OpenOrCreate, FileAccess.Write);
-                        while ((RecBytes = stream.Read(RecData, 0, RecData.Length)) > 0)
-                        {
-                            Fs.Write(RecData, 0, RecBytes);
-                            totalrecbytes += RecBytes;
-                        }
-                        Fs.Close();
-                    }
-                    stream.Close();
-                    client.Close();            
-                }                
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    //netstream.Close();
-                }
-            }
-        }
+    
         
         /// <summary>
         /// envoi d'un fichier
         /// </summary>
         /// <param name="path">Fichier</param>
-        /// <param name="targetLogin">Cible (Utilisateur)</param>
-        public void sendFile(String path,String targetLogin)
+        public void sendFile(String path)
         {
-            byte[] SendingBuffer = null;
-
-            FileStream Fs = null;
-          
-            try
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                Fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-                int NoOfPackets = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(Fs.Length) / Convert.ToDouble(FILE_BUFFERSIZE)));
+                long fileSize = fs.Length;
+                long sum = 0;   //sum here is the total of sent bytes.
+                int count = 0;
+                
+                String msg = "SEND>" + fileSize + SV + fs.GetHashCode() + SV + subsep(path,".") + SV + "none" + SPV;
+                this.writeMsg(msg);
 
-                int TotalLength = (int)Fs.Length, CurrentPacketLength;
-                for (int i = 0; i < NoOfPackets; i++)
+                byte[] data = new byte[1024];  //8Kb buffer .. you might use a smaller size also.
+                while (sum < fileSize)
                 {
-                    if (TotalLength > FILE_BUFFERSIZE)
-                    {
-                        CurrentPacketLength = FILE_BUFFERSIZE;
-                        TotalLength = TotalLength - CurrentPacketLength;
-                    }
-                    else
-                    {
-                        CurrentPacketLength = TotalLength;
-                        SendingBuffer = new byte[CurrentPacketLength];
-                        Fs.Read(SendingBuffer, 0, CurrentPacketLength);
-                        stream.Write(SendingBuffer, 0, (int)SendingBuffer.Length);
-                    }
+                    count = fs.Read(data, 0, data.Length);
+                    stream.Write(data, 0, count);
+                    sum += count;
                 }
-
-
-                Fs.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                if (Fs != null)
-                {
-                    Fs.Close();
-                }
+                stream.Flush();
             }
         }
 
-
+        /// <summary>
+        /// Réception d'un fichier
+        /// </summary>
+        /// <param name="path">Chemin de destination</param>
+        /// <param name="fileSize"></param>
+        public void reciveFile(String path, long fileSize)
+        {
+            //long fileSize = // your file size that you are going to receive it.
+            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                int count = 0;
+                long sum = 0;   //sum here is the total of received bytes.
+                var data = new byte[1024 * 8];  //8Kb buffer .. you might use a smaller size also.
+                while (sum < fileSize)
+                {
+                    if (stream.DataAvailable)
+                    {
+                        {
+                            count = stream.Read(data, 0, data.Length);
+                            fs.Write(data, 0, count);
+                            sum += count;
+                        }
+                    }
+                }
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // EVENTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -312,52 +277,56 @@ namespace NTK
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// 
+        /// Identifiant
         /// </summary>
         public string Login { get => login; set => login = value; }
         /// <summary>
-        /// 
+        /// Nom
         /// </summary>
         public string Name { get => name; set => name = value; }
         /// <summary>
-        /// 
+        /// Mot de passe
         /// </summary>
         public string Pass { get => pass; set => pass = value; }
         /// <summary>
-        /// 
+        /// Clé de sécurité (si admin)
         /// </summary>
         public string Seckey { get => seckey; set => seckey = value; }
         /// <summary>
-        /// 
+        /// Niveau utilisateur (USER_LVL)
         /// </summary>
         public USER_LVL Lvl { get => lvl; set => lvl = value; }
         /// <summary>
-        /// 
+        /// Algorithme de chiffrement
         /// </summary>
         public IEncryptor Cipher { get => cipher; set => cipher = value; }
         /// <summary>
-        /// 
+        /// Client TCP/IP
         /// </summary>
         public TcpClient Client { get => client; }
         /// <summary>
-        /// 
+        /// Flux TCP
         /// </summary>
         public NetworkStream Stream { get => stream; }
         /// <summary>
-        /// 
+        /// Ecriture dans le flux
         /// </summary>
         public StreamWriter Streamw { get => streamw;}
         /// <summary>
-        /// 
+        /// Lecture dans le flux
         /// </summary>
         public StreamReader Streamr { get => streamr;}
         /// <summary>
-        /// 
+        /// Protocole criptographique
         /// </summary>
         public bool Tls { get => tls; set => tls = value; }
         /// <summary>
-        /// 
+        /// ID
         /// </summary>
         public int Id { get => id; set => id = value; }
+        /// <summary>
+        /// Si l'authentification a échoué ou si déconnexion forcée
+        /// </summary>
+        public bool IsBad { get => isBad; set => isBad = value; }
     }
 }

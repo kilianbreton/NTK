@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>CLIENT_NTK</RootNamespace>
     <AssemblyName>CLIENT_NTK</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
@@ -50,10 +50,13 @@
   <ItemGroup>
     <Reference Include="FlatUITheme, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\FlatUITheme.dll</HintPath>
+      <HintPath>..\..\FlatUITheme\FlatUITheme\bin\Debug\FlatUITheme.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="NTK, Version=1.0.0.1, Culture=neutral, PublicKeyToken=cdcb176b1fe72ba9, processorArchitecture=MSIL" />
+    <Reference Include="NTK, Version=1.0.0.1, Culture=neutral, PublicKeyToken=cdcb176b1fe72ba9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>D:\Programmation\NTK\ServerAdmin\Kernel\NTK.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />

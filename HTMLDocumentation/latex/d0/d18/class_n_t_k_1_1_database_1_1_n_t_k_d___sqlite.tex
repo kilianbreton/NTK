@@ -1,0 +1,423 @@
+\hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite}{}\section{N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite Class Reference}
+\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite}\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+
+
+Classe de connection à Sqlite  
+
+
+Inheritance diagram for N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d0/d18/class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override string \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a6331e5614526c861e24a1d92e7a257f8}{back\+Up}} (string db, \mbox{\hyperlink{namespace_n_t_k_1_1_database_a9bed700210ca4ed5854002637b664789}{Format}} format, \mbox{\hyperlink{namespace_n_t_k_1_1_database_aa21afe93187a6c77c4ccdc988b3c4ac2}{Encryption}} encryption)
+\item 
+override void \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0d116fe17ff3d51e88baebcb5286d1e3}{back\+Up}} (string db, string path, \mbox{\hyperlink{namespace_n_t_k_1_1_database_a9bed700210ca4ed5854002637b664789}{Format}} format, \mbox{\hyperlink{namespace_n_t_k_1_1_database_aa21afe93187a6c77c4ccdc988b3c4ac2}{Encryption}} encryption)
+\item 
+override Task$<$ string $>$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ae2d64f4c7ed5628b5e55dd8651099739}{back\+Up\+Async}} (string db, \mbox{\hyperlink{namespace_n_t_k_1_1_database_a9bed700210ca4ed5854002637b664789}{Format}} format, \mbox{\hyperlink{namespace_n_t_k_1_1_database_aa21afe93187a6c77c4ccdc988b3c4ac2}{Encryption}} encryption)
+\item 
+override Task \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0340b672129a87c96b5f6bea8839a01c}{back\+Up\+Async}} (string db, string path, \mbox{\hyperlink{namespace_n_t_k_1_1_database_a9bed700210ca4ed5854002637b664789}{Format}} format, \mbox{\hyperlink{namespace_n_t_k_1_1_database_aa21afe93187a6c77c4ccdc988b3c4ac2}{Encryption}} encryption)
+\item 
+override void \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a36b5c0b45b522901901555dd1bbae968}{close\+Connection}} ()
+\item 
+override Task \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ae728bf6ed129be1e86b382152394cd7c}{close\+Connection\+Async}} ()
+\item 
+override void \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4d3c7928cae114bc6ceb2baff425ce99}{create\+Db}} (string name, bool useit=true)
+\item 
+override void \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a3fb51dacb629d8c0d01a22ba3f9c4716}{create\+Db}} (\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_struct}{D\+B\+Struct}} db)
+\begin{DoxyCompactList}\small\item\em Création de base de données. à partir d\textquotesingle{}un objet \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_struct}{D\+B\+Struct}}. \end{DoxyCompactList}\item 
+override Task \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a153cacf5d690a6b99ede5a781998c639}{create\+Db\+Async}} (string name, bool useit=true)
+\item 
+override Task \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a9ab0bd0feb73015d6a3ccd9e4881318e}{create\+Db\+Async}} (\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_struct}{D\+B\+Struct}} db)
+\begin{DoxyCompactList}\small\item\em Création de base de données. à partir d\textquotesingle{}un objet \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_struct}{D\+B\+Struct}}. \end{DoxyCompactList}\item 
+override void \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_afdb261843de52ad7a74c22e30ff94825}{insert}} (string query, string\mbox{[},\mbox{]} param=null, string changebase=\char`\"{}none\char`\"{})
+\item 
+override Task \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a837d400079384578838d759687f87db3}{insert\+Async}} (string query, string\mbox{[},\mbox{]} param=null, string changebase=null)
+\item 
+override string \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0edda2f8ed2b6fa0804e981b772d3b4c}{query\+Over\+N\+TK}} (string query, bool with\+Col=false, string data\+Name=null)
+\item 
+override Task$<$ string $>$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_abdd5676e9856bb63542fe48ba36e2374}{query\+Over\+N\+T\+K\+Async}} (string query, bool with\+Col=false, string data\+Name=null)
+\item 
+override I\+Data\+Reader \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ad1298d0c33e36fc7ea48f511aebb21eb}{select}} (string query, string\mbox{[},\mbox{]} param=null, string changebase=\char`\"{}none\char`\"{})
+\item 
+override Task$<$ I\+Data\+Reader $>$ \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4af37b34c896824b4c1a60c8b8dc01f7}{select\+Async}} (string query, string\mbox{[},\mbox{]} param=null, string changebase=null)
+\item 
+override void \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4e9dc4e5e2b8a496faf48d63a47571e3}{try\+Connection}} ()
+\item 
+override Task \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a328887404644a1e7c27aedfba50399d7}{try\+Connection\+Async}} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a7a268079a13e60f55f30bf2268af47f4}{get\+Instance}} (String path, bool is\+New=false, bool compress=false)
+\item 
+static bool \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a8ba9f96975a7bb0597ff5c0e0d5d054e}{is\+Null}} ()
+\item 
+static \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a529745b919c7bf51f1fff5c9e3788e3c}{override\+Instance}} (String path, bool is\+New=false, bool compress=false)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Classe de connection à Sqlite 
+
+
+
+Definition at line 14 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a6331e5614526c861e24a1d92e7a257f8}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a6331e5614526c861e24a1d92e7a257f8}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!backUp@{backUp}}
+\index{backUp@{backUp}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{backUp()}{backUp()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily override string N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+back\+Up (\begin{DoxyParamCaption}\item[{string}]{db,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_database_a9bed700210ca4ed5854002637b664789}{Format}}}]{format,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_database_aa21afe93187a6c77c4ccdc988b3c4ac2}{Encryption}}}]{encryption }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & \\
+\hline
+{\em format} & \\
+\hline
+{\em encryption} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 77 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0d116fe17ff3d51e88baebcb5286d1e3}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0d116fe17ff3d51e88baebcb5286d1e3}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!backUp@{backUp}}
+\index{backUp@{backUp}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{backUp()}{backUp()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily override void N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+back\+Up (\begin{DoxyParamCaption}\item[{string}]{db,  }\item[{string}]{path,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_database_a9bed700210ca4ed5854002637b664789}{Format}}}]{format,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_database_aa21afe93187a6c77c4ccdc988b3c4ac2}{Encryption}}}]{encryption }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & \\
+\hline
+{\em path} & \\
+\hline
+{\em format} & \\
+\hline
+{\em encryption} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 88 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ae2d64f4c7ed5628b5e55dd8651099739}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ae2d64f4c7ed5628b5e55dd8651099739}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!backUpAsync@{backUpAsync}}
+\index{backUpAsync@{backUpAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{backUpAsync()}{backUpAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily override Task$<$string$>$ N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+back\+Up\+Async (\begin{DoxyParamCaption}\item[{string}]{db,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_database_a9bed700210ca4ed5854002637b664789}{Format}}}]{format,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_database_aa21afe93187a6c77c4ccdc988b3c4ac2}{Encryption}}}]{encryption }\end{DoxyParamCaption})}
+
+
+
+Definition at line 93 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0340b672129a87c96b5f6bea8839a01c}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0340b672129a87c96b5f6bea8839a01c}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!backUpAsync@{backUpAsync}}
+\index{backUpAsync@{backUpAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{backUpAsync()}{backUpAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily override Task N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+back\+Up\+Async (\begin{DoxyParamCaption}\item[{string}]{db,  }\item[{string}]{path,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_database_a9bed700210ca4ed5854002637b664789}{Format}}}]{format,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_database_aa21afe93187a6c77c4ccdc988b3c4ac2}{Encryption}}}]{encryption }\end{DoxyParamCaption})}
+
+
+
+Definition at line 98 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a36b5c0b45b522901901555dd1bbae968}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a36b5c0b45b522901901555dd1bbae968}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!closeConnection@{closeConnection}}
+\index{closeConnection@{closeConnection}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{closeConnection()}{closeConnection()}}
+{\footnotesize\ttfamily override void N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+close\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+
+
+Implements \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database_a0c7312d31c1a7df56e7a70ae72c08d89}{N\+T\+K.\+Database.\+N\+T\+K\+Database}}.
+
+
+
+Definition at line 115 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ae728bf6ed129be1e86b382152394cd7c}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ae728bf6ed129be1e86b382152394cd7c}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!closeConnectionAsync@{closeConnectionAsync}}
+\index{closeConnectionAsync@{closeConnectionAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{closeConnectionAsync()}{closeConnectionAsync()}}
+{\footnotesize\ttfamily override Task N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+close\+Connection\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database_a83ee63ae23c9736899f2b033db6d4838}{N\+T\+K.\+Database.\+N\+T\+K\+Database}}.
+
+
+
+Definition at line 120 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4d3c7928cae114bc6ceb2baff425ce99}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4d3c7928cae114bc6ceb2baff425ce99}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!createDb@{createDb}}
+\index{createDb@{createDb}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{createDb()}{createDb()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily override void N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+create\+Db (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{bool}]{useit = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 125 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a3fb51dacb629d8c0d01a22ba3f9c4716}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a3fb51dacb629d8c0d01a22ba3f9c4716}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!createDb@{createDb}}
+\index{createDb@{createDb}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{createDb()}{createDb()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily override void N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+create\+Db (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_struct}{D\+B\+Struct}}}]{db }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Création de base de données. à partir d\textquotesingle{}un objet \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_struct}{D\+B\+Struct}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database_a2e419744189f678f5cdad1f7a82116cd}{N\+T\+K.\+Database.\+N\+T\+K\+Database}}.
+
+
+
+Definition at line 130 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a153cacf5d690a6b99ede5a781998c639}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a153cacf5d690a6b99ede5a781998c639}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!createDbAsync@{createDbAsync}}
+\index{createDbAsync@{createDbAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{createDbAsync()}{createDbAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily override Task N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+create\+Db\+Async (\begin{DoxyParamCaption}\item[{string}]{name,  }\item[{bool}]{useit = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 135 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a9ab0bd0feb73015d6a3ccd9e4881318e}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a9ab0bd0feb73015d6a3ccd9e4881318e}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!createDbAsync@{createDbAsync}}
+\index{createDbAsync@{createDbAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{createDbAsync()}{createDbAsync()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily override Task N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+create\+Db\+Async (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_struct}{D\+B\+Struct}}}]{db }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Création de base de données. à partir d\textquotesingle{}un objet \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_d_b_struct}{D\+B\+Struct}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em db} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database_aa5b7134f819469db92bd39b61c97ad90}{N\+T\+K.\+Database.\+N\+T\+K\+Database}}.
+
+
+
+Definition at line 140 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a7a268079a13e60f55f30bf2268af47f4}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a7a268079a13e60f55f30bf2268af47f4}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+get\+Instance (\begin{DoxyParamCaption}\item[{String}]{path,  }\item[{bool}]{is\+New = {\ttfamily false},  }\item[{bool}]{compress = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & \\
+\hline
+{\em is\+New} & \\
+\hline
+{\em compress} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 40 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_afdb261843de52ad7a74c22e30ff94825}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_afdb261843de52ad7a74c22e30ff94825}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!insert@{insert}}
+\index{insert@{insert}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily override void N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+insert (\begin{DoxyParamCaption}\item[{string}]{query,  }\item[{string}]{param\mbox{[},\mbox{]} = {\ttfamily null},  }\item[{string}]{changebase = {\ttfamily \char`\"{}none\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 145 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a837d400079384578838d759687f87db3}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a837d400079384578838d759687f87db3}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!insertAsync@{insertAsync}}
+\index{insertAsync@{insertAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{insertAsync()}{insertAsync()}}
+{\footnotesize\ttfamily override Task N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+insert\+Async (\begin{DoxyParamCaption}\item[{string}]{query,  }\item[{string}]{param\mbox{[},\mbox{]} = {\ttfamily null},  }\item[{string}]{changebase = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 167 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a8ba9f96975a7bb0597ff5c0e0d5d054e}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a8ba9f96975a7bb0597ff5c0e0d5d054e}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!isNull@{isNull}}
+\index{isNull@{isNull}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{isNull()}{isNull()}}
+{\footnotesize\ttfamily static bool N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+is\+Null (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 54 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a529745b919c7bf51f1fff5c9e3788e3c}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a529745b919c7bf51f1fff5c9e3788e3c}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!overrideInstance@{overrideInstance}}
+\index{overrideInstance@{overrideInstance}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{overrideInstance()}{overrideInstance()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+override\+Instance (\begin{DoxyParamCaption}\item[{String}]{path,  }\item[{bool}]{is\+New = {\ttfamily false},  }\item[{bool}]{compress = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & \\
+\hline
+{\em is\+New} & \\
+\hline
+{\em compress} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 65 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0edda2f8ed2b6fa0804e981b772d3b4c}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a0edda2f8ed2b6fa0804e981b772d3b4c}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!queryOverNTK@{queryOverNTK}}
+\index{queryOverNTK@{queryOverNTK}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{queryOverNTK()}{queryOverNTK()}}
+{\footnotesize\ttfamily override string N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+query\+Over\+N\+TK (\begin{DoxyParamCaption}\item[{string}]{query,  }\item[{bool}]{with\+Col = {\ttfamily false},  }\item[{string}]{data\+Name = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 172 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_abdd5676e9856bb63542fe48ba36e2374}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_abdd5676e9856bb63542fe48ba36e2374}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!queryOverNTKAsync@{queryOverNTKAsync}}
+\index{queryOverNTKAsync@{queryOverNTKAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{queryOverNTKAsync()}{queryOverNTKAsync()}}
+{\footnotesize\ttfamily override Task$<$string$>$ N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+query\+Over\+N\+T\+K\+Async (\begin{DoxyParamCaption}\item[{string}]{query,  }\item[{bool}]{with\+Col = {\ttfamily false},  }\item[{string}]{data\+Name = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 177 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ad1298d0c33e36fc7ea48f511aebb21eb}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_ad1298d0c33e36fc7ea48f511aebb21eb}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!select@{select}}
+\index{select@{select}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{select()}{select()}}
+{\footnotesize\ttfamily override I\+Data\+Reader N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+select (\begin{DoxyParamCaption}\item[{string}]{query,  }\item[{string}]{param\mbox{[},\mbox{]} = {\ttfamily null},  }\item[{string}]{changebase = {\ttfamily \char`\"{}none\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 182 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4af37b34c896824b4c1a60c8b8dc01f7}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4af37b34c896824b4c1a60c8b8dc01f7}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!selectAsync@{selectAsync}}
+\index{selectAsync@{selectAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{selectAsync()}{selectAsync()}}
+{\footnotesize\ttfamily override Task$<$I\+Data\+Reader$>$ N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+select\+Async (\begin{DoxyParamCaption}\item[{string}]{query,  }\item[{string}]{param\mbox{[},\mbox{]} = {\ttfamily null},  }\item[{string}]{changebase = {\ttfamily null} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 202 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4e9dc4e5e2b8a496faf48d63a47571e3}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a4e9dc4e5e2b8a496faf48d63a47571e3}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!tryConnection@{tryConnection}}
+\index{tryConnection@{tryConnection}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{tryConnection()}{tryConnection()}}
+{\footnotesize\ttfamily override void N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+try\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+
+
+Implements \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database_a8035cdddb04d0e90a712aa8e24abeb43}{N\+T\+K.\+Database.\+N\+T\+K\+Database}}.
+
+
+
+Definition at line 207 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a328887404644a1e7c27aedfba50399d7}\label{class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite_a328887404644a1e7c27aedfba50399d7}} 
+\index{NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}!tryConnectionAsync@{tryConnectionAsync}}
+\index{tryConnectionAsync@{tryConnectionAsync}!NTK.Database.NTKD\_Sqlite@{NTK.Database.NTKD\_Sqlite}}
+\subsubsection{\texorpdfstring{tryConnectionAsync()}{tryConnectionAsync()}}
+{\footnotesize\ttfamily override Task N\+T\+K.\+Database.\+N\+T\+K\+D\+\_\+\+Sqlite.\+try\+Connection\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database_a59d2820fbd047c1b11c73aabbf390ebb}{N\+T\+K.\+Database.\+N\+T\+K\+Database}}.
+
+
+
+Definition at line 224 of file N\+T\+K\+D\+\_\+\+Sqlite.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+N\+T\+K/\+Database/\mbox{\hyperlink{_n_t_k_d___sqlite_8cs}{N\+T\+K\+D\+\_\+\+Sqlite.\+cs}}\end{DoxyCompactItemize}

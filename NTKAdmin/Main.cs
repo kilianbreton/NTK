@@ -295,6 +295,17 @@ namespace NTKAdmin
 
         public NTKClient Client { get => client; set => client = value; }
 
-        
+        private void fichierToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.InitialDirectory = @"C:\";
+            var res = ofd.ShowDialog();
+            if(res ==DialogResult.OK)
+            {
+                //  client.writeMsg("SEND>abcd{,}"+NTKF.subsep(ofd.FileName,".")+"{,}none{;}");
+                // client.User.sendFile(ofd.FileName);
+                client.User.sendFile(ofd.FileName);
+            }
+        }
     }
 }

@@ -1,0 +1,423 @@
+\hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service}{}\section{N\+T\+K.\+Service.\+N\+T\+K\+Service Class Reference}
+\label{class_n_t_k_1_1_service_1_1_n_t_k_service}\index{NTK.Service.NTKService@{NTK.Service.NTKService}}
+
+
+\mbox{\hyperlink{namespace_n_t_k_1_1_service}{Service}} (protocole) de communication  
+
+
+Inheritance diagram for N\+T\+K.\+Service.\+N\+T\+K\+Service\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.244444cm]{d8/dcb/class_n_t_k_1_1_service_1_1_n_t_k_service}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_ae481738002a4ff9e84a28f900b077283}{N\+T\+K\+Service}} (\mbox{\hyperlink{struct_n_t_k_1_1_service_1_1_service_config}{Service\+Config}} config, List$<$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a14977c798a805fea99802fa40da31aa0}{userlist}})
+\begin{DoxyCompactList}\small\item\em Initialisation d\textquotesingle{}un service avec configuration et la liste des utilisateurs \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_ab7f1a9e37216cfea00821caf98829436}{N\+T\+K\+Service}} (\mbox{\hyperlink{struct_n_t_k_1_1_service_1_1_service_config}{Service\+Config}} config)
+\begin{DoxyCompactList}\small\item\em Initialisation d\textquotesingle{}un service avec configuration e \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_ae68f898da08a9d9916b23c106474cae8}{N\+T\+K\+Service}} ()
+\begin{DoxyCompactList}\small\item\em Initialisation d\textquotesingle{}un service avec une configuration interne \end{DoxyCompactList}\item 
+abstract void \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a054248d5e9d86a488d81afe35043da94}{initialize}} (params Object\mbox{[}$\,$\mbox{]} args)
+\item 
+abstract void \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_abab6261724876aea1ba1590720c2b994}{s\+\_\+authentification}} (\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} user, List$<$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a14977c798a805fea99802fa40da31aa0}{userlist}}, \mbox{\hyperlink{namespace_n_t_k_1_1_service_a49f4581ae6fb3e9c155d034c47791db9}{Servicelisten\+Function}} listen)
+\begin{DoxyCompactList}\small\item\em Methode d\textquotesingle{}authentification coté serveur \end{DoxyCompactList}\item 
+abstract void \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a7c7cb8c5ddc57bebe6d9784744c976d7}{s\+\_\+listen}} (\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} user)
+\begin{DoxyCompactList}\small\item\em Methode d\textquotesingle{}écoute coté serveur \end{DoxyCompactList}\item 
+abstract void \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a8c2fd33b41da5a4edf9911682dfd36cd}{c\+\_\+authentification}} (\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} user)
+\begin{DoxyCompactList}\small\item\em Methode d\textquotesingle{}authentification coté client \end{DoxyCompactList}\item 
+abstract void \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a5f591a8d31f2e2b01fc47a17a4102574}{c\+\_\+listen}} (\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} user, String cmd)
+\begin{DoxyCompactList}\small\item\em Methode d\textquotesingle{}écoute coté client \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_ad8183abf2427e9f870547966179299de}{wait\+End\+Command}} (String start\+Command, String end\+String, \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} user)
+\item 
+void \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_ac8736c068527f24512c6dc391babe861}{write\+To\+All}} (String msg, bool close\+Con=false)
+\begin{DoxyCompactList}\small\item\em écrit un message à tous les utilisateurs identifiés puis ferme la connection si Close\+Con=true \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_ac628c21c8284aedd78b4483d423dd2e4}{On\+Get\+Actu}} (\mbox{\hyperlink{class_n_t_k_1_1_events_args_1_1_get_actu_event_args}{Get\+Actu\+Event\+Args}} e)
+\item 
+virtual void \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a5899870c918bc4053398a25673810316}{On\+Get\+User}} (\mbox{\hyperlink{class_n_t_k_1_1_events_args_1_1_get_user_event_args}{Get\+User\+Event\+Args}} e)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a14977c798a805fea99802fa40da31aa0}{userlist}}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a68903e0a461b9bb373db39304e3ad9be}{db}}
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_n_t_k_1_1_service_1_1_service_config}{Service\+Config}} \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a8951201ce7777c41ae79ca97ce45bf12}{Config}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_n_t_k_1_1_service_aaea6a2e360a41254ddf2d5459fd2135f}{On\+Get\+Actu\+Event\+Handler}} \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a42f9e6ae44394f4f91f08eca21aa9144}{get\+Actu\+Event}}
+\item 
+\mbox{\hyperlink{namespace_n_t_k_1_1_service_a51bf57675f3325cb27da64ad2987252b}{On\+Get\+User\+Event\+Handler}} \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a469c4b12ce0ec00a7ec292bcb3a2aa95}{get\+User\+Event}}
+\item 
+\mbox{\hyperlink{namespace_n_t_k_1_1_service_ad014f00ab4e82ad6ce8808bb063f8b31}{On\+Get\+Grp\+Event\+Handler}} \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_ab99ac40fc03f97052638ef3a2297157e}{get\+Grp\+Event}}
+\item 
+\mbox{\hyperlink{namespace_n_t_k_1_1_service_a937b2f893bc924fb0e8aaeac52f0f18e}{On\+Get\+Msg\+Event\+Handler}} \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_service_a35f5c3965b620753a16a413fcea7a2d4}{get\+Msg\+Event}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\mbox{\hyperlink{namespace_n_t_k_1_1_service}{Service}} (protocole) de communication 
+
+
+
+Definition at line 49 of file N\+T\+K\+Service.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_ae481738002a4ff9e84a28f900b077283}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_ae481738002a4ff9e84a28f900b077283}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!NTKService@{NTKService}}
+\index{NTKService@{NTKService}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{NTKService()}{NTKService()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily N\+T\+K.\+Service.\+N\+T\+K\+Service.\+N\+T\+K\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_n_t_k_1_1_service_1_1_service_config}{Service\+Config}}}]{config,  }\item[{List$<$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} $>$}]{userlist }\end{DoxyParamCaption})}
+
+
+
+Initialisation d\textquotesingle{}un service avec configuration et la liste des utilisateurs 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Configuration\\
+\hline
+{\em userlist} & Liste des utilisateurs\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 92 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_ab7f1a9e37216cfea00821caf98829436}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_ab7f1a9e37216cfea00821caf98829436}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!NTKService@{NTKService}}
+\index{NTKService@{NTKService}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{NTKService()}{NTKService()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily N\+T\+K.\+Service.\+N\+T\+K\+Service.\+N\+T\+K\+Service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_n_t_k_1_1_service_1_1_service_config}{Service\+Config}}}]{config }\end{DoxyParamCaption})}
+
+
+
+Initialisation d\textquotesingle{}un service avec configuration e 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Configuration\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_ae68f898da08a9d9916b23c106474cae8}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_ae68f898da08a9d9916b23c106474cae8}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!NTKService@{NTKService}}
+\index{NTKService@{NTKService}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{NTKService()}{NTKService()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily N\+T\+K.\+Service.\+N\+T\+K\+Service.\+N\+T\+K\+Service (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initialisation d\textquotesingle{}un service avec une configuration interne 
+
+
+
+Definition at line 113 of file N\+T\+K\+Service.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a8c2fd33b41da5a4edf9911682dfd36cd}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a8c2fd33b41da5a4edf9911682dfd36cd}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!c\_authentification@{c\_authentification}}
+\index{c\_authentification@{c\_authentification}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{c\_authentification()}{c\_authentification()}}
+{\footnotesize\ttfamily abstract void N\+T\+K.\+Service.\+N\+T\+K\+Service.\+c\+\_\+authentification (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}}]{user }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Methode d\textquotesingle{}authentification coté client 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___s_n_ac025f78ece6a9012aeb014fbd486aee7}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+SN}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___d_p_t_a6ebeaaab18026e60204f922c8f3780cb}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+D\+PT}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___cyber_net_aafeaa95314fc42dad77b9488f10be803}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Cyber\+Net}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___basic_a3cf6fce0651874b00a85d3a94515c059}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Basic}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___block_chain_ab29505226ecfe9bce4385aaa776a14d7}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Block\+Chain}}, and \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___p2_p_base_server_a7a8a841137b8fcce5cf7c1f122d732f5}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+P2\+P\+Base\+Server}}.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a5f591a8d31f2e2b01fc47a17a4102574}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a5f591a8d31f2e2b01fc47a17a4102574}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!c\_listen@{c\_listen}}
+\index{c\_listen@{c\_listen}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{c\_listen()}{c\_listen()}}
+{\footnotesize\ttfamily abstract void N\+T\+K.\+Service.\+N\+T\+K\+Service.\+c\+\_\+listen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}}]{user,  }\item[{String}]{cmd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Methode d\textquotesingle{}écoute coté client 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \\
+\hline
+{\em cmd} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___s_n_a70710f4c30863d2cab91c62b9f52a040}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+SN}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___cyber_net_ac70faa17037f8ac3fab6f6a4481075ac}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Cyber\+Net}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___basic_ae1e2c161689f944100438bcd61c9a99e}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Basic}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___block_chain_ab8f7f1e5874fb416928cf2fd2743be83}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Block\+Chain}}, and \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___p2_p_base_server_a0e5648a55fed5c3b8acd1d3cb14151f8}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+P2\+P\+Base\+Server}}.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a054248d5e9d86a488d81afe35043da94}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a054248d5e9d86a488d81afe35043da94}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!initialize@{initialize}}
+\index{initialize@{initialize}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily abstract void N\+T\+K.\+Service.\+N\+T\+K\+Service.\+initialize (\begin{DoxyParamCaption}\item[{params Object \mbox{[}$\,$\mbox{]}}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em args} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_ac628c21c8284aedd78b4483d423dd2e4}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_ac628c21c8284aedd78b4483d423dd2e4}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!OnGetActu@{OnGetActu}}
+\index{OnGetActu@{OnGetActu}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{OnGetActu()}{OnGetActu()}}
+{\footnotesize\ttfamily virtual void N\+T\+K.\+Service.\+N\+T\+K\+Service.\+On\+Get\+Actu (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_events_args_1_1_get_actu_event_args}{Get\+Actu\+Event\+Args}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 207 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a5899870c918bc4053398a25673810316}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a5899870c918bc4053398a25673810316}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!OnGetUser@{OnGetUser}}
+\index{OnGetUser@{OnGetUser}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{OnGetUser()}{OnGetUser()}}
+{\footnotesize\ttfamily virtual void N\+T\+K.\+Service.\+N\+T\+K\+Service.\+On\+Get\+User (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_events_args_1_1_get_user_event_args}{Get\+User\+Event\+Args}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 217 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_abab6261724876aea1ba1590720c2b994}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_abab6261724876aea1ba1590720c2b994}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!s\_authentification@{s\_authentification}}
+\index{s\_authentification@{s\_authentification}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{s\_authentification()}{s\_authentification()}}
+{\footnotesize\ttfamily abstract void N\+T\+K.\+Service.\+N\+T\+K\+Service.\+s\+\_\+authentification (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}}]{user,  }\item[{List$<$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}} $>$}]{userlist,  }\item[{\mbox{\hyperlink{namespace_n_t_k_1_1_service_a49f4581ae6fb3e9c155d034c47791db9}{Servicelisten\+Function}}}]{listen }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Methode d\textquotesingle{}authentification coté serveur 
+
+Si l\textquotesingle{}authentification réussie, utilisez listen(user); sinon user.\+Is\+Bad; avant de sortir de la méthode. 
+
+P\+U\+B\+L\+IC 
+\begin{DoxyParams}{Parameters}
+{\em user} & Utilisateur\\
+\hline
+{\em userlist} & Liste des utilisateurs\\
+\hline
+{\em listen} & Méthode d\textquotesingle{}écoute selectionnée par le serveur\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___s_n_ad8969d9732dad1acb4db9b0a80d4c7be}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+SN}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___cyber_net_a501511cb6bf57d9e60b04af04d99586f}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Cyber\+Net}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___block_chain_a2ed35ff54107d1b55f82abde57c20da6}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Block\+Chain}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___p2_p_base_server_ad61965728ce6c47519899ec5b3c2cadf}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+P2\+P\+Base\+Server}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___d_p_t_ac4329c0824028ac2ccb9020cb52aa0f6}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+D\+PT}}, and \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___basic_a71e96e91d2c966446d12d88ea422b3ce}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Basic}}.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a7c7cb8c5ddc57bebe6d9784744c976d7}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a7c7cb8c5ddc57bebe6d9784744c976d7}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!s\_listen@{s\_listen}}
+\index{s\_listen@{s\_listen}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{s\_listen()}{s\_listen()}}
+{\footnotesize\ttfamily abstract void N\+T\+K.\+Service.\+N\+T\+K\+Service.\+s\+\_\+listen (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}}]{user }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Methode d\textquotesingle{}écoute coté serveur 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___s_n_a4fd6ae452b8b494efe62d966eb8d23c8}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+SN}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___cyber_net_a1584c291a5292d44e3076eaf3c3c1c67}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Cyber\+Net}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___block_chain_a5904f46c7cd3d4bd0b229c5cf9b4811d}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Block\+Chain}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___d_p_t_a6472459b1a28f1d257e61242bc812639}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+D\+PT}}, \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___p2_p_base_server_a29d92f2728d0f824d443114a9b3715ba}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+P2\+P\+Base\+Server}}, and \mbox{\hyperlink{class_n_t_k_1_1_service_1_1_n_t_k_s___basic_a1d14f67d95eb73bc1966db7b4d84dc4b}{N\+T\+K.\+Service.\+N\+T\+K\+S\+\_\+\+Basic}}.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_ad8183abf2427e9f870547966179299de}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_ad8183abf2427e9f870547966179299de}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!waitEndCommand@{waitEndCommand}}
+\index{waitEndCommand@{waitEndCommand}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{waitEndCommand()}{waitEndCommand()}}
+{\footnotesize\ttfamily String N\+T\+K.\+Service.\+N\+T\+K\+Service.\+wait\+End\+Command (\begin{DoxyParamCaption}\item[{String}]{start\+Command,  }\item[{String}]{end\+String,  }\item[{\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}}]{user }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em start\+Command} & \\
+\hline
+{\em end\+String} & \\
+\hline
+{\em user} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 168 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_ac8736c068527f24512c6dc391babe861}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_ac8736c068527f24512c6dc391babe861}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!writeToAll@{writeToAll}}
+\index{writeToAll@{writeToAll}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{writeToAll()}{writeToAll()}}
+{\footnotesize\ttfamily void N\+T\+K.\+Service.\+N\+T\+K\+Service.\+write\+To\+All (\begin{DoxyParamCaption}\item[{String}]{msg,  }\item[{bool}]{close\+Con = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+écrit un message à tous les utilisateurs identifiés puis ferme la connection si Close\+Con=true 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & \\
+\hline
+{\em close\+Con} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 186 of file N\+T\+K\+Service.\+cs.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a68903e0a461b9bb373db39304e3ad9be}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a68903e0a461b9bb373db39304e3ad9be}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!db@{db}}
+\index{db@{db}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_database_1_1_n_t_k_database}{N\+T\+K\+Database}} N\+T\+K.\+Service.\+N\+T\+K\+Service.\+db\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 81 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a14977c798a805fea99802fa40da31aa0}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a14977c798a805fea99802fa40da31aa0}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!userlist@{userlist}}
+\index{userlist@{userlist}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{userlist}{userlist}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user}{N\+T\+K\+User}}$>$ N\+T\+K.\+Service.\+N\+T\+K\+Service.\+userlist\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 80 of file N\+T\+K\+Service.\+cs.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a8951201ce7777c41ae79ca97ce45bf12}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a8951201ce7777c41ae79ca97ce45bf12}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!Config@{Config}}
+\index{Config@{Config}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{Config}{Config}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_n_t_k_1_1_service_1_1_service_config}{Service\+Config}} N\+T\+K.\+Service.\+N\+T\+K\+Service.\+Config\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 230 of file N\+T\+K\+Service.\+cs.
+
+
+
+\subsection{Event Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a42f9e6ae44394f4f91f08eca21aa9144}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a42f9e6ae44394f4f91f08eca21aa9144}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!getActuEvent@{getActuEvent}}
+\index{getActuEvent@{getActuEvent}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{getActuEvent}{getActuEvent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_n_t_k_1_1_service_aaea6a2e360a41254ddf2d5459fd2135f}{On\+Get\+Actu\+Event\+Handler}} N\+T\+K.\+Service.\+N\+T\+K\+Service.\+get\+Actu\+Event}
+
+
+
+
+
+
+
+Definition at line 60 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_ab99ac40fc03f97052638ef3a2297157e}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_ab99ac40fc03f97052638ef3a2297157e}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!getGrpEvent@{getGrpEvent}}
+\index{getGrpEvent@{getGrpEvent}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{getGrpEvent}{getGrpEvent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_n_t_k_1_1_service_ad014f00ab4e82ad6ce8808bb063f8b31}{On\+Get\+Grp\+Event\+Handler}} N\+T\+K.\+Service.\+N\+T\+K\+Service.\+get\+Grp\+Event}
+
+
+
+
+
+
+
+Definition at line 68 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a35f5c3965b620753a16a413fcea7a2d4}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a35f5c3965b620753a16a413fcea7a2d4}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!getMsgEvent@{getMsgEvent}}
+\index{getMsgEvent@{getMsgEvent}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{getMsgEvent}{getMsgEvent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_n_t_k_1_1_service_a937b2f893bc924fb0e8aaeac52f0f18e}{On\+Get\+Msg\+Event\+Handler}} N\+T\+K.\+Service.\+N\+T\+K\+Service.\+get\+Msg\+Event}
+
+
+
+
+
+
+
+Definition at line 72 of file N\+T\+K\+Service.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_service_1_1_n_t_k_service_a469c4b12ce0ec00a7ec292bcb3a2aa95}\label{class_n_t_k_1_1_service_1_1_n_t_k_service_a469c4b12ce0ec00a7ec292bcb3a2aa95}} 
+\index{NTK.Service.NTKService@{NTK.Service.NTKService}!getUserEvent@{getUserEvent}}
+\index{getUserEvent@{getUserEvent}!NTK.Service.NTKService@{NTK.Service.NTKService}}
+\subsubsection{\texorpdfstring{getUserEvent}{getUserEvent}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_n_t_k_1_1_service_a51bf57675f3325cb27da64ad2987252b}{On\+Get\+User\+Event\+Handler}} N\+T\+K.\+Service.\+N\+T\+K\+Service.\+get\+User\+Event}
+
+
+
+
+
+
+
+Definition at line 64 of file N\+T\+K\+Service.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+N\+T\+K/\+Service/\mbox{\hyperlink{_n_t_k_service_8cs}{N\+T\+K\+Service.\+cs}}\end{DoxyCompactItemize}

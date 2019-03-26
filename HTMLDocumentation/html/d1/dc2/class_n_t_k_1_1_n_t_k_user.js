@@ -1,0 +1,28 @@
+var class_n_t_k_1_1_n_t_k_user =
+[
+    [ "NTKUser", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a0eb0ebce85f8a29328170881fe595ba0", null ],
+    [ "NTKUser", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a5294dadef2cdf99e83b8cfeb952abf02", null ],
+    [ "OnReadMsg", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a167e7153c51a74e8dfa8115aba4cca6f", null ],
+    [ "OnWriteMsg", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a5cb9ae25e0a3621add3f636fedc73252", null ],
+    [ "readMsg", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#ac86726504956b16af40116d0f24d5368", null ],
+    [ "readMsgAsync", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a049d42e91b000aefa6179750546e0a52", null ],
+    [ "reciveFile", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#ae141a3d5ed333fa9fb5b2fbf3136f81f", null ],
+    [ "sendFile", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a5e5f555882081eafcab8c919169cd5fe", null ],
+    [ "writeMsg", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a55435ca4759c1daa467be2479c2b598e", null ],
+    [ "writeMsgAsync", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a729769d1f8aefcbec4350a8030943d96", null ],
+    [ "Cipher", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a00902f61177d6afd6635230413584228", null ],
+    [ "Client", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a42060ca18fc5a6d1c1c2afd366b4ba3d", null ],
+    [ "Id", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#ae3aabe90eaaeb3444c62c9cd4345a2eb", null ],
+    [ "IsBad", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a69f4b6790cfa4e39cee2af0cadbbe746", null ],
+    [ "Login", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#aa3f210eff4da80300f2c47dc2a95e6d6", null ],
+    [ "Lvl", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#ad749af74429eb3196cbb4f25c7ace034", null ],
+    [ "Name", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a53435983d42170128ede63d0fde30a79", null ],
+    [ "Pass", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a63a05a4e52f73c50fa96552f672b33af", null ],
+    [ "Seckey", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a32c8342c690b45388559b3c5122cd272", null ],
+    [ "Stream", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a24bab17f6cdc2a3a92c0394bd20fa07a", null ],
+    [ "Streamr", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a3877e3830741d59caf159a820f08aecc", null ],
+    [ "Streamw", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#aae5bebb581da61cad128700d2c1d906f", null ],
+    [ "Tls", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a15f289c4a8ba6b294999f383ae93da8d", null ],
+    [ "ReadMsg", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#aaa37fc7deec4103a88b7a294a7d7bac0", null ],
+    [ "WriteMsg", "d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a7200653be03c0a22ef54b514c04b80b3", null ]
+];

@@ -69,8 +69,10 @@ namespace NTKAdmin
                 {
                     //Thread.Sleep(1000);
                     DllLoader loader = new DllLoader(elem.FullName);
-                    Config.servicesList.AddRange(loader.getClassInstancelike<NTKService>("NTKS_"));
-                    Config.pluginsList.AddRange(loader.getClassInstancelike<IBasePlugin>("NTKP_"));
+                   //  Config.servicesList.AddRange(loader.getClassInstancelike<NTKService>("NTKS_"));
+                   // Config.pluginsList.AddRange(loader.getClassInstancelike<IBasePlugin>("NTKP_"));
+                    Config.servicesList.AddRange(loader.getAllInstances<NTKService>());
+                    Config.pluginsList.AddRange(loader.getAllInstances<IBasePlugin>());
                 }
                 flatProgressBar1.Value += valPercent;
             }

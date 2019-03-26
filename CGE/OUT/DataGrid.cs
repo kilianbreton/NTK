@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Console;
 
 namespace CGE.OUT
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DataGrid : CGEObject
     {
         private String[,] grid;
@@ -14,22 +18,33 @@ namespace CGE.OUT
         private int startleftpos = 0;
         private int startToppos = 0;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="header"></param>
         public DataGrid(String[,] grid, bool header = false)
         {
             this.grid = grid;
             this.header = header;
-            Console.OutputEncoding = Encoding.Unicode;
+            OutputEncoding = Encoding.Unicode;
         }
 
         public int[] MaxLength { get => maxLength; set => maxLength = value; }
         public int Startleftpos { get => startleftpos; set => startleftpos = value; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="i"></param>
         public override void draw(int i = 0)
         {
             print();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void print()
         {
 
@@ -59,59 +74,63 @@ namespace CGE.OUT
             var startId = 0;
             var traitHo = "";
 
-            startToppos = Console.CursorTop;
+            startToppos = CursorTop;
 
             for(int i = 0;i< grid.GetLength(0)+3; i++)
             {
-               Console.WriteLine(NTKF.generStr(MaxLength[MaxLength.Length-1]+5," "));
+               WriteLine(NTKF.generStr(MaxLength[MaxLength.Length-1]+5," "));
             }
-            Console.SetCursorPosition(0, startToppos);
+            SetCursorPosition(0, startToppos);
           
             //Trait horisontal----------------------------------------------------------------------------------------
             for (int i = 0; i < MaxLength[grid.GetLength(1) - 1] + 4; i++)
             {
                 traitHo += "─";
             }
-            Console.SetCursorPosition(Startleftpos, Console.CursorTop);
-            Console.WriteLine("┏" + traitHo+ "┓");
+            SetCursorPosition(Startleftpos, CursorTop);
+            WriteLine("┏" + traitHo+ "┓");
             if (header)
             {
-                Console.SetCursorPosition(Startleftpos, Console.CursorTop);
-                Console.Write("┃ " + grid[0, 0]);
-                Console.SetCursorPosition(Startleftpos, Console.CursorTop);
+                SetCursorPosition(Startleftpos, CursorTop);
+                Write("┃ " + grid[0, 0]);
+                SetCursorPosition(Startleftpos, CursorTop);
                 for (int i = 1;i< grid.GetLength(1); i++)
                 {
-                    Console.SetCursorPosition(Startleftpos + MaxLength[i-1] + 4, Console.CursorTop);
-                    Console.Write("┃ " + grid[0, i]);
-                    Console.SetCursorPosition(Startleftpos+MaxLength[i]+4, Console.CursorTop);//TODO : gérer exception (Taille ecran)
+                    SetCursorPosition(Startleftpos + MaxLength[i-1] + 4, CursorTop);
+                    Write("┃ " + grid[0, i]);
+                    SetCursorPosition(Startleftpos+MaxLength[i]+4, CursorTop);//TODO : gérer exception (Taille ecran)
                 }
-                Console.Write(" ┃");
-                Console.WriteLine();
+                Write(" ┃");
+                WriteLine();
                
                 startId = 1;
             }
 
-            Console.SetCursorPosition(Startleftpos, Console.CursorTop);
-            Console.WriteLine("┣" + traitHo + "┫");
+            SetCursorPosition(Startleftpos, CursorTop);
+            WriteLine("┣" + traitHo + "┫");
             for (int i = startId; i < grid.GetLength(0); i++)
             {
-                Console.SetCursorPosition(Startleftpos, Console.CursorTop);
-                Console.Write("┃ " + grid[i, 0]);
-                Console.SetCursorPosition(Startleftpos + MaxLength[0] + 4, Console.CursorTop);
+                SetCursorPosition(Startleftpos, CursorTop);
+                Write("┃ " + grid[i, 0]);
+                SetCursorPosition(Startleftpos + MaxLength[0] + 4, CursorTop);
                 for (int x = 1; x < grid.GetLength(1); x++)
                 {
-                    Console.SetCursorPosition(Startleftpos + MaxLength[x-1] + 4, Console.CursorTop);
-                    Console.Write("┃ " + grid[i, x]);
-                    Console.SetCursorPosition(Startleftpos + MaxLength[x]+4, Console.CursorTop);
+                    SetCursorPosition(Startleftpos + MaxLength[x-1] + 4, CursorTop);
+                    Write("┃ " + grid[i, x]);
+                    SetCursorPosition(Startleftpos + MaxLength[x]+4, CursorTop);
                 }
-                Console.Write(" ┃");
-                Console.WriteLine();
+                Write(" ┃");
+                WriteLine();
             }
-            Console.SetCursorPosition(Startleftpos, Console.CursorTop);
-            Console.WriteLine("┗" + traitHo+ "┛");
+            SetCursorPosition(Startleftpos, CursorTop);
+            WriteLine("┗" + traitHo+ "┛");
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public override string show()
         {
             print();
@@ -119,7 +138,10 @@ namespace CGE.OUT
         }
 
       
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bad"></param>
         public override void stop(bool bad = false)
         {
             

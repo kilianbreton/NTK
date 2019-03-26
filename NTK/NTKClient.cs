@@ -11,6 +11,7 @@ using NTK.Other;
 using NTK.Security;
 using NTK.Service;
 using static NTK.Other.NTKF;
+using static NTK.NTKCommands;
 
 namespace NTK
 {
@@ -111,10 +112,13 @@ namespace NTK
         private TcpClient client;
         private String login;
         private String pass;
-        private NTKRsa rsa;
         private Log_NTK logs;
         private USER_LVL lvl;
 
+        //Listes (Plugins)
+        private List<IEncryptor> extEncryptors = new List<IEncryptor>();
+        private List<NTKService> extServices = new List<NTKService>();
+     
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,7 +173,7 @@ namespace NTK
                     NetworkStream stream = Client.GetStream();
                     StreamWriter sw = new StreamWriter(stream);
                     StreamReader sr = new StreamReader(stream);
-                    User = new NTKUser(NTKF.generateToken(8),Client);
+                    User = new NTKUser(NTKF.generateToken(8),Client, new NTKAes());
                     User.Login=Login;
                     User.Pass=Pass;
                     User.Seckey=Seckey;
@@ -192,20 +196,20 @@ namespace NTK
         public void listenLoop(NTKUser u)
         {
             bool find = false;
-            bool servstart = false;
-            while (Client.Connected)
+            bool stop = false;
+            while (u.Client.Connected && !stop)
             {
                 try
                 {
                     String tmp = u.readMsg();
                     addLogs(LogsTypes.NOTICE, tmp);
-                    if (tmp.Contains(NTKCommands.C_TYPE))
+                    if (tmp.Contains(C_TYPE))
                     {
-                        Ctype = setCtype(subsep(tmp, NTKCommands.C_TYPE, ";"));
+                        Ctype = setCtype(subsep(tmp, C_TYPE, ";"));
                     }
-                    else if (tmp.Contains(NTKCommands.S_TYPE))
+                    else if (tmp.Contains(S_TYPE))
                     {
-                        Stype = NTKF.subsep(tmp, NTKCommands.S_TYPE, ";");
+                        Stype = NTKF.subsep(tmp, S_TYPE, ";");
                         find = true;
                         switch (Stype)
                         {
@@ -221,7 +225,7 @@ namespace NTK
                                 Console.WriteLine("- OK");
                                 break;
                             case "SN":
-                                service = new NTKS_SN(this);
+                                service = new NTKS_SN();
                                 Console.WriteLine("- OK");
                                 break;
                             case "DPT":
@@ -229,31 +233,46 @@ namespace NTK
                                 Console.WriteLine("- OK");
                                 break;
                             default:
-                                Console.WriteLine("- Not found");
-                                find = false;
-                                //TO DO: Manage plugins
+                                int cpt = 0;
+                                while(cpt<extServices.Count && !extServices[cpt].Config.name.Equals(Stype)){ cpt++; }
+                                if (extServices[cpt].Config.name.Equals(Stype))
+                                {
+                                    service = extServices[cpt];
+                                    Console.WriteLine("- OK");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("- Not found");
+                                    find = false;
+                                    user.writeMsg("GET SERVICE ASSEMBLY;");
+                                    var res = user.readMsg();
+                                    if (res.Contains("SEND>"))
+                                    {
+                                        //TODO: Transfert ServicePerso.dll
+                                    }
+                                }
                                 break;
                         }
                         OnGetService(new GetServiceEventArgs(service));
                     }
-                    else if (tmp.Contains(NTKCommands.C_TLS))
+                    else if (tmp.Contains(C_TLS))
                     {
-                        bool tmptls = (bool.Parse(NTKF.subsep(tmp, NTKCommands.C_TLS, ";")));
+                        bool tmptls = (bool.Parse(NTKF.subsep(tmp, C_TLS, ";")));
                         if (tmptls)
                         {
                             ident_tls(u);
                         }
                     }
-                    else if (tmp.Contains(NTKCommands.C_RL))
+                    else if (tmp.Contains(C_RL))
                     {
                         //AUTHENTIFICATION
                         if (Ctype.Equals(CTYPE.AUTH_ADM))
                         {
                             if (reg)
                             {
-                                writeMsg(NTKCommands.A_REG + login + "" + pass + "" + seckey);
+                                writeMsg(A_REG + login + "" + pass + "" + seckey);
                                 var resultr = readMsg();
-                                if (resultr.Equals(NTKCommands.A_OK))
+                                if (resultr.Equals(A_OK))
                                 {
                                     OnIdentification(new IdentificationEventArgs(NTK.Identification.Success));
                                 }
@@ -264,24 +283,24 @@ namespace NTK
                                 {
                                     case USER_LVL.SUPER_ADMIN:
                                         //  exemple commande : A_SUPER_ADMIN>Kilian,password,seckey;
-                                        writeMsg(NTKCommands.A_SUPERADM + Login + "," + Pass + "," + Seckey + ";");
+                                        writeMsg(A_SUPERADM + Login + "," + Pass + "," + Seckey + ";");
                                         break;
                                     case USER_LVL.ADMIN:
-                                        writeMsg(NTKCommands.A_ADMIN + Login + "," + Pass + ";");
+                                        writeMsg(A_ADMIN + Login + "," + Pass + ";");
                                         break;
                                     case USER_LVL.USER:
-                                        writeMsg(NTKCommands.A_USER + Login + "," + Pass + ";");
+                                        writeMsg(A_USER + Login + "," + Pass + ";");
                                         break;
                                     case USER_LVL.SUB_SERVER:
-                                        writeMsg(NTKCommands.A_SUBS + Login + "," + Pass + "," + Seckey + ";");
+                                        writeMsg(A_SUBS + Login + "," + Pass + "," + Seckey + ";");
                                         break;
                                     case USER_LVL.BOT:
-                                        writeMsg(NTKCommands.A_BOT + Pass + ";");   //(pass = token)
+                                        writeMsg(A_BOT + Pass + ";");   //(pass = token)
                                         break;
                                 }
                                 //On continue dans la boucle principale
                                 var result = readMsg();
-                                if (result.Equals(NTKCommands.A_OK))
+                                if (result.Equals(A_OK))
                                 {
                                     OnIdentification(new IdentificationEventArgs(NTK.Identification.Success));
                                 }
@@ -297,10 +316,11 @@ namespace NTK
 
                         }
                     }
-                    else if (tmp.Contains(NTKCommands.C_STOP))
+                    else if (tmp.Contains(C_STOP))
                     {
-                        int code = int.Parse(subsep(tmp, NTKCommands.C_STOP, Separators.PV.ToString()));
+                        int code = int.Parse(subsep(tmp, C_STOP, Separators.PV.ToString()));
                         OnStop(new StopEventArgs(code));
+                        stop = true;
                     }
                     if (find)
                     {
@@ -344,7 +364,7 @@ namespace NTK
         /// </summary>
         public void closeConnection()
         {
-            writeMsg(NTKCommands.C_STOP);
+            writeMsg(C_STOP);
             client.Close();
         }
 
@@ -397,13 +417,13 @@ namespace NTK
                 {
                     String tmp = await u.readMsgAsync();
                     addLogs(LogsTypes.NOTICE, tmp);
-                    if (tmp.Contains(NTKCommands.C_TYPE))
+                    if (tmp.Contains(C_TYPE))
                     {
-                        Ctype = setCtype(subsep(tmp, NTKCommands.C_TYPE, ";"));
+                        Ctype = setCtype(subsep(tmp, C_TYPE, ";"));
                     }
-                    else if (tmp.Contains(NTKCommands.S_TYPE))
+                    else if (tmp.Contains(S_TYPE))
                     {
-                        Stype = NTKF.subsep(tmp, NTKCommands.S_TYPE, ";");
+                        Stype = NTKF.subsep(tmp, S_TYPE, ";");
                         find = true;
                         switch (Stype)
                         {
@@ -419,7 +439,7 @@ namespace NTK
                                 Console.WriteLine("- OK");
                                 break;
                             case "SN":
-                                service = new NTKS_SN(this);
+                                service = new NTKS_SN();
                                 Console.WriteLine("- OK");
                                 break;
                             case "DPT":
@@ -434,24 +454,24 @@ namespace NTK
                         }
                         OnGetService(new GetServiceEventArgs(service));
                     }
-                    else if (tmp.Contains(NTKCommands.C_TLS))
+                    else if (tmp.Contains(C_TLS))
                     {
-                        bool tmptls = (bool.Parse(NTKF.subsep(tmp, NTKCommands.C_TLS, ";")));
+                        bool tmptls = (bool.Parse(NTKF.subsep(tmp, C_TLS, ";")));
                         if (tmptls)
                         {
                             await ident_tlsAsync(u);
                         }
                     }
-                    else if (tmp.Contains(NTKCommands.C_RL))
+                    else if (tmp.Contains(C_RL))
                     {
                         //AUTHENTIFICATION
                         if (Ctype.Equals(CTYPE.AUTH_ADM))
                         {
                             if (reg)
                             {
-                                await writeMsgAsync(NTKCommands.A_REG + login + "" + pass + "" + seckey);
+                                await writeMsgAsync(A_REG + login + "" + pass + "" + seckey);
                                 var resultr = readMsg();
-                                if (resultr.Equals(NTKCommands.A_OK))
+                                if (resultr.Equals(A_OK))
                                 {
                                     OnIdentification(new IdentificationEventArgs(NTK.Identification.Success));
                                 }
@@ -462,24 +482,24 @@ namespace NTK
                                 {
                                     case USER_LVL.SUPER_ADMIN:
                                         //  exemple commande : A_SUPER_ADMIN>Kilian,password,seckey;
-                                        await writeMsgAsync(NTKCommands.A_SUPERADM + Login + "," + Pass + "," + Seckey + ";");
+                                        await writeMsgAsync(A_SUPERADM + Login + "," + Pass + "," + Seckey + ";");
                                         break;
                                     case USER_LVL.ADMIN:
-                                        await writeMsgAsync(NTKCommands.A_ADMIN + Login + "," + Pass + ";");
+                                        await writeMsgAsync(A_ADMIN + Login + "," + Pass + ";");
                                         break;
                                     case USER_LVL.USER:
-                                        await writeMsgAsync(NTKCommands.A_USER + Login + "," + Pass + ";");
+                                        await writeMsgAsync(A_USER + Login + "," + Pass + ";");
                                         break;
                                     case USER_LVL.SUB_SERVER:
-                                        await writeMsgAsync(NTKCommands.A_SUBS + Login + "," + Pass + "," + Seckey + ";");
+                                        await writeMsgAsync(A_SUBS + Login + "," + Pass + "," + Seckey + ";");
                                         break;
                                     case USER_LVL.BOT:
-                                        await writeMsgAsync(NTKCommands.A_BOT + Pass + ";");   //(pass = token)
+                                        await writeMsgAsync(A_BOT + Pass + ";");   //(pass = token)
                                         break;
                                 }
                                 //On continue dans la boucle principale
                                 var result = readMsg();
-                                if (result.Equals(NTKCommands.A_OK))
+                                if (result.Equals(A_OK))
                                 {
                                     OnIdentification(new IdentificationEventArgs(NTK.Identification.Success));
                                 }
@@ -495,9 +515,9 @@ namespace NTK
 
                         }
                     }
-                    else if (tmp.Contains(NTKCommands.C_STOP))
+                    else if (tmp.Contains(C_STOP))
                     {
-                        int code = int.Parse(subsep(tmp, NTKCommands.C_STOP, Separators.PV.ToString()));
+                        int code = int.Parse(subsep(tmp, C_STOP, Separators.PV.ToString()));
                         OnStop(new StopEventArgs(code));
                     }
                     if (find)
@@ -544,7 +564,7 @@ namespace NTK
         /// <returns></returns>
         public async Task closeConnectionAsync()
         {
-            await writeMsgAsync(NTKCommands.C_STOP);
+            await writeMsgAsync(C_STOP);
             client.Close();
         }
 
@@ -664,52 +684,64 @@ namespace NTK
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// 
+        /// Utilisateur du client
         /// </summary>
         public NTKUser User { get => user; set => user = value; }
         /// <summary>
-        /// 
+        /// Port de connexion
         /// </summary>
         public int Port { get => port; set => port = value; }
         /// <summary>
-        /// 
+        /// Adresse IP ou domaine du serveur
         /// </summary>
         public string Adrs { get => adrs; set => adrs = value; }
         /// <summary>
-        /// 
+        /// Nom du service à utiliser
         /// </summary>
         public string Stype { get => stype; set => stype = value; }
         /// <summary>
-        /// 
+        /// Type de connexion (Mode d'authentification)
         /// </summary>
         public CTYPE Ctype { get => ctype; set => ctype = value; }
         /// <summary>
-        /// 
+        /// Clée de sécurité (Connexion Admin)
         /// </summary>
         public string Seckey { get => seckey; set => seckey = value; }
         /// <summary>
-        /// 
+        /// Client TCP
         /// </summary>
         public TcpClient Client { get => client; set => client = value; }
         /// <summary>
-        /// 
+        /// Identifiant
         /// </summary>
         public string Login { get => login; set => login = value; }
         /// <summary>
-        /// 
+        /// Mot de passe
         /// </summary>
         public string Pass { get => pass; set => pass = value; }
         /// <summary>
-        /// 
+        /// Service en cour d'utilisation
         /// </summary>
         public NTKService Service { get => service; set => service = value; }
         /// <summary>
-        /// 
+        /// Objet de log
         /// </summary>
         public Log_NTK Logs { get => logs; set => logs = value; }
         /// <summary>
-        /// 
+        /// Niveau de l'utilisateur du client
         /// </summary>
         public USER_LVL Lvl { get => lvl; set => lvl = value; }
+        /// <summary>
+        /// Authentification par l'enregistrement
+        /// </summary>
+        public bool Reg { get => reg; set => reg = value; }
+        /// <summary>
+        /// Liste des algorithmes de chiffrement externe (Hos AES)
+        /// </summary>
+        public List<IEncryptor> ExtEncryptors { get => extEncryptors; set => extEncryptors = value; }
+        /// <summary>
+        /// Liste des services externe
+        /// </summary>
+        public List<NTKService> ExtServices { get => extServices; set => extServices = value; }
     }
 }

@@ -102,17 +102,22 @@ namespace NTK.IO
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public List<T> getAllInstances<T>()
+        public List<T> getAllInstances<T>(params Object[] args)
         {
             var ret = new List<T>();
             foreach (Type type in dll.GetExportedTypes())
             {
-                if (type.BaseType.Name.Equals(typeof(T).Name)) 
+                try
                 {
                     var classe = this.dll.CreateInstance(type.FullName, true);
-                
-                    ret.Add( (T) classe );
+
+                    if (classe.GetType().BaseType.Equals(typeof(T)) || implements(classe.GetType(), typeof(T)))
+                    {
+                        ret.Add((T)classe);
+                    }
                 }
+                catch (Exception){}
+               
             }
             return ret;
         }

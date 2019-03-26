@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace NTK.Database
 {
+
     public enum DBSType
     {
         INT,VARCHAR,TEXT,DATE,
@@ -104,6 +105,9 @@ namespace NTK.Database
         PRIMARY,UNIQUE,INDEX,FULLTEXT,SPACIAL,NONE
     }
 
+    /// <summary>
+    /// Représente une colonne de base de données
+    /// </summary>
     public class DBSColumn
     {
         private String name;
@@ -118,7 +122,18 @@ namespace NTK.Database
         private List<String> values = new List<String>();
 
 
-
+        /// <summary>
+        /// Création d'une colonne
+        /// </summary>
+        /// <param name="name">Nom</param>
+        /// <param name="type">type de valeur</param>
+        /// <param name="length">Taille</param>
+        /// <param name="autoIncrement">Incrémentation automatique</param>
+        /// <param name="notnull">Non-null</param>
+        /// <param name="collation">Interclassement</param>
+        /// <param name="defaultValue">Valeur par défaut</param>
+        /// <param name="index">Index</param>
+        /// <param name="primarykey">Clée primaire</param>
         public DBSColumn(String name, DBSType type, int length, bool autoIncrement, bool notnull=false,
             DBSCollation collation = DBSCollation.utf8_bin,
             String defaultValue=null, DBSIndex index = DBSIndex.NONE, bool primarykey = false)
@@ -134,6 +149,15 @@ namespace NTK.Database
             this.primaryKey = primarykey;
         }
 
+        /// <summary>
+        /// Création d'une colonne
+        /// </summary>
+        /// <param name="name">Nom</param>
+        /// <param name="type">Type de valeur</param>
+        /// <param name="length">Taille</param>
+        /// <param name="autoIncrement">Incrémentation automatique</param>
+        /// <param name="index">Index</param>
+        /// <param name="primarykey">Clée primaire</param>
         public DBSColumn(String name, DBSType type, int length, bool autoIncrement,
            DBSIndex index, bool primarykey)
         {
@@ -144,6 +168,11 @@ namespace NTK.Database
             this.AutoIncrement = autoIncrement;
             this.primaryKey = primarykey;
         }
+
+        /// <summary>
+        /// Génère un script SQL
+        /// </summary>
+        /// <returns></returns>
         public String print()
         {
             String ret = "`" + name + "` " + type.ToString().ToLower() + "(" + length + ") " ;
@@ -174,18 +203,41 @@ namespace NTK.Database
 
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Name { get => name; set => name = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public DBSType Type { get => type; set => type = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public DBSCollation Collation { get => collation; set => collation = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public DBSIndex Index { get => index; set => index = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public int Length { get => length; set => length = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public string DefaultValue { get => defaultValue; set => defaultValue = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public bool AutoIncrement { get => autoIncrement; set => autoIncrement = value; }
+        /// <summary>
+        /// 
+        /// </summary>
         public List<string> Values { get => values; set => values = value; }
-
-     
-
+        /// <summary>
+        /// 
+        /// </summary>
         public bool PrimaryKey { get => primaryKey; set => primaryKey = value; }
     }
 }

@@ -64,32 +64,30 @@ namespace NTK.Service
     public class NTKS_SN : NTKService
     {
         private FileManager fmanager;
-        private NTKDatabase db;
         private const int GET_LIMIT = 60;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Initialisation d'un service coté serveur
+        /// </summary>
+        /// <param name="config"></param>
+        /// <param name="userlist"></param>
+        public NTKS_SN(ServiceConfig config, List<NTKUser> userlist) : base(config, userlist) { }
+
+        /// <summary>
+        /// Initialisation coté client
+        /// </summary>
+        /// <param name="config"></param>
+        public NTKS_SN(ServiceConfig config) : base(config) { }
+        
+        /// <summary>
+        /// Initialise le service avec sa configuration par défaut
+        /// </summary>
+        public NTKS_SN() : base(NTKS_SN.basicConfig()) { }
     
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serv"></param>
-        public NTKS_SN(NTKServer serv) : base(serv) {
-            base.Config = basicConfig();
-            this.db = serv.Database;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="cli"></param>
-        public NTKS_SN(NTKClient cli) : base(cli)
-        {
-            base.Config = basicConfig();
-            
-        }
-
-
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHODES PUBLIQUES SERVER /////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -268,8 +266,8 @@ namespace NTK.Service
                 int id = int.Parse(subsep(cmd, "(", ")"));
                 String query = "DELETE FROM sn_comment WHERE id = " + id + " AND WriterUser = " + user.Id+";";
                 db.insert(query);
-            }       //MSG U(#id,#txt,#picid(n/a)); || MSG G(#id,#txt,#picid(n/a));
-            else if (cmd.Contains("/MSG "))
+            }      
+            else if (cmd.Contains("/MSG ")) //MSG U(#id,#txt,#picid(n/a)); || MSG G(#id,#txt,#picid(n/a));
             {
 
             }       // .. U(#ID); || .. G(#ID);
@@ -279,7 +277,7 @@ namespace NTK.Service
             }
             else if (cmd.Contains("/DISCONNECT;"))
             {
-                base.serv.Userlist.Remove(user);
+              
                 user = null;
                 
             }
@@ -315,15 +313,16 @@ namespace NTK.Service
         {
             SNUser snu = setUser(user, 1);
             bool stop = false;
-            while (!stop)
+            while (!stop && snu.Client.Connected)
             {
                 String tmp = snu.readMsg();
                 basicCommands(snu, tmp);
+                writeToAll(tmp);
                 if (!snu.Client.Connected)
                 {
                     snu = null;
                     stop = true;
-                    base.serv.Userlist.Remove(user);
+               
                 }
                 else
                 {
@@ -356,6 +355,9 @@ namespace NTK.Service
                             break;
                     }
                 }
+
+
+                
             }
         }
 
@@ -445,13 +447,15 @@ namespace NTK.Service
         /// <returns></returns>
         public static ServiceConfig basicConfig(NTKDatabase db = null)
         {
+            if (db == null)
+                db = NTKDatabase.getInstance();
             var c = new ServiceConfig
             {
                 authentification = false,
                 stype = "SN",
              
                 database = new DBStruct("SN", "myisam"),
-                dbq = db,
+                dbc = db,
                 useBasicListen = false
                 
             };

@@ -17,7 +17,7 @@ namespace Demo
                 NTKD_MySql.getInstance("127.0.0.1", "root", "", "swiss"));
 
             server.Stype = "MONSERVICE";
-            server.ExtServices.Add(new NTKS_MonService());
+            server.ExtServices.Add(new NTKS_Game());
             server.Logs = Log_NTK.getInstance("NTK.log", true);
             server.Database.Logs = Log_Database.getInstance("DB.log", true);
             server.Database.tryConnection();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿//#define DEBUG2
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,27 +13,28 @@ namespace CS_HTMLDoc
     {
         static void Main(string[] args)
         {
-            args = new string[6];
-            args[0] = "-i";
-            args[1] = @"D:\Programmation\NTK\ServerAdmin\Kernel\NTK.xml";
-            args[2] = "-o";
-            args[3] = @"D:\partage\test";
-            args[4] = "--lang";
-            args[5] = "FR";
+#if DEBUG2
+               args = new string[6];
+               args[0] = "-i";
+               args[1] = @"D:\Programmation\NTK\ServerAdmin\Kernel\NTK.xml";
+               args[2] = "-o";
+               args[3] = @"D:\partage\test";
+               args[4] = "--lang";
+               args[5] = "FR"; 
+#endif
             if (args.Length == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("CHD - Need arguments");
+                Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("Basic use : chd -i xmlFile -o outputFolder");
-                var test = new Documentation(@"D:\Programmation\NTK\ServerAdmin\Kernel\NTK.xml");
-                test.makeHtml(@"D:\Programmation\NTK\XML_HTML\test");
-
-                Console.ReadLine();
+                Console.WriteLine("Or use : -h | --help");
             }
             else
             {
                 if(args.Length == 4 
                     && (args[0].Equals("-i") || args[0].Equals("--in")) 
-                    && (args[2].Equals("-o") || args[0].Equals("--out")))
+                    && (args[2].Equals("-o") || args[2].Equals("--out")))
                 {
 
                     var test = new Documentation(args[1]);
@@ -48,7 +50,7 @@ namespace CS_HTMLDoc
                 }
                 else if(args.Length ==1 && args[0].Equals("--add_lang") )
                 {
-                    IniDocument inid = new IniDocument("chd.ini");
+                    IniDocument inid = new IniDocument(AppDomain.CurrentDomain.BaseDirectory + "\\chd.ini");
                    
 
                     Console.Write("Language Name : ");
@@ -102,9 +104,18 @@ namespace CS_HTMLDoc
                 }
                 else if (args.Length == 1 && (args[0].Equals("--config") || args[0].Equals("-c")))
                 {
-                    IniDocument inid = new IniDocument("chd.ini");
+                    IniDocument inid = new IniDocument(AppDomain.CurrentDomain.BaseDirectory + "\\chd.ini");
                     Console.WriteLine("Default Language :   " + inid.getGroup("BASE").getValue("lang"));
                     Console.WriteLine("Default Template :   " + inid.getGroup("BASE").getValue("template"));
+                }
+                else if (args.Length == 2 && args[0].Equals("--def_lang"))
+                {
+                    IniDocument inid = new IniDocument(AppDomain.CurrentDomain.BaseDirectory + "\\chd.ini");
+                    var lang = args[1];
+                    if (inid.isGroupExist(lang))
+                    {
+                        inid.getGroup("BASE").getValueLine("lang").Value = lang;
+                    }
                 }
                 else
                 {

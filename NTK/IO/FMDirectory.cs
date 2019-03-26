@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace NTK.IO
 {
+    /// <summary>
+    /// Répertoire du FileManager
+    /// </summary>
     public class FMDirectory
     {
         private String path;

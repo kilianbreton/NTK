@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['octetconverter',['octetConverter',['../d2/df5/class_n_t_k_1_1_i_o_1_1_file_manager.html#ad899a9fcab668809680cc1c61554c79e',1,'NTK::IO::FileManager']]],
+  ['onconnect',['OnConnect',['../d7/d61/class_n_t_k_1_1_n_t_k_client.html#a7b8bf5bfbfe89d792c2378386a86fa44',1,'NTK::NTKClient']]],
+  ['onconnecteventargs',['OnConnectEventArgs',['../d4/d56/class_n_t_k_1_1_events_args_1_1_on_connect_event_args.html#a8ee12a801fa6e27a3426cdfd44fd433b',1,'NTK::EventsArgs::OnConnectEventArgs']]],
+  ['onconnecteventhandler',['OnConnectEventHandler',['../d9/d58/namespace_n_t_k.html#a8743f7b779ee57a52d3757cd46ea0060',1,'NTK']]],
+  ['onerror',['OnError',['../d7/d61/class_n_t_k_1_1_n_t_k_client.html#a90d864509292129f091e6efe9690391a',1,'NTK::NTKClient']]],
+  ['onerroreventargs',['OnErrorEventArgs',['../d9/dd1/class_n_t_k_1_1_events_args_1_1_on_error_event_args.html#a3492f6238103781dbf5b32851227ca5b',1,'NTK::EventsArgs::OnErrorEventArgs']]],
+  ['onerroreventhandler',['OnErrorEventHandler',['../d9/d58/namespace_n_t_k.html#a41f1f90439f13a48e64026ed730a1df8',1,'NTK']]],
+  ['ongetactu',['OnGetActu',['../d8/dcb/class_n_t_k_1_1_service_1_1_n_t_k_service.html#ac628c21c8284aedd78b4483d423dd2e4',1,'NTK::Service::NTKService']]],
+  ['ongetactueventhandler',['OnGetActuEventHandler',['../d3/de5/namespace_n_t_k_1_1_service.html#aaea6a2e360a41254ddf2d5459fd2135f',1,'NTK::Service']]],
+  ['ongetgrpeventhandler',['OnGetGrpEventHandler',['../d3/de5/namespace_n_t_k_1_1_service.html#ad014f00ab4e82ad6ce8808bb063f8b31',1,'NTK::Service']]],
+  ['ongetmsgeventhandler',['OnGetMsgEventHandler',['../d3/de5/namespace_n_t_k_1_1_service.html#a937b2f893bc924fb0e8aaeac52f0f18e',1,'NTK::Service']]],
+  ['ongetservice',['OnGetService',['../d7/d61/class_n_t_k_1_1_n_t_k_client.html#a8f6d37201457e568450d6d11e14ecb20',1,'NTK::NTKClient']]],
+  ['ongetserviceeventhandler',['OnGetServiceEventHandler',['../d9/d58/namespace_n_t_k.html#af8c7a0dee9d2b4d395e6d806229d2d4f',1,'NTK']]],
+  ['ongetuser',['OnGetUser',['../d8/dcb/class_n_t_k_1_1_service_1_1_n_t_k_service.html#a5899870c918bc4053398a25673810316',1,'NTK::Service::NTKService']]],
+  ['ongetusereventhandler',['OnGetUserEventHandler',['../d3/de5/namespace_n_t_k_1_1_service.html#a51bf57675f3325cb27da64ad2987252b',1,'NTK::Service']]],
+  ['onidentification',['OnIdentification',['../d7/d61/class_n_t_k_1_1_n_t_k_client.html#a19d5e13ab370aacc08bf182d03299e10',1,'NTK::NTKClient']]],
+  ['onidentificationeventhandler',['OnIdentificationEventHandler',['../d9/d58/namespace_n_t_k.html#a7691450f3d18d3bd04ffaf0a7b564b52',1,'NTK']]],
+  ['onreadeventhandler',['OnReadEventHandler',['../d9/d58/namespace_n_t_k.html#a9fd65121d09e11207741ba8765106f70',1,'NTK']]],
+  ['onreadmsg',['OnReadMsg',['../d7/d61/class_n_t_k_1_1_n_t_k_client.html#a815bd21dd5aaf772cb1d0cfd1b951f53',1,'NTK.NTKClient.OnReadMsg()'],['../d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a167e7153c51a74e8dfa8115aba4cca6f',1,'NTK.NTKUser.OnReadMsg()']]],
+  ['onstop',['OnStop',['../d7/d61/class_n_t_k_1_1_n_t_k_client.html#a66275e4bc70f86f6a1db11984efbbf51',1,'NTK::NTKClient']]],
+  ['onstopeventhandler',['OnStopEventHandler',['../d9/d58/namespace_n_t_k.html#ac2573df1e8f9ef401f201a96c0333d92',1,'NTK']]],
+  ['onwriteeventhandler',['OnWriteEventHandler',['../d9/d58/namespace_n_t_k.html#a664e2a81c1b642a3270f33d0848ac27e',1,'NTK']]],
+  ['onwritemsg',['OnWriteMsg',['../d7/d61/class_n_t_k_1_1_n_t_k_client.html#a628b48cd759c2d4424e9877bc64e1581',1,'NTK.NTKClient.OnWriteMsg()'],['../d1/dc2/class_n_t_k_1_1_n_t_k_user.html#a5cb9ae25e0a3621add3f636fedc73252',1,'NTK.NTKUser.OnWriteMsg()']]],
+  ['overrideinstance',['overrideInstance',['../db/d64/class_n_t_k_1_1_database_1_1_n_t_k_d___my_sql.html#a85dbe81c5c344e25c6572f077a8bdea0',1,'NTK.Database.NTKD_MySql.overrideInstance()'],['../d0/d18/class_n_t_k_1_1_database_1_1_n_t_k_d___sqlite.html#a529745b919c7bf51f1fff5c9e3788e3c',1,'NTK.Database.NTKD_Sqlite.overrideInstance()'],['../d2/d79/class_n_t_k_1_1_database_1_1_n_t_k_d___sql_server.html#a3ea3acd36aa429e78880129d5334850a',1,'NTK.Database.NTKD_SqlServer.overrideInstance()']]]
+];

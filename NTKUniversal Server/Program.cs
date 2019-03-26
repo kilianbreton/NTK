@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NTK;
+using NTK.Database;
 using NTK.IO;
 using NTK.Other;
+using NTK.Security;
 using NTK.Service;
 
 namespace NTKUniversal_Server
@@ -54,18 +56,11 @@ namespace NTKUniversal_Server
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                /* Console.WriteLine(" XXXXXX  XXXXXXXXXXXXXX  XXXX");
-                 Console.WriteLine(" XX  XX  XX    XX    XX  XX");
-                 Console.WriteLine(" XX  XX  XX    XX    XXXXXX");
-                 Console.WriteLine(" XX  XX  XX    XX    XX  XX");
-                 Console.WriteLine(" XX  XXXXXX    XX    XX  XXXX 0.5");*/
-
                 Console.WriteLine(" XXXXXX  XXXXXXXXXXXXXX  XXXXXX XX     XX");
                 Console.WriteLine(" XX  XX  XX    XX    XX  XX     XX     XX");
                 Console.WriteLine(" XX  XX  XX    XX    XXXXXX     XX     XX");
                 Console.WriteLine(" XX  XX  XX    XX    XX  XX     XX     XX");
                 Console.WriteLine(" XX  XXXXXX    XX    XX  XXXXXX XXXXXXXXX 0.5");
-
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.WriteLine("═══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
                 // Console.WriteLine();
@@ -73,7 +68,11 @@ namespace NTKUniversal_Server
                 if (server.Config.getNode(0).getChildV("plugins").ToUpper().Equals("TRUE"))
                 {
                     Console.WriteLine(" Loading plugins");
+
                     List<NTKService> services = new List<NTKService>();
+                    List<IEncryptor> encryptors = new List<IEncryptor>();
+                    List<IAsymEncryptor> asymEncryptors = new List<IAsymEncryptor>();
+                    List<NTKDatabase> databases = new List<NTKDatabase>();
 
                     DirectoryInfo di = new DirectoryInfo(@"C:\Users\Kilia\source\repos\NTK\ServiceTest\bin\debug\");
                     FileInfo[] fi = di.GetFiles();
@@ -82,7 +81,8 @@ namespace NTKUniversal_Server
                         if (!(elem.Name.Equals("NTK.dll") || elem.Name.Equals("MySql.Data.dll")) && elem.Extension.Equals(".dll"))
                         {
                             DllLoader loader = new DllLoader(elem.FullName);
-                            services.AddRange(loader.getClassInstancelike<NTKService>("NTKS_"));
+                            //services.AddRange(loader.getClassInstancelike<NTKService>("NTKS_"));
+                            services.AddRange(loader.getAllInstances<NTKService>());
                         } 
                     }
                     if(services.Count != 0)

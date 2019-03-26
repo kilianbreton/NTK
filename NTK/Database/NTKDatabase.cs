@@ -189,7 +189,6 @@ namespace NTK.Database
         /// <returns></returns>
         public abstract Task insertAsync(String query, String[,] param = null, String changebase = null);
 
-
         /// <summary>
         /// Création de base de données. useit = selectionner la nouvelle base.
         /// </summary>

@@ -1,0 +1,210 @@
+\hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document}{}\section{N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document Class Reference}
+\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document}\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+
+
+ 
+
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a755ae2499542a1f128f70ce9aa4cc16b}{Ini\+Document}} (String text\+Or\+Path, bool is\+Path=true)
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a2d660b83ff739a7001808493e4fb5891}{is\+Group\+Exist}} (String name)
+\begin{DoxyCompactList}\small\item\em Recherche si un groupe éxiste \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_group}{Ini\+Group}} \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_adce6bc6eba716042b10745645fd74ebf}{add\+Group}} (String name, params \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_value}{Ini\+Value}}\mbox{[}$\,$\mbox{]} vals)
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_group}{Ini\+Group}} \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a8f096a4a767cd5e7faf80ee8419c087d}{add\+Group}} (String name, List$<$ \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_value}{Ini\+Value}} $>$ vals)
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_group}{Ini\+Group}} \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_ae4724a7590b8aac00d010e8ec81ee419}{get\+Group}} (String name)
+\item 
+String \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a3b1fb327dd3c8c171e2062d719b250bd}{print}} ()
+\item 
+void \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a95d7360a38aa60e7814b1ab578d84486}{save}} ()
+\begin{DoxyCompactList}\small\item\em Save File \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+List$<$ \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_group}{Ini\+Group}} $>$ \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_afa8116b6c65c3036c45ecf8a70e18a75}{Groups}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+
+
+Definition at line 14 of file Ini\+Document.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a755ae2499542a1f128f70ce9aa4cc16b}\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a755ae2499542a1f128f70ce9aa4cc16b}} 
+\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}!IniDocument@{IniDocument}}
+\index{IniDocument@{IniDocument}!NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+\subsubsection{\texorpdfstring{IniDocument()}{IniDocument()}}
+{\footnotesize\ttfamily N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document.\+Ini\+Document (\begin{DoxyParamCaption}\item[{String}]{text\+Or\+Path,  }\item[{bool}]{is\+Path = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em text\+Or\+Path} & \\
+\hline
+{\em is\+Path} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 24 of file Ini\+Document.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_adce6bc6eba716042b10745645fd74ebf}\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_adce6bc6eba716042b10745645fd74ebf}} 
+\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}!addGroup@{addGroup}}
+\index{addGroup@{addGroup}!NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+\subsubsection{\texorpdfstring{addGroup()}{addGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_group}{Ini\+Group}} N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document.\+add\+Group (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{params \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_value}{Ini\+Value}} \mbox{[}$\,$\mbox{]}}]{vals }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+{\em vals} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 81 of file Ini\+Document.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a8f096a4a767cd5e7faf80ee8419c087d}\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a8f096a4a767cd5e7faf80ee8419c087d}} 
+\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}!addGroup@{addGroup}}
+\index{addGroup@{addGroup}!NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+\subsubsection{\texorpdfstring{addGroup()}{addGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_group}{Ini\+Group}} N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document.\+add\+Group (\begin{DoxyParamCaption}\item[{String}]{name,  }\item[{List$<$ \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_value}{Ini\+Value}} $>$}]{vals }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+{\em vals} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 94 of file Ini\+Document.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_ae4724a7590b8aac00d010e8ec81ee419}\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_ae4724a7590b8aac00d010e8ec81ee419}} 
+\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}!getGroup@{getGroup}}
+\index{getGroup@{getGroup}!NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+\subsubsection{\texorpdfstring{getGroup()}{getGroup()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_group}{Ini\+Group}} N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document.\+get\+Group (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 106 of file Ini\+Document.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a2d660b83ff739a7001808493e4fb5891}\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a2d660b83ff739a7001808493e4fb5891}} 
+\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}!isGroupExist@{isGroupExist}}
+\index{isGroupExist@{isGroupExist}!NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+\subsubsection{\texorpdfstring{isGroupExist()}{isGroupExist()}}
+{\footnotesize\ttfamily bool N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document.\+is\+Group\+Exist (\begin{DoxyParamCaption}\item[{String}]{name }\end{DoxyParamCaption})}
+
+
+
+Recherche si un groupe éxiste 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & nom du groupe\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 63 of file Ini\+Document.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a3b1fb327dd3c8c171e2062d719b250bd}\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a3b1fb327dd3c8c171e2062d719b250bd}} 
+\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}!print@{print}}
+\index{print@{print}!NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily String N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document.\+print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 123 of file Ini\+Document.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a95d7360a38aa60e7814b1ab578d84486}\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_a95d7360a38aa60e7814b1ab578d84486}} 
+\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}!save@{save}}
+\index{save@{save}!NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+\subsubsection{\texorpdfstring{save()}{save()}}
+{\footnotesize\ttfamily void N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document.\+save (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Save File 
+
+
+
+Definition at line 137 of file Ini\+Document.\+cs.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_afa8116b6c65c3036c45ecf8a70e18a75}\label{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_document_afa8116b6c65c3036c45ecf8a70e18a75}} 
+\index{NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}!Groups@{Groups}}
+\index{Groups@{Groups}!NTK.IO.Ini.IniDocument@{NTK.IO.Ini.IniDocument}}
+\subsubsection{\texorpdfstring{Groups}{Groups}}
+{\footnotesize\ttfamily List$<$\mbox{\hyperlink{class_n_t_k_1_1_i_o_1_1_ini_1_1_ini_group}{Ini\+Group}}$>$ N\+T\+K.\+I\+O.\+Ini.\+Ini\+Document.\+Groups\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 150 of file Ini\+Document.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+N\+T\+K/\+I\+O/\+Ini/\mbox{\hyperlink{_ini_document_8cs}{Ini\+Document.\+cs}}\end{DoxyCompactItemize}

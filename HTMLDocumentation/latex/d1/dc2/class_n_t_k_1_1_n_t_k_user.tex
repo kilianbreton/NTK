@@ -1,0 +1,504 @@
+\hypertarget{class_n_t_k_1_1_n_t_k_user}{}\section{N\+T\+K.\+N\+T\+K\+User Class Reference}
+\label{class_n_t_k_1_1_n_t_k_user}\index{NTK.NTKUser@{NTK.NTKUser}}
+
+
+ 
+
+
+Inheritance diagram for N\+T\+K.\+N\+T\+K\+User\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d1/dc2/class_n_t_k_1_1_n_t_k_user}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a0eb0ebce85f8a29328170881fe595ba0}{N\+T\+K\+User}} (String login, Tcp\+Client client)
+\begin{DoxyCompactList}\small\item\em Créé un utilisateur connecté \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a5294dadef2cdf99e83b8cfeb952abf02}{N\+T\+K\+User}} (String login)
+\begin{DoxyCompactList}\small\item\em Créé un utilisateur en attente \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_ac86726504956b16af40116d0f24d5368}{read\+Msg}} ()
+\begin{DoxyCompactList}\small\item\em Lecture d\textquotesingle{}un message \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a55435ca4759c1daa467be2479c2b598e}{write\+Msg}} (String text)
+\begin{DoxyCompactList}\small\item\em Ecriture d\textquotesingle{}un message \end{DoxyCompactList}\item 
+async Task$<$ String $>$ \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a049d42e91b000aefa6179750546e0a52}{read\+Msg\+Async}} ()
+\begin{DoxyCompactList}\small\item\em Lecture d\textquotesingle{}un message \end{DoxyCompactList}\item 
+async Task \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a729769d1f8aefcbec4350a8030943d96}{write\+Msg\+Async}} (String text)
+\begin{DoxyCompactList}\small\item\em Ecriture d\textquotesingle{}un message \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_ae141a3d5ed333fa9fb5b2fbf3136f81f}{recive\+File}} (String path)
+\begin{DoxyCompactList}\small\item\em Réception d\textquotesingle{}un fichier \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a5e5f555882081eafcab8c919169cd5fe}{send\+File}} (String path, String target\+Login)
+\begin{DoxyCompactList}\small\item\em envoi d\textquotesingle{}un fichier \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a167e7153c51a74e8dfa8115aba4cca6f}{On\+Read\+Msg}} (\mbox{\hyperlink{class_n_t_k_1_1_events_args_1_1_msg_args}{Msg\+Args}} e)
+\item 
+virtual void \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a5cb9ae25e0a3621add3f636fedc73252}{On\+Write\+Msg}} (\mbox{\hyperlink{class_n_t_k_1_1_events_args_1_1_msg_args}{Msg\+Args}} e)
+\end{DoxyCompactItemize}
+\subsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_aa3f210eff4da80300f2c47dc2a95e6d6}{Login}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a53435983d42170128ede63d0fde30a79}{Name}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a63a05a4e52f73c50fa96552f672b33af}{Pass}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+string \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a32c8342c690b45388559b3c5122cd272}{Seckey}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{namespace_n_t_k_a1a2136a0cde3a719c9188a4d515e9f1b}{U\+S\+E\+R\+\_\+\+L\+VL}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_ad749af74429eb3196cbb4f25c7ace034}{Lvl}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+\mbox{\hyperlink{interface_n_t_k_1_1_security_1_1_i_encryptor}{I\+Encryptor}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a00902f61177d6afd6635230413584228}{Cipher}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+Tcp\+Client \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a42060ca18fc5a6d1c1c2afd366b4ba3d}{Client}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Network\+Stream \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a24bab17f6cdc2a3a92c0394bd20fa07a}{Stream}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Stream\+Writer \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_aae5bebb581da61cad128700d2c1d906f}{Streamw}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+Stream\+Reader \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a3877e3830741d59caf159a820f08aecc}{Streamr}}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a15f289c4a8ba6b294999f383ae93da8d}{Tls}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+int \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_ae3aabe90eaaeb3444c62c9cd4345a2eb}{Id}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\item 
+bool \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a69f4b6790cfa4e39cee2af0cadbbe746}{Is\+Bad}}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\end{DoxyCompactItemize}
+\subsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespace_n_t_k_a9fd65121d09e11207741ba8765106f70}{On\+Read\+Event\+Handler}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_aaa37fc7deec4103a88b7a294a7d7bac0}{Read\+Msg}}
+\item 
+\mbox{\hyperlink{namespace_n_t_k_a664e2a81c1b642a3270f33d0848ac27e}{On\+Write\+Event\+Handler}} \mbox{\hyperlink{class_n_t_k_1_1_n_t_k_user_a7200653be03c0a22ef54b514c04b80b3}{Write\+Msg}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Utilisateur d\textquotesingle{}un flux \mbox{\hyperlink{namespace_n_t_k}{N\+TK}} 
+
+Definition at line 22 of file N\+T\+K\+User.\+cs.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a0eb0ebce85f8a29328170881fe595ba0}\label{class_n_t_k_1_1_n_t_k_user_a0eb0ebce85f8a29328170881fe595ba0}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!NTKUser@{NTKUser}}
+\index{NTKUser@{NTKUser}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{NTKUser()}{NTKUser()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily N\+T\+K.\+N\+T\+K\+User.\+N\+T\+K\+User (\begin{DoxyParamCaption}\item[{String}]{login,  }\item[{Tcp\+Client}]{client }\end{DoxyParamCaption})}
+
+
+
+Créé un utilisateur connecté 
+
+
+\begin{DoxyParams}{Parameters}
+{\em login} & \\
+\hline
+{\em client} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 64 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a5294dadef2cdf99e83b8cfeb952abf02}\label{class_n_t_k_1_1_n_t_k_user_a5294dadef2cdf99e83b8cfeb952abf02}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!NTKUser@{NTKUser}}
+\index{NTKUser@{NTKUser}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{NTKUser()}{NTKUser()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily N\+T\+K.\+N\+T\+K\+User.\+N\+T\+K\+User (\begin{DoxyParamCaption}\item[{String}]{login }\end{DoxyParamCaption})}
+
+
+
+Créé un utilisateur en attente 
+
+
+\begin{DoxyParams}{Parameters}
+{\em login} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 78 of file N\+T\+K\+User.\+cs.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a167e7153c51a74e8dfa8115aba4cca6f}\label{class_n_t_k_1_1_n_t_k_user_a167e7153c51a74e8dfa8115aba4cca6f}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!OnReadMsg@{OnReadMsg}}
+\index{OnReadMsg@{OnReadMsg}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{OnReadMsg()}{OnReadMsg()}}
+{\footnotesize\ttfamily virtual void N\+T\+K.\+N\+T\+K\+User.\+On\+Read\+Msg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_events_args_1_1_msg_args}{Msg\+Args}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 294 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a5cb9ae25e0a3621add3f636fedc73252}\label{class_n_t_k_1_1_n_t_k_user_a5cb9ae25e0a3621add3f636fedc73252}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!OnWriteMsg@{OnWriteMsg}}
+\index{OnWriteMsg@{OnWriteMsg}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{OnWriteMsg()}{OnWriteMsg()}}
+{\footnotesize\ttfamily virtual void N\+T\+K.\+N\+T\+K\+User.\+On\+Write\+Msg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_n_t_k_1_1_events_args_1_1_msg_args}{Msg\+Args}}}]{e }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 304 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_ac86726504956b16af40116d0f24d5368}\label{class_n_t_k_1_1_n_t_k_user_ac86726504956b16af40116d0f24d5368}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!readMsg@{readMsg}}
+\index{readMsg@{readMsg}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{readMsg()}{readMsg()}}
+{\footnotesize\ttfamily String N\+T\+K.\+N\+T\+K\+User.\+read\+Msg (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Lecture d\textquotesingle{}un message 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 91 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a049d42e91b000aefa6179750546e0a52}\label{class_n_t_k_1_1_n_t_k_user_a049d42e91b000aefa6179750546e0a52}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!readMsgAsync@{readMsgAsync}}
+\index{readMsgAsync@{readMsgAsync}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{readMsgAsync()}{readMsgAsync()}}
+{\footnotesize\ttfamily async Task$<$String$>$ N\+T\+K.\+N\+T\+K\+User.\+read\+Msg\+Async (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Lecture d\textquotesingle{}un message 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 147 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_ae141a3d5ed333fa9fb5b2fbf3136f81f}\label{class_n_t_k_1_1_n_t_k_user_ae141a3d5ed333fa9fb5b2fbf3136f81f}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!reciveFile@{reciveFile}}
+\index{reciveFile@{reciveFile}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{reciveFile()}{reciveFile()}}
+{\footnotesize\ttfamily void N\+T\+K.\+N\+T\+K\+User.\+recive\+File (\begin{DoxyParamCaption}\item[{String}]{path }\end{DoxyParamCaption})}
+
+
+
+Réception d\textquotesingle{}un fichier 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Chemin de destination\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 205 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a5e5f555882081eafcab8c919169cd5fe}\label{class_n_t_k_1_1_n_t_k_user_a5e5f555882081eafcab8c919169cd5fe}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!sendFile@{sendFile}}
+\index{sendFile@{sendFile}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{sendFile()}{sendFile()}}
+{\footnotesize\ttfamily void N\+T\+K.\+N\+T\+K\+User.\+send\+File (\begin{DoxyParamCaption}\item[{String}]{path,  }\item[{String}]{target\+Login }\end{DoxyParamCaption})}
+
+
+
+envoi d\textquotesingle{}un fichier 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Fichier\\
+\hline
+{\em target\+Login} & Cible (Utilisateur)\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 243 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a55435ca4759c1daa467be2479c2b598e}\label{class_n_t_k_1_1_n_t_k_user_a55435ca4759c1daa467be2479c2b598e}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!writeMsg@{writeMsg}}
+\index{writeMsg@{writeMsg}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{writeMsg()}{writeMsg()}}
+{\footnotesize\ttfamily void N\+T\+K.\+N\+T\+K\+User.\+write\+Msg (\begin{DoxyParamCaption}\item[{String}]{text }\end{DoxyParamCaption})}
+
+
+
+Ecriture d\textquotesingle{}un message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Message\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 119 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a729769d1f8aefcbec4350a8030943d96}\label{class_n_t_k_1_1_n_t_k_user_a729769d1f8aefcbec4350a8030943d96}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!writeMsgAsync@{writeMsgAsync}}
+\index{writeMsgAsync@{writeMsgAsync}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{writeMsgAsync()}{writeMsgAsync()}}
+{\footnotesize\ttfamily async Task N\+T\+K.\+N\+T\+K\+User.\+write\+Msg\+Async (\begin{DoxyParamCaption}\item[{String}]{text }\end{DoxyParamCaption})}
+
+
+
+Ecriture d\textquotesingle{}un message 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & Message\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 177 of file N\+T\+K\+User.\+cs.
+
+
+
+\subsection{Property Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a00902f61177d6afd6635230413584228}\label{class_n_t_k_1_1_n_t_k_user_a00902f61177d6afd6635230413584228}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Cipher@{Cipher}}
+\index{Cipher@{Cipher}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Cipher}{Cipher}}
+{\footnotesize\ttfamily \mbox{\hyperlink{interface_n_t_k_1_1_security_1_1_i_encryptor}{I\+Encryptor}} N\+T\+K.\+N\+T\+K\+User.\+Cipher\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 338 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a42060ca18fc5a6d1c1c2afd366b4ba3d}\label{class_n_t_k_1_1_n_t_k_user_a42060ca18fc5a6d1c1c2afd366b4ba3d}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Client@{Client}}
+\index{Client@{Client}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Client}{Client}}
+{\footnotesize\ttfamily Tcp\+Client N\+T\+K.\+N\+T\+K\+User.\+Client\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 342 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_ae3aabe90eaaeb3444c62c9cd4345a2eb}\label{class_n_t_k_1_1_n_t_k_user_ae3aabe90eaaeb3444c62c9cd4345a2eb}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Id@{Id}}
+\index{Id@{Id}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Id}{Id}}
+{\footnotesize\ttfamily int N\+T\+K.\+N\+T\+K\+User.\+Id\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 362 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a69f4b6790cfa4e39cee2af0cadbbe746}\label{class_n_t_k_1_1_n_t_k_user_a69f4b6790cfa4e39cee2af0cadbbe746}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!IsBad@{IsBad}}
+\index{IsBad@{IsBad}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{IsBad}{IsBad}}
+{\footnotesize\ttfamily bool N\+T\+K.\+N\+T\+K\+User.\+Is\+Bad\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 366 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_aa3f210eff4da80300f2c47dc2a95e6d6}\label{class_n_t_k_1_1_n_t_k_user_aa3f210eff4da80300f2c47dc2a95e6d6}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Login@{Login}}
+\index{Login@{Login}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Login}{Login}}
+{\footnotesize\ttfamily string N\+T\+K.\+N\+T\+K\+User.\+Login\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 318 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_ad749af74429eb3196cbb4f25c7ace034}\label{class_n_t_k_1_1_n_t_k_user_ad749af74429eb3196cbb4f25c7ace034}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Lvl@{Lvl}}
+\index{Lvl@{Lvl}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Lvl}{Lvl}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_n_t_k_a1a2136a0cde3a719c9188a4d515e9f1b}{U\+S\+E\+R\+\_\+\+L\+VL}} N\+T\+K.\+N\+T\+K\+User.\+Lvl\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 334 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a53435983d42170128ede63d0fde30a79}\label{class_n_t_k_1_1_n_t_k_user_a53435983d42170128ede63d0fde30a79}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Name@{Name}}
+\index{Name@{Name}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Name}{Name}}
+{\footnotesize\ttfamily string N\+T\+K.\+N\+T\+K\+User.\+Name\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 322 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a63a05a4e52f73c50fa96552f672b33af}\label{class_n_t_k_1_1_n_t_k_user_a63a05a4e52f73c50fa96552f672b33af}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Pass@{Pass}}
+\index{Pass@{Pass}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Pass}{Pass}}
+{\footnotesize\ttfamily string N\+T\+K.\+N\+T\+K\+User.\+Pass\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 326 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a32c8342c690b45388559b3c5122cd272}\label{class_n_t_k_1_1_n_t_k_user_a32c8342c690b45388559b3c5122cd272}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Seckey@{Seckey}}
+\index{Seckey@{Seckey}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Seckey}{Seckey}}
+{\footnotesize\ttfamily string N\+T\+K.\+N\+T\+K\+User.\+Seckey\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 330 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a24bab17f6cdc2a3a92c0394bd20fa07a}\label{class_n_t_k_1_1_n_t_k_user_a24bab17f6cdc2a3a92c0394bd20fa07a}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Stream@{Stream}}
+\index{Stream@{Stream}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Stream}{Stream}}
+{\footnotesize\ttfamily Network\+Stream N\+T\+K.\+N\+T\+K\+User.\+Stream\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 346 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a3877e3830741d59caf159a820f08aecc}\label{class_n_t_k_1_1_n_t_k_user_a3877e3830741d59caf159a820f08aecc}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Streamr@{Streamr}}
+\index{Streamr@{Streamr}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Streamr}{Streamr}}
+{\footnotesize\ttfamily Stream\+Reader N\+T\+K.\+N\+T\+K\+User.\+Streamr\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 354 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_aae5bebb581da61cad128700d2c1d906f}\label{class_n_t_k_1_1_n_t_k_user_aae5bebb581da61cad128700d2c1d906f}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Streamw@{Streamw}}
+\index{Streamw@{Streamw}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Streamw}{Streamw}}
+{\footnotesize\ttfamily Stream\+Writer N\+T\+K.\+N\+T\+K\+User.\+Streamw\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+
+
+
+
+Definition at line 350 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a15f289c4a8ba6b294999f383ae93da8d}\label{class_n_t_k_1_1_n_t_k_user_a15f289c4a8ba6b294999f383ae93da8d}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!Tls@{Tls}}
+\index{Tls@{Tls}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{Tls}{Tls}}
+{\footnotesize\ttfamily bool N\+T\+K.\+N\+T\+K\+User.\+Tls\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+
+
+
+
+Definition at line 358 of file N\+T\+K\+User.\+cs.
+
+
+
+\subsection{Event Documentation}
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_aaa37fc7deec4103a88b7a294a7d7bac0}\label{class_n_t_k_1_1_n_t_k_user_aaa37fc7deec4103a88b7a294a7d7bac0}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!ReadMsg@{ReadMsg}}
+\index{ReadMsg@{ReadMsg}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{ReadMsg}{ReadMsg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_n_t_k_a9fd65121d09e11207741ba8765106f70}{On\+Read\+Event\+Handler}} N\+T\+K.\+N\+T\+K\+User.\+Read\+Msg}
+
+
+
+
+
+
+
+Definition at line 27 of file N\+T\+K\+User.\+cs.
+
+\mbox{\Hypertarget{class_n_t_k_1_1_n_t_k_user_a7200653be03c0a22ef54b514c04b80b3}\label{class_n_t_k_1_1_n_t_k_user_a7200653be03c0a22ef54b514c04b80b3}} 
+\index{NTK.NTKUser@{NTK.NTKUser}!WriteMsg@{WriteMsg}}
+\index{WriteMsg@{WriteMsg}!NTK.NTKUser@{NTK.NTKUser}}
+\subsubsection{\texorpdfstring{WriteMsg}{WriteMsg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespace_n_t_k_a664e2a81c1b642a3270f33d0848ac27e}{On\+Write\+Event\+Handler}} N\+T\+K.\+N\+T\+K\+User.\+Write\+Msg}
+
+
+
+
+
+
+
+Definition at line 31 of file N\+T\+K\+User.\+cs.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+N\+T\+K/\mbox{\hyperlink{_n_t_k_user_8cs}{N\+T\+K\+User.\+cs}}\end{DoxyCompactItemize}

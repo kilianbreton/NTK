@@ -77,39 +77,35 @@ namespace NTK.Service
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private ServiceConfig config;
-        protected NTKServer serv;
-        protected NTKClient cli;
-
+        protected List<NTKUser> userlist;
+        protected NTKDatabase db;
+     
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Initialisation d'un service avec configuration
+        /// Initialisation d'un service avec configuration et la liste des utilisateurs
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">Configuration</param>
+        /// <param name="userlist">Liste des utilisateurs</param>
+        public NTKService(ServiceConfig config,List<NTKUser> userlist)
+        {
+            this.config = config;
+            this.userlist = userlist;
+            this.db = config.dbc;
+        }
+
+        /// <summary>
+        /// Initialisation d'un service avec configuration e
+        /// </summary>
+        /// <param name="config">Configuration</param>
         public NTKService(ServiceConfig config)
         {
             this.config = config;
+            this.db = config.dbc;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serv"></param>
-        public NTKService(NTKServer serv)
-        {
-            this.serv = serv;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="client"></param>
-        public NTKService(NTKClient client)
-        {
-            this.cli = client;
-        }
 
         /// <summary>
         /// Initialisation d'un service avec une configuration interne
@@ -180,6 +176,23 @@ namespace NTK.Service
             }
             tempDataSql += tmp;
             return tempDataSql;
+        }
+
+        /// <summary>
+        /// écrit un message à tous les utilisateurs identifiés puis ferme la connection si CloseCon=true
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="closeCon"></param>
+        protected void writeToAll(String msg, bool closeCon = false)
+        {
+            foreach (NTKUser uelem in userlist)
+            {
+                uelem.writeMsg(msg);
+                if (closeCon)
+                {
+                    uelem.Client.Close();
+                }
+            }
         }
 
 

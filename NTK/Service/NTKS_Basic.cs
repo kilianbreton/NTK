@@ -40,7 +40,7 @@ namespace NTK.Service
 
         public override void s_listen(NTKUser user)
         {
-            throw new NotImplementedException();
+            
         }
 
         

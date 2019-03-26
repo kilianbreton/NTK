@@ -1,0 +1,25 @@
+var class_n_t_k_1_1_database_1_1_n_t_k_database =
+[
+    [ "backUp", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#ab43cae272b1c57b8819d73e182dd8dca", null ],
+    [ "backUp", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#aff31ebb22fb5b6a7f4542cccd93a94cc", null ],
+    [ "backUpAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#aee189c0bf028b32a887a7c167dc750d1", null ],
+    [ "backUpAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a15f1abcea4491908469b94547605d717", null ],
+    [ "closeConnection", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a0c7312d31c1a7df56e7a70ae72c08d89", null ],
+    [ "closeConnectionAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a83ee63ae23c9736899f2b033db6d4838", null ],
+    [ "createDb", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a53512203df942f293f26f78ed0613fad", null ],
+    [ "createDb", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a2e419744189f678f5cdad1f7a82116cd", null ],
+    [ "createDbAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a9c291cc23a1cf3a5d97c812bb1909fcd", null ],
+    [ "createDbAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#aa5b7134f819469db92bd39b61c97ad90", null ],
+    [ "getInstance", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a3028e8e62ca52a88988020c567efea06", null ],
+    [ "insert", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a18fb08c8b07a2ae45ae31c2b75ed90f0", null ],
+    [ "insertAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#ae2aef1286ebefc38867f23bebfa25f64", null ],
+    [ "queryOverNTK", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a86f17dcd0fe2f8f257746d8c96b125c3", null ],
+    [ "queryOverNTKAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a416973712b24c3d96e196b61767b75e6", null ],
+    [ "select", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a51c11b2072ab7cd4495d3ce8ff30916c", null ],
+    [ "selectAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a5312ea86e2516cae3a1c8a9921a76eba", null ],
+    [ "tryConnection", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a8035cdddb04d0e90a712aa8e24abeb43", null ],
+    [ "tryConnectionAsync", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a59d2820fbd047c1b11c73aabbf390ebb", null ],
+    [ "instance", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a66463cea15f30c1bfb12c36c55a5e0e1", null ],
+    [ "logs", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a85ba1fee5a64697b435f2464bfde163e", null ],
+    [ "Logs", "d9/dfa/class_n_t_k_1_1_database_1_1_n_t_k_database.html#a6f78c025e2cfbf38d4916287ea9e8742", null ]
+];

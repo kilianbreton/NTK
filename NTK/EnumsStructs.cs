@@ -128,6 +128,14 @@ namespace NTK
         /// </summary>
         public const String PI = "|";
         /// <summary>
+        /// 
+        /// </summary>
+        public const String CD = ">";
+        /// <summary>
+        /// 
+        /// </summary>
+        public const String SCD = "{>}";
+        /// <summary>
         /// {;}
         /// </summary>
         public const String SPV = "{;}";
@@ -217,6 +225,10 @@ namespace NTK
         /// <summary>
         /// Commande de message (S pour service)
         /// </summary>
-        public const String S_MSG = "S_MSG>";             
+        public const String S_MSG = "S_MSG>";
+        /// <summary>
+        /// Erreur de syntaxe dans une commande
+        /// </summary>
+        public const String E_SYNTAX = "BAD_SYNTAX;";
     }
 }

@@ -12,7 +12,7 @@ using System.Configuration.Assemblies;
 namespace NTK.IO
 {
     /// <summary>
-    /// 
+    /// Gestionnaire de fichiers
     /// </summary>
     public class FileManager
     {
