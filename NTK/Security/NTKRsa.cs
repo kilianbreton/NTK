@@ -11,7 +11,7 @@ namespace NTK.Security
     /// <summary>
     /// Classe de chiffrement RSA
     /// </summary>
-    public class NTKRsa
+    public class NTKRsa 
     {
         private RSACryptoServiceProvider csp;
         private UTF8Encoding encoder = new UTF8Encoding();
@@ -48,7 +48,7 @@ namespace NTK.Security
         public String encrypt(String text)
         {
             var bytes = encoder.GetBytes(text);
-            var encText = csp.Encrypt(bytes, false);
+            var encText = csp.Encrypt(bytes,false);
             return Convert.ToBase64String(encText);
         }
   
@@ -145,5 +145,6 @@ namespace NTK.Security
             return hash;
         }
 
+    
     }
 }

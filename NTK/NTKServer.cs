@@ -1,8 +1,22 @@
-﻿/**********************************
- * NTK - Network Transport Kernel *
- * Server Class                   *
- * 03/07/2018                     *
- **********************************/
+﻿/*************************************************************************************
+ * NTK - Network Transport Kernel                                                    *
+ * Server Class                                                                      *
+ * ----------------------------------------------------------------------------------*
+ *                                                                                   *
+ * LICENSE: This program is free software: you can redistribute it and/or modify     *
+ * it under the terms of the GNU General Public License as published by              *
+ * the Free Software Foundation, either version 3 of the License, or                 *
+ * (at your option) any later version.                                               *
+ *                                                                                   *
+ * This program is distributed in the hope that it will be useful,                   *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * GNU General Public License for more details.                                      *
+ *                                                                                   *
+ * You should have received a copy of the GNU General Public License                 *
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.             *
+ *                                                                                   *
+ * ----------------------------------------------------------------------------------*/
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -21,6 +35,7 @@ using NTK.IO.Xml;
 using NTK.Service;
 using NTK.Security;
 using NTK.Plugins;
+using NTK.Pipe;
 using static NTK.Other.NTKF;
 using static NTK.NTKCommands;
 using static NTK.Separators;
@@ -28,12 +43,12 @@ using static NTK.Separators;
 namespace NTK
 {
     /// <summary>
-    /// Serveur tcp pouvant héberger un service
+    /// Serveur NTK
     /// </summary>
     public sealed class NTKServer
     {
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // ATTRIBUTS ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // ATTRIBUTS /////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //Config
@@ -57,6 +72,7 @@ namespace NTK
         private Log_NTK logs;
         private NTKDatabase database;
         private bool header = true;
+        private NTKServerPipe pipe = null;
         //Etat
         private bool run = false;
         private bool pause = false;
@@ -70,6 +86,7 @@ namespace NTK
         private List<IEncryptor> extEncryptor = new List<IEncryptor>();
         private List<IBasePlugin> extPlugins = new List<IBasePlugin>();
 
+
         /// <summary>
         /// Lecture d'un message sur le flux
         /// </summary>
@@ -77,7 +94,7 @@ namespace NTK
         
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS /////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         
         /// <summary>
@@ -120,7 +137,7 @@ namespace NTK
         }
 
         /// <summary>
-        /// 
+        /// Créé un serveur vierge
         /// </summary>
         public NTKServer() { }
 
@@ -145,7 +162,7 @@ namespace NTK
                 Console.ForegroundColor = ConsoleColor.Gray;
 
                 IPAddress localAddr = IPAddress.Parse("127.0.0.1");
-                TcpListener server = new TcpListener(new IPEndPoint(IPAddress.Parse("127.0.0.1"), port));
+                TcpListener server = new TcpListener(new IPEndPoint(localAddr, port));
                 server.Start();
                 
                 //Todo : load dll dynamic
@@ -207,17 +224,25 @@ namespace NTK
         /// <param name="user">Utilisateur</param>
         public void ident_tls(NTKUser user)
         {
-            addLogs(LogsTypes.NOTICE, "TLS Identification : " + user.Name);
             if (this.tls)
             {
+                addLogs(LogsTypes.NOTICE, "TLS Identification : " + user.Name);
                 user.writeMsg(rsa.getKey());    //Envoie de la clé publique
                 String tmp = rsa.decrypt(user.readMsg());   //Réception de la clé symetrique (chiffrée)
-                String key = subsep(tmp, "<key>", "</key>");  //Clé
-                String iv = subsep(tmp, "<iv>", "</iv>");   //Vecteur d'initialisation
-                Console.WriteLine(tmp);
-                user.Cipher = new NTKAes(key, iv); //Instanciation de la classe de chiffrement
-                user.Tls = true;    //Activation du chiffrement dans les methodes NTKUser.readMsg() && NTKUser.writeMsg(String)
-             //   user.writeMsg("OK");
+                if (tmp.Contains("<key>") && tmp.Contains("</key>") && tmp.Contains("<iv>") && tmp.Contains("</iv>"))
+                {
+                    String key = subsep(tmp, "<key>", "</key>");  //Clé
+                    String iv = subsep(tmp, "<iv>", "</iv>");   //Vecteur d'initialisation
+                    Console.WriteLine(tmp);
+                    user.Cipher = new NTKAes(key, iv); //Instanciation de la classe de chiffrement
+                    //Todo : vérifier clée
+                    user.Tls = true;    //Activation du chiffrement dans les methodes NTKUser.readMsg() && NTKUser.writeMsg(String)
+
+                }
+                else
+                {
+
+                }
             }
         }
  
@@ -314,12 +339,39 @@ namespace NTK
 
         }
 
+        /// <summary>
+        /// Défini le canal de communication inter-serveurs
+        /// </summary>
+        /// <param name="pipe"></param>
+        public void setPipe(NTKServerPipe pipe)
+        {
+            this.pipe = pipe;
+        }
+
+        /// <summary>
+        /// Retourne le canal de communication inter-serveur, si il existe
+        /// </summary>
+        /// <returns></returns>
+        public NTKServerPipe getPipe()
+        {
+            return this.pipe;
+        }
+
+        /// <summary>
+        /// Défini ce serveur comme maitre du canal inter-serveurs
+        /// </summary>
+        public void forcePipeMaster()
+        {
+            pipe.MasterId = pipe.Servers.IndexOf(this);
+        }
+
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // METHODES PRIVEES //////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       
         //========================================[IDENTIFICATION]==========================================================
 
+        //Sélection de la méthode d'authentification et de la méthode d'écoute
         private void selectServiceLisAuth(object user)
         {
             var u = (NTKUser)user;
@@ -359,6 +411,7 @@ namespace NTK
             }
         }
 
+        //Identification AUTH_ADM, AUTH_ADM_SUBS, AUTH_USER_O
         private void identification_GLOBAL(NTKUser user, ServicelistenFunction func)
         {
             bool connected = false;
@@ -401,7 +454,8 @@ namespace NTK
             //3 tentatives max
             if (nbtent > 3 || !connected)
             {
-                user = null;    //Echec de connexion suppression de l'utilisateur
+                user.IsBad = true;
+               // user = null;    //Echec de connexion suppression de l'utilisateur
             }
             else
             {
@@ -418,6 +472,141 @@ namespace NTK
             }
         }
 
+        //Identification d'un utilisateur
+        private bool id_user(NTKUser user, string umsg)
+        {
+            bool connected = false;
+            var login = subsep(umsg, ">", ",");
+            var pass = subsep(umsg, ",", ";");
+            MySqlDataReader msr = (MySqlDataReader)database.select("SELECT * FROM sn_users WHERE Login='" + login + "';");
+            bool end = false;
+            while (msr.Read() && !end)
+            {
+                // database.closeConnection(); //Important !!!!!!!!!
+                if (msr.GetString("Login").Equals(login) && msr.GetString("Password").Equals(sha256(pass)) && !alreadyConnected(login))
+                {
+                    connected = true;
+                    end = true;
+                    user.Login = login;
+                    user.Lvl = setULVL(msr.GetString("LVL"));
+                    userlist.Add(user);
+                    user.writeMsg(A_OK);
+                    //       basicListen(userlist[userlist.Count - 1]);
+
+                }
+                else
+                {
+                    user.writeMsg(A_BAD);
+                }
+            }
+            return connected;
+        }
+
+        //Identification d'un Administrateur
+        private bool id_admin(NTKUser user, string umsg)
+        {
+            bool connected = false;
+            //  exemple commande : A_SUPER_ADMIN>Kilian,password,seckey;
+            String[] argtab = subsep(umsg, ">", ";").Split(Separators.V);
+
+            MySqlDataReader msr = (MySqlDataReader)database.select("SELECT * FROM sn_users WHERE Login='" + argtab[0] + "';");
+            msr.Read();
+
+            var dblogin = msr.GetString("Login");
+            var dbpass = msr.GetString("Password");
+            var hashpass = sha256(argtab[1]);
+            var dblvl = msr.GetString("LVL");
+
+            if (dblogin.Equals(argtab[0]) && dbpass.Equals(hashpass)
+                && dblvl.Equals(USER_LVL.SUPER_ADMIN.ToString())
+                && secKey.Equals(argtab[2]) && !alreadyConnected(argtab[0]))
+            {
+                user.Id = msr.GetInt32(0);
+                user.Login = argtab[0];
+                user.Lvl = USER_LVL.SUPER_ADMIN;
+                userlist.Add(user);
+                user.writeMsg(A_OK);
+                connected = true;
+            }
+            else
+            {
+                user.writeMsg(A_BAD);
+
+                //user.Client.Close();    //temporaire
+            }
+            return connected;
+        }
+
+        //Identification d'un sous-serveur
+        private bool id_subserver(NTKUser user, string umsg)
+        {
+            bool connected = false;
+            //  exemple commande : A_SUPER_ADMIN>Kilian,password,seckey;
+            String[] argtab = subsep(umsg, ">", ";").Split(V);
+
+            MySqlDataReader msr = (MySqlDataReader)database.select("SELECT * FROM sn_subs WHERE Login='" + argtab[0] + "';");
+            msr.Read();
+
+            var dblogin = msr.GetString("Login");
+            var dbpass = msr.GetString("Password");
+            var hashpass = sha256(argtab[1]);
+            var dblvl = msr.GetString("LVL");
+
+            if (dblogin.Equals(argtab[0]) && dbpass.Equals(hashpass)
+                && dblvl.Equals(USER_LVL.SUB_SERVER.ToString()))
+            {
+                user.Login = argtab[0];
+                user.Lvl = USER_LVL.SUB_SERVER;
+                userlist.Add(user);
+                user.writeMsg(A_OK);
+                connected = true;
+            }
+            else
+            {
+                user.writeMsg(A_BAD);
+            }
+            return connected;
+        }
+
+        //Identification d'un BOT
+        private bool id_bot(NTKUser user, string umsg)
+        {
+            return false;
+        }
+
+        //Enregistrement d'un utilisateur
+        private bool reg_user(NTKUser user, string umsg)
+        {
+            bool ret = false;
+            //Syntaxe : A_REG>login,pass,name{,}regkey{;}
+            if (umsg.Contains(SPV) && umsg.Contains(SPV) && nbChar(umsg, ',') == 2)
+            {
+                String[] tmpLPN = subsep(umsg, A_REG, SPV).Split(',');
+                String login = tmpLPN[0];
+                String pass = tmpLPN[1];
+                String name = tmpLPN[2];
+                String regKey = subsep(umsg, SV, SPV);
+
+                String query = "SELECT login FROM sn_users WHERE login = '" + login + "';";
+                var msr = database.select(query);
+                bool continu = !msr.Read();
+                msr.Close();
+                if (continu)
+                {
+                    query = "SELECT * FROM sn_regkey WHERE RKEY LIKE '" + regKey + "';";
+                    msr = database.select(query);
+                    continu = msr.Read();
+                    if (continu)
+                    {
+
+                    }
+                }
+            }
+
+            return ret;
+        }
+
+        //Identification BASIC
         private void identification_BASIC(NTKUser user, ServicelistenFunction func)
         {
             bool connected = false;
@@ -439,6 +628,7 @@ namespace NTK
                     if (alreadyConnected(login))
                     {
                         user.writeMsg(A_BAD);
+                        user.IsBad = true;
                     }
                     else
                     {
@@ -470,144 +660,9 @@ namespace NTK
             }
         }
 
-
-        private bool id_user(NTKUser user, string umsg)
-        {
-            bool connected = false;
-            var login = subsep(umsg, ">", ",");
-            var pass = subsep(umsg, ",", ";");
-            MySqlDataReader msr = (MySqlDataReader)database.select("SELECT * FROM sn_users WHERE Login='" + login + "';");
-            bool end = false;
-            while (msr.Read() && !end)
-            {
-               // database.closeConnection(); //Important !!!!!!!!!
-                if (msr.GetString("Login").Equals(login) && msr.GetString("Password").Equals(sha256(pass)) && !alreadyConnected(login))
-                {
-                    connected = true;
-                    end = true;
-                    user.Login = login;
-                    user.Lvl = setULVL(msr.GetString("LVL"));
-                    userlist.Add(user);
-                    user.writeMsg(A_OK);
-             //       basicListen(userlist[userlist.Count - 1]);
-                    
-                }
-                else
-                {
-                    user.writeMsg(A_BAD);
-                }
-            }
-            return connected;
-        }
-
-        private bool id_admin(NTKUser user, string umsg)
-        {
-            bool connected = false;
-            //  exemple commande : A_SUPER_ADMIN>Kilian,password,seckey;
-            String[] argtab = subsep(umsg, ">", ";").Split(Separators.V);
-
-            MySqlDataReader msr = (MySqlDataReader)database.select("SELECT * FROM sn_users WHERE Login='" + argtab[0] + "';");
-            msr.Read();
-
-            var dblogin = msr.GetString("Login");
-            var dbpass = msr.GetString("Password");
-            var hashpass = sha256(argtab[1]);
-            var dblvl = msr.GetString("LVL");
-
-            if (dblogin.Equals(argtab[0]) && dbpass.Equals(hashpass)
-                && dblvl.Equals(USER_LVL.SUPER_ADMIN.ToString())
-                && secKey.Equals(argtab[2]) && !alreadyConnected(argtab[0]))
-            {
-                user.Id = msr.GetInt32(0);
-                user.Login = argtab[0];
-                user.Lvl = USER_LVL.SUPER_ADMIN;
-                userlist.Add(user);
-                user.writeMsg(A_OK);
-                connected = true;
-            }
-            else
-            {
-                user.writeMsg(A_BAD);
-            
-                //user.Client.Close();    //temporaire
-            }
-            return connected;
-        }
-
-        private bool id_subserver(NTKUser user, string umsg)
-        {
-            bool connected = false;
-            //  exemple commande : A_SUPER_ADMIN>Kilian,password,seckey;
-            String[] argtab = subsep(umsg, ">", ";").Split(Separators.V);
-
-
-
-            MySqlDataReader msr = (MySqlDataReader)database.select("SELECT * FROM sn_subs WHERE Login='" + argtab[0] + "';");
-            msr.Read();
-
-            var dblogin = msr.GetString("Login");
-            var dbpass = msr.GetString("Password");
-            var hashpass = sha256(argtab[1]);
-            var dblvl = msr.GetString("LVL");
-
-            if (dblogin.Equals(argtab[0]) && dbpass.Equals(hashpass)
-                && dblvl.Equals(USER_LVL.SUB_SERVER.ToString()))
-            {
-
-                user.Login = argtab[0];
-                user.Lvl = USER_LVL.SUB_SERVER;
-                userlist.Add(user);
-                user.writeMsg(A_OK);
-                connected = true;
-            }
-            else
-            {
-                user.writeMsg(A_BAD);
-
-                //user.Client.Close();    //temporaire
-            }
-            return connected;
-        }
-
-        private bool id_bot(NTKUser user, string umsg)
-        {
-            return false;
-        }
-
-        private bool reg_user(NTKUser user, string umsg)
-        {
-            bool ret = false;
-            //Syntaxe : A_REG>login,pass,name{,}regkey{;}
-            if (umsg.Contains(SPV) && umsg.Contains(SPV) && nbChar(umsg, ',') == 2)
-            {
-                String[] tmpLPN = subsep(umsg, A_REG, SPV).Split(',');
-                String login = tmpLPN[0];
-                String pass = tmpLPN[1];
-                String name = tmpLPN[2];
-                String regKey = subsep(umsg, SV, SPV);
-
-                String query = "SELECT login FROM sn_users WHERE login = '"+login+"';";
-                var msr = database.select(query);
-                bool continu = !msr.Read();
-                msr.Close();
-                if (continu)
-                {
-                    query = "SELECT * FROM sn_regkey WHERE RKEY LIKE '"+regKey+"';";
-                    msr = database.select(query);
-                    continu = msr.Read();
-                    if (continu)
-                    {
-
-                    }
-                }
-            }
-            
-            return ret;
-        }
-
-
         //========================================[AUTRE]===================================================================
 
+        //Commandes de base
         private void commandesClassiques(String tmp, NTKUser user)
         {
             if (tmp.Contains("MSG>") && tmp.Contains(SPV))
@@ -681,6 +736,7 @@ namespace NTK
             }
         }
 
+        //Ecris un message à tous les utilisateurs et peut fermer toutes les connexions
         private void writeToAll(String msg,bool closeCon = false)
         {
             foreach(NTKUser uelem in userlist)
@@ -692,6 +748,7 @@ namespace NTK
             }
         }
 
+        //Si un utilisateur est déjà connecté
         private bool alreadyConnected(String login)
         {
             bool ret = false;
@@ -709,6 +766,7 @@ namespace NTK
             return ret;
         }
       
+        //Recherche d'utilisateur
         private NTKUser getUser(String name)
         {
             NTKUser ret = null;
@@ -730,7 +788,8 @@ namespace NTK
                 }
             }
         }
-
+        
+        //Parse le fichier de configuration XML
         private void parse()
         {
             //Lecture du fichier XML ---------------------------------------------------------------------------------------------
@@ -792,7 +851,8 @@ namespace NTK
                 database.tryConnection();
             }
         }
-
+        
+        //Ecris dans le fichier de log
         private void addLogs(String type, String text)
         {
             if (logs != null)
@@ -802,6 +862,7 @@ namespace NTK
             }
         }
 
+        //Charge les services externes (.dll)
         private void loadService()
         {
             addLogs(LogsTypes.NOTICE, "Loading services");
@@ -905,7 +966,7 @@ namespace NTK
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
      
         /// <summary>
-        /// 
+        /// Port TCP
         /// </summary>
         public int Port {get => port; set {     if (!run) { port = value; }   }}
         /// <summary>
@@ -913,27 +974,27 @@ namespace NTK
         /// </summary>
         public string Name { get => name; set => name = value; }
         /// <summary>
-        /// 
+        /// Nom du service
         /// </summary>
         public string Stype { get => stype; set => stype = value; }
         /// <summary>
-        /// 
+        /// Service 
         /// </summary>
         public NTKService Service { get => service; }
         /// <summary>
-        /// 
+        /// Type de connection (authentification)
         /// </summary>
         public CTYPE Ctype { get => ctype; set => ctype = value; }
         /// <summary>
-        /// 
+        /// Chiffrement de la communication
         /// </summary>
         public bool Tls { get => tls; set => tls = value; }
         /// <summary>
-        /// 
+        /// Si les plugins sont tolérés
         /// </summary>
         public bool Plugins { get => plugins; set => plugins = value; }
         /// <summary>
-        /// 
+        /// Liste des tokens
         /// </summary>
         public List<Token> Tokenlist { get => tokenlist; }
         /// <summary>
@@ -945,35 +1006,35 @@ namespace NTK
         /// </summary>
         public List<NTKUser> Userlist { get => userlist; set => userlist = value; }
         /// <summary>
-        /// 
+        /// Connexion à une base de données
         /// </summary>
         public NTKDatabase Database { get => database; set => database = value; }
         /// <summary>
-        /// 
+        /// Chemin vers la configuration
         /// </summary>
         public string Confpath { get => confpath; set => confpath = value; }
         /// <summary>
-        /// 
+        /// Algorithme de chiffrement assymétrique
         /// </summary>
         public NTKRsa Rsa { get => rsa; }
         /// <summary>
-        /// 
+        /// Clée de sécurité
         /// </summary>
         public string SecKey { get => secKey; set => secKey = value; }
         /// <summary>
-        /// 
+        /// Mettre en pause le serveur
         /// </summary>
         public bool Pause { get => pause; set => pause = value; }
         /// <summary>
-        /// 
+        /// Arret du serveur
         /// </summary>
         public bool Stop { get => stop; set => stop = value; }
         /// <summary>
-        /// 
+        /// Configuration
         /// </summary>
         public XmlDocument Config { get => config; }
         /// <summary>
-        /// 
+        /// Services externes
         /// </summary>
         public List<NTKService> ExtServices { get => extServices; set => extServices = value; }
         /// <summary>
@@ -997,7 +1058,7 @@ namespace NTK
         /// </summary>
         public List<IEncryptor> ExtEncryptor { get => extEncryptor; set => extEncryptor = value; }
         /// <summary>
-        /// 
+        /// Plugins
         /// </summary>
         public List<IBasePlugin> ExtPlugins { get => extPlugins; set => extPlugins = value; }
         /// <summary>

@@ -8,14 +8,14 @@ using System.Windows.Forms;
 namespace NTK.Plugins
 {
     /// <summary>
-    /// 
+    /// Plugin Intégré (Control)
     /// </summary>
     public interface IPluginIntegrated : IBasePlugin
     {
         /// <summary>
-        /// 
+        /// retourne le Control plugin
         /// </summary>
         /// <returns></returns>
-        UserControl getStage();
+        Control getStage();
     }
 }

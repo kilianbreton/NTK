@@ -81,6 +81,7 @@ namespace NTKUniversal_Server
                         if (!(elem.Name.Equals("NTK.dll") || elem.Name.Equals("MySql.Data.dll")) && elem.Extension.Equals(".dll"))
                         {
                             DllLoader loader = new DllLoader(elem.FullName);
+                            Console.WriteLine(" - " + elem.Name);
                             //services.AddRange(loader.getClassInstancelike<NTKService>("NTKS_"));
                             services.AddRange(loader.getAllInstances<NTKService>());
                         } 

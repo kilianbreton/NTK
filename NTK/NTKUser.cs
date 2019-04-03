@@ -1,8 +1,22 @@
-﻿/**********************************
- * NTK - Netwotk Transport Kernel *
- * User Class                     *
- * 03/07/2018                     *
- **********************************/
+﻿/*************************************************************************************
+ * NTK - Network Transport Kernel                                                    *
+ * User Class                                                                        *
+ * ----------------------------------------------------------------------------------*
+ *                                                                                   *
+ * LICENSE: This program is free software: you can redistribute it and/or modify     *
+ * it under the terms of the GNU General Public License as published by              *
+ * the Free Software Foundation, either version 3 of the License, or                 *
+ * (at your option) any later version.                                               *
+ *                                                                                   *
+ * This program is distributed in the hope that it will be useful,                   *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * GNU General Public License for more details.                                      *
+ *                                                                                   *
+ * You should have received a copy of the GNU General Public License                 *
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.             *
+ *                                                                                   *
+ * ----------------------------------------------------------------------------------*/
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -135,6 +149,60 @@ namespace NTK
         }
 
         /// <summary>
+        /// envoi d'un fichier
+        /// </summary>
+        /// <param name="path">Fichier</param>
+        public void sendFile(String path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            {
+                long fileSize = fs.Length;
+                long sum = 0;   //sum here is the total of sent bytes.
+                int count = 0;
+
+                String msg = "SEND>" + fileSize + SV + fs.GetHashCode() + SV + subsep(path, ".") + SV + "none" + SPV;
+                this.writeMsg(msg);
+
+                byte[] data = new byte[1024];  //8Kb buffer .. you might use a smaller size also.
+                while (sum < fileSize)
+                {
+                    count = fs.Read(data, 0, data.Length);
+                    stream.Write(data, 0, count);
+                    sum += count;
+                }
+                stream.Flush();
+            }
+        }
+
+        /// <summary>
+        /// Réception d'un fichier
+        /// </summary>
+        /// <param name="path">Chemin de destination</param>
+        /// <param name="fileSize"></param>
+        public void reciveFile(String path, long fileSize)
+        {
+            //long fileSize = // your file size that you are going to receive it.
+            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                int count = 0;
+                long sum = 0;   //sum here is the total of received bytes.
+                var data = new byte[1024 * 8];  //8Kb buffer .. you might use a smaller size also.
+                while (sum < fileSize)
+                {
+                    if (stream.DataAvailable)
+                    {
+                        {
+                            count = stream.Read(data, 0, data.Length);
+                            fs.Write(data, 0, count);
+                            sum += count;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Lecture d'un message
         /// </summary>
         /// <returns></returns>
@@ -192,13 +260,12 @@ namespace NTK
             }
         }
         
-    
         
         /// <summary>
         /// envoi d'un fichier
         /// </summary>
         /// <param name="path">Fichier</param>
-        public void sendFile(String path)
+        public async Task sendFileAsync(String path)
         {
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
@@ -212,11 +279,11 @@ namespace NTK
                 byte[] data = new byte[1024];  //8Kb buffer .. you might use a smaller size also.
                 while (sum < fileSize)
                 {
-                    count = fs.Read(data, 0, data.Length);
-                    stream.Write(data, 0, count);
+                    count = await fs.ReadAsync(data, 0, data.Length);
+                    await stream.WriteAsync(data, 0, count);
                     sum += count;
                 }
-                stream.Flush();
+                await stream.FlushAsync();
             }
         }
 
@@ -225,7 +292,7 @@ namespace NTK
         /// </summary>
         /// <param name="path">Chemin de destination</param>
         /// <param name="fileSize"></param>
-        public void reciveFile(String path, long fileSize)
+        public async Task reciveFileAsync(String path, long fileSize)
         {
             //long fileSize = // your file size that you are going to receive it.
             using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
@@ -238,8 +305,8 @@ namespace NTK
                     if (stream.DataAvailable)
                     {
                         {
-                            count = stream.Read(data, 0, data.Length);
-                            fs.Write(data, 0, count);
+                            count = await stream.ReadAsync(data, 0, data.Length);
+                            await fs.WriteAsync(data, 0, count);
                             sum += count;
                         }
                     }

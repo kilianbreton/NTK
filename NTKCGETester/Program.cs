@@ -34,15 +34,19 @@ namespace NTKCGETester
     {
         static void Main(string[] args)
         {
-         //   Console.WriteLine(sha256("mdp"));
-            for(int i = 0; i < 100; i++)
-            {
-                var iv = NTKAes.CreateKey(100).iv;
-                Console.WriteLine(Encoding.Default.GetString(iv) + "   :   " + iv.Length);
-            }
-         
+          
+            var test = new DirectoryInfo(@"D:\ManiaPlanet\Dedicated\BTSSIOLAN\UserData\Music");
+            var files = test.GetFiles();
+            var xml = new XmlDocument();
+            var root = xml.addNode("song_files");
 
-            
+            foreach(FileInfo file in files)
+            {
+                root.addChild("song", file.Name);
+            }
+            Console.Write(xml.print());
+
+
             Console.ReadKey();
         }
 

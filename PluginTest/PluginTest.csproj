@@ -43,7 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MoreStatsUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MoreStatsUC.Designer.cs">
+      <DependentUpon>MoreStatsUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="NTKP_MoreStats.cs" />
+    <Compile Include="NTKP_MoreStatsIntegrated.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs">
       <SubType>Form</SubType>
@@ -60,6 +67,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="MoreStatsUC.resx">
+      <DependentUpon>MoreStatsUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Test.resx">
       <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>

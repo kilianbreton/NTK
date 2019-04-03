@@ -1,4 +1,23 @@
-﻿using System;
+﻿/*************************************************************************************
+ * NTK - Network Transport Kernel                                                    *
+ * Client Class                                                                      *
+ * ----------------------------------------------------------------------------------*
+ *                                                                                   *
+ * LICENSE: This program is free software: you can redistribute it and/or modify     *
+ * it under the terms of the GNU General Public License as published by              *
+ * the Free Software Foundation, either version 3 of the License, or                 *
+ * (at your option) any later version.                                               *
+ *                                                                                   *
+ * This program is distributed in the hope that it will be useful,                   *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
+ * GNU General Public License for more details.                                      *
+ *                                                                                   *
+ * You should have received a copy of the GNU General Public License                 *
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.             *
+ *                                                                                   *
+ * ----------------------------------------------------------------------------------*/
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,6 +31,7 @@ using NTK.Security;
 using NTK.Service;
 using static NTK.Other.NTKF;
 using static NTK.NTKCommands;
+using static NTK.Separators;
 
 namespace NTK
 {
@@ -57,6 +77,12 @@ namespace NTK
     /// <param name="sender"></param>
     /// <param name="args"></param>
     public delegate void OnStopEventHandler(object sender, StopEventArgs args);
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="args"></param>
+    public delegate void OnChangeStateHandler(object sender, StateEventArgs args);
    
     
     /// <summary>
@@ -96,6 +122,10 @@ namespace NTK
         /// 
         /// </summary>
         public event OnStopEventHandler Stop;
+        /// <summary>
+        /// 
+        /// </summary>
+        public event OnChangeStateHandler State;
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// PROPRIETES ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,6 +209,10 @@ namespace NTK
                     User.Seckey=Seckey;
                     OnConnect(new OnConnectEventArgs(System.Data.ConnectionState.Open));
                     listenLoop(User);
+                    if (user.IsBad)
+                    {
+
+                    }
                 }
             }
             catch(Exception e)
@@ -266,39 +300,10 @@ namespace NTK
                     else if (tmp.Contains(C_RL))
                     {
                         //AUTHENTIFICATION
-                        if (Ctype.Equals(CTYPE.AUTH_ADM))
+                        switch(ctype)
                         {
-                            if (reg)
-                            {
-                                writeMsg(A_REG + login + "" + pass + "" + seckey);
-                                var resultr = readMsg();
-                                if (resultr.Equals(A_OK))
-                                {
-                                    OnIdentification(new IdentificationEventArgs(NTK.Identification.Success));
-                                }
-                            }
-                            else
-                            {
-                                switch (lvl)
-                                {
-                                    case USER_LVL.SUPER_ADMIN:
-                                        //  exemple commande : A_SUPER_ADMIN>Kilian,password,seckey;
-                                        writeMsg(A_SUPERADM + Login + "," + Pass + "," + Seckey + ";");
-                                        break;
-                                    case USER_LVL.ADMIN:
-                                        writeMsg(A_ADMIN + Login + "," + Pass + ";");
-                                        break;
-                                    case USER_LVL.USER:
-                                        writeMsg(A_USER + Login + "," + Pass + ";");
-                                        break;
-                                    case USER_LVL.SUB_SERVER:
-                                        writeMsg(A_SUBS + Login + "," + Pass + "," + Seckey + ";");
-                                        break;
-                                    case USER_LVL.BOT:
-                                        writeMsg(A_BOT + Pass + ";");   //(pass = token)
-                                        break;
-                                }
-                                //On continue dans la boucle principale
+                            case CTYPE.BASIC:
+                                writeMsg(A_USER + Login + PV);
                                 var result = readMsg();
                                 if (result.Equals(A_OK))
                                 {
@@ -308,13 +313,63 @@ namespace NTK
                                 {
                                     OnIdentification(new IdentificationEventArgs(NTK.Identification.PasswordError));
                                 }
+                                break;
+                            case CTYPE.OTHER:
+                                if (service.Config.authentification)
+                                {
+                                    service.c_authentification(user);
+                                }
+                                else
+                                {
+                                    throw new Exception("Aucune méthode d'authentification trouvé !");
+                                }
+                                break;
+                            default:
+                                if (reg)
+                                {
+                                    writeMsg(A_REG + login + V + pass + V + seckey + PV);
+                                    var resultr = readMsg();
+                                    if (resultr.Equals(A_OK))
+                                    {
+                                        OnIdentification(new IdentificationEventArgs(NTK.Identification.Success));
+                                    }
+                                }
+                                else
+                                {
+                                    switch (lvl)
+                                    {
+                                        case USER_LVL.SUPER_ADMIN:
+                                            //  exemple commande : A_SUPER_ADMIN>Kilian,password,seckey;
+                                            writeMsg(A_SUPERADM + Login + V + Pass + V + Seckey + PV);
+                                            break;
+                                        case USER_LVL.ADMIN:
+                                            writeMsg(A_ADMIN + Login + V + Pass + PV);
+                                            break;
+                                        case USER_LVL.USER:
+                                            writeMsg(A_USER + Login + V + Pass + PV);
+                                            break;
+                                        case USER_LVL.SUB_SERVER:
+                                            writeMsg(A_SUBS + Login + V + Pass + V + Seckey + PV);
+                                            break;
+                                        case USER_LVL.BOT:
+                                            writeMsg(A_BOT + Pass + PV);   //(pass = token)
+                                            break;
+                                    }
+                                    //On continue dans la boucle principale
+                                    result = readMsg();
+                                    if (result.Equals(A_OK))
+                                    {
+                                        OnIdentification(new IdentificationEventArgs(NTK.Identification.Success));
+                                    }
+                                    else
+                                    {
+                                        OnIdentification(new IdentificationEventArgs(NTK.Identification.PasswordError));
+                                    }
                                
-                            }
+                                }
+                                break;
                         }
-                        else
-                        {
-
-                        }
+                       
                     }
                     else if (tmp.Contains(C_STOP))
                     {
@@ -324,7 +379,9 @@ namespace NTK
                     }
                     if (find)
                     {
-                      service.c_listen(u,tmp);
+                        service.c_listen(u,tmp);
+                        //Sortie de l'écoute
+                        u.IsBad = true;
                     }
                 }
                 catch (Exception e)
@@ -358,6 +415,17 @@ namespace NTK
             addLogs(LogsTypes.NOTICE, msg);
             User.writeMsg(msg);
         }
+
+        /// <summary>
+        /// Envoi d'un fichier
+        /// </summary>
+        /// <param name="path"></param>
+        public void sendFile(String path)
+        {
+            addLogs(LogsTypes.NOTICE, "send file :  " + path);
+            user.sendFile(path);
+        }
+
 
         /// <summary>
         /// 
@@ -559,6 +627,16 @@ namespace NTK
         }
 
         /// <summary>
+        /// Envoi un fichier de manière asynchrone
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public async Task sendFileAsync(String path)
+        {
+            await user.sendFileAsync(path);
+        }
+      
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
@@ -644,6 +722,18 @@ namespace NTK
             if (Stop != null)
             {
                 Stop(this, e);
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="e"></param>
+        protected virtual void OnChangeState(StateEventArgs e)
+        {
+            if (State != null)
+            {
+                State(this, e);
             }
         }
 

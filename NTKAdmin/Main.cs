@@ -39,69 +39,68 @@ namespace NTKAdmin
             var uctest = new UsersControls.UCServer();
             flp_main.Controls.Add(uctest);
             this.BeginInvoke((MethodInvoker)this.launchClient);
-            foreach(IBasePlugin plug in Config.pluginsList)
+            
+            ////PLUGINS//////////////////////////////////////
+            foreach (IBasePlugin plug in Config.pluginsList)
             {
-                switch(plug.getField())
+                if (plug.getType().Equals(PluginType.FORM))
                 {
-                    case FieldMenu.WINDOW:
-
-                        fenêtreToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)                        {
-                            manageStartPlug(plug);
-                        });
-                        break;
-                    case FieldMenu.TAB:
-                        ongletsToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
-                        {
-                            manageStartPlug(plug);
-                        });
-                        break;
-                    case FieldMenu.TOOL:
-                        outilsToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
-                        {
-                            manageStartPlug(plug);
-                        });
-                        break;
-                    case FieldMenu.SETTINGS:
-                        parametresToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
-                        {
-                            manageStartPlug(plug);
-                        });
-                        break;
-                    case FieldMenu.OTHER:
-                        ongletsToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
-                        {
-                            manageStartPlug(plug);
-                        });
-                        break;
-                    case FieldMenu.NEW:
-                        menuStrip1.Items.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
-                        {
-                            manageStartPlug(plug);
-                        });
-                        break;
-                    case FieldMenu.CONTEXT:
-                        ongletsToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
-                        {
-                            manageStartPlug(plug);
-                        });
-                        break;
+                    var nplug = (IPluginForm)plug;
+                    switch (plug.getField())
+                    {
+                        case FieldMenu.WINDOW:
+                            fenêtreToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a) {
+                                nplug.getStage().Show();
+                            });
+                            break;
+                        case FieldMenu.TAB:
+                            ongletsToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
+                            {
+                                nplug.getStage().Show();
+                            });
+                            break;
+                        case FieldMenu.TOOL:
+                            outilsToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
+                            {
+                                nplug.getStage().Show();
+                            });
+                            break;
+                        case FieldMenu.SETTINGS:
+                            parametresToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
+                            {
+                                nplug.getStage().Show();
+                            });
+                            break;
+                        case FieldMenu.OTHER:
+                            ongletsToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
+                            {
+                                nplug.getStage().Show();
+                            });
+                            break;
+                        case FieldMenu.NEW:
+                            menuStrip1.Items.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
+                            {
+                                nplug.getStage().Show();
+                            });
+                            break;
+                        case FieldMenu.CONTEXT:
+                            ongletsToolStripMenuItem.DropDownItems.Add(plug.getName()).Click += new EventHandler(delegate (Object o, EventArgs a)
+                            {
+                                nplug.getStage().Show();
+                            });
+                            break;
+                    }
                 }
+                else //Integrated
+                {
+                    var nplug = (IPluginIntegrated)plug;
+                    flp_main.Controls.Add(nplug.getStage());
+                }
+
             }
         }
 
-        private void manageStartPlug(IBasePlugin plug)
-        {
-            if (plug.getType().Equals(PluginType.FORM))
-            {
-                var nplug = (IPluginForm)plug;
-                nplug.getStage().Show();
-            }
-            else
-            {
-                var nplug = (IPluginIntegrated)plug;
-               
-            }
-        }
+     
 
         private void launchClient()
         {
@@ -159,7 +158,6 @@ namespace NTKAdmin
         //--------------------------ECRITURE------------------------------------------------------
         private void client_WriteMsg(object sender, MsgArgs args)
         {
-
             writeConsole(args.ReadText, Color.DodgerBlue);
         }
         //--------------------------LECTURE-------------------------------------------------------
@@ -209,18 +207,13 @@ namespace NTKAdmin
         }
 
 
-
-
-
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// CONTROLS EVENT ////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //TODO : Ajouter évènement touche clavier
-        //////   pour écupération des cmd précédentes  
+        //TODO :    Ajouter évènement touche clavier
+        //          pour récupération des cmd précédentes  
        
-       
-
         private void button1_Click(object sender, EventArgs e)
         {
             sendMsg();
@@ -241,7 +234,6 @@ namespace NTKAdmin
 
         }
 
-
         private void flatMax1_Click(object sender, EventArgs e)
         {
 
@@ -252,14 +244,12 @@ namespace NTKAdmin
 
         }
 
-
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// Methodes Privées ////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         void writeConsole(String text, Color color)
         {
-
             if (rt_console.InvokeRequired) //Permet de revenir au Thread de gestion des composants UI
             {
                 rt_console.Invoke(new Action<String, Color>(writeConsole), text, color);
@@ -277,7 +267,6 @@ namespace NTKAdmin
                 }
                 rt_console.ScrollToCaret();
             }
-
         }
 
         private void sendMsg()
@@ -288,24 +277,23 @@ namespace NTKAdmin
             flatTextBox1.Text = "";
         }
 
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /// GETTERS & SETTERS ///////////////////////////////////////////////////////////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        public NTKClient Client { get => client; set => client = value; }
-
         private void fichierToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.InitialDirectory = @"C:\";
             var res = ofd.ShowDialog();
-            if(res ==DialogResult.OK)
+            if (res == DialogResult.OK)
             {
-                //  client.writeMsg("SEND>abcd{,}"+NTKF.subsep(ofd.FileName,".")+"{,}none{;}");
-                // client.User.sendFile(ofd.FileName);
                 client.User.sendFile(ofd.FileName);
             }
         }
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// GETTERS & SETTERS ///////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        public NTKClient Client { get => client; set => client = value; }
+
     }
 }

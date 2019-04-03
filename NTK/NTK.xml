@@ -676,6 +676,22 @@
             <param name="name">champ</param>
             <returns></returns>
         </member>
+        <member name="T:NTK.EventsArgs.StateEventArgs">
+            <summary>
+            Changement d'état de la connexion
+            </summary>
+        </member>
+        <member name="M:NTK.EventsArgs.StateEventArgs.#ctor(System.Data.ConnectionState)">
+            <summary>
+            Constructeur 
+            </summary>
+            <param name="state">Etat de la connexion</param>
+        </member>
+        <member name="P:NTK.EventsArgs.StateEventArgs.State">
+            <summary>
+            Etat
+            </summary>
+        </member>
         <member name="T:NTK.EventsArgs.ConnectionEventArgs">
             <summary>
             Changement d'état de la connection
@@ -1989,6 +2005,84 @@
             Erreur de syntaxe dans une commande
             </summary>
         </member>
+        <member name="T:NTK.NPMType">
+            <summary>
+            Type de message Pipe
+            </summary>
+        </member>
+        <member name="F:NTK.NPMType.GET">
+            <summary>
+            Demande
+            </summary>
+        </member>
+        <member name="F:NTK.NPMType.SET">
+            <summary>
+            Envoi
+            </summary>
+        </member>
+        <member name="T:NTK.NTKPipeMsg">
+            <summary>
+            Classe de base d'un message de canal
+            </summary>
+        </member>
+        <member name="F:NTK.NTKPipeMsg.type">
+            <summary>
+            Type de message
+            </summary>
+        </member>
+        <member name="F:NTK.NTKPipeMsg.text">
+            <summary>
+            Texte du message
+            </summary>
+        </member>
+        <member name="M:NTK.NTKPipeMsg.#ctor(NTK.NPMType,System.String)">
+            <summary>
+            Créé un message de base
+            </summary>
+            <param name="type"></param>
+            <param name="text"></param>
+        </member>
+        <member name="T:NTK.NPM_UserList">
+            <summary>
+            Commande SET USERLIST
+            </summary>
+        </member>
+        <member name="M:NTK.NPM_UserList.#ctor(System.Collections.Generic.List{NTK.NTKUser})">
+            <summary>
+            Créé une commande de définition de la liste utilisateur
+            </summary>
+        </member>
+        <member name="P:NTK.NPM_UserList.Userlist">
+            <summary>
+            Liste d'utilisateurs
+            </summary>
+        </member>
+        <member name="T:NTK.NTKServerPipe">
+            <summary>
+            Canal de communication inter-serveurs
+            </summary>
+        </member>
+        <member name="M:NTK.NTKServerPipe.#ctor">
+            <summary>
+            Créé un canal vierge
+            </summary>
+        </member>
+        <member name="M:NTK.NTKServerPipe.#ctor(NTK.NTKServer[])">
+            <summary>
+            Créer un canal entre les serveurs passés en paramètres
+            </summary>
+            <param name="servers"></param>
+        </member>
+        <member name="P:NTK.NTKServerPipe.Servers">
+            <summary>
+            Liste des serveurs
+            </summary>
+        </member>
+        <member name="P:NTK.NTKServerPipe.MasterId">
+            <summary>
+            Id du serveur maitre
+            </summary>
+        </member>
         <member name="T:NTK.Other.LogLine_NTK">
             <summary>
             
@@ -2215,6 +2309,19 @@
             </summary>
             <param name="text">Message</param>
         </member>
+        <member name="M:NTK.NTKUser.sendFile(System.String)">
+            <summary>
+            envoi d'un fichier
+            </summary>
+            <param name="path">Fichier</param>
+        </member>
+        <member name="M:NTK.NTKUser.reciveFile(System.String,System.Int64)">
+            <summary>
+            Réception d'un fichier
+            </summary>
+            <param name="path">Chemin de destination</param>
+            <param name="fileSize"></param>
+        </member>
         <member name="M:NTK.NTKUser.readMsgAsync">
             <summary>
             Lecture d'un message
@@ -2228,13 +2335,13 @@
             <param name="text">Message</param>
             <returns></returns>
         </member>
-        <member name="M:NTK.NTKUser.sendFile(System.String)">
+        <member name="M:NTK.NTKUser.sendFileAsync(System.String)">
             <summary>
             envoi d'un fichier
             </summary>
             <param name="path">Fichier</param>
         </member>
-        <member name="M:NTK.NTKUser.reciveFile(System.String,System.Int64)">
+        <member name="M:NTK.NTKUser.reciveFileAsync(System.String,System.Int64)">
             <summary>
             Réception d'un fichier
             </summary>
@@ -2349,7 +2456,7 @@
         </member>
         <member name="T:NTK.Plugins.IBasePlugin">
             <summary>
-            
+            Interface de base d'un Plugin
             </summary>
         </member>
         <member name="M:NTK.Plugins.IBasePlugin.setContexte(System.Object)">
@@ -2360,187 +2467,189 @@
         </member>
         <member name="M:NTK.Plugins.IBasePlugin.setMain(System.Windows.Forms.Form)">
             <summary>
-            
+            Défini la fenêtre principale
             </summary>
             <param name="main"></param>
         </member>
         <member name="M:NTK.Plugins.IBasePlugin.getName">
             <summary>
-            
+            Retourne le nom du plugin
             </summary>
             <returns></returns>
         </member>
         <member name="M:NTK.Plugins.IBasePlugin.getField">
             <summary>
-            
+            Retourne la section du menu principal ou doit se trouver le plugin
             </summary>
             <returns></returns>
         </member>
         <member name="M:NTK.Plugins.IBasePlugin.getType">
             <summary>
-            
+            Retourne le type de plugin (FORM || Intergrated)
             </summary>
             <returns></returns>
         </member>
         <member name="T:NTK.Plugins.IPluginForm">
             <summary>
-            
+            Plugin Formulaire
             </summary>
         </member>
         <member name="M:NTK.Plugins.IPluginForm.getStage">
             <summary>
-            
+            Retourne la fen^tre principale du plugin
             </summary>
             <returns></returns>
         </member>
         <member name="T:NTK.Plugins.IPluginIntegrated">
             <summary>
-            
+            Plugin Intégré (Control)
             </summary>
         </member>
         <member name="M:NTK.Plugins.IPluginIntegrated.getStage">
             <summary>
-            
+            retourne le Control plugin
             </summary>
             <returns></returns>
         </member>
         <member name="T:NTK.Plugins.PluginType">
             <summary>
-            
+            Type de plugin
             </summary>
         </member>
         <member name="F:NTK.Plugins.PluginType.FORM">
             <summary>
-            
+            Formulaire
             </summary>
         </member>
         <member name="F:NTK.Plugins.PluginType.TOOLBAR">
             <summary>
-            
+            Barre d'outils
             </summary>
         </member>
         <member name="F:NTK.Plugins.PluginType.TAB">
             <summary>
-            
+            Onglet
             </summary>
         </member>
         <member name="T:NTK.Plugins.FieldMenu">
             <summary>
-            
+            Section menu
             </summary>
         </member>
         <member name="F:NTK.Plugins.FieldMenu.TOOL">
             <summary>
-            
+            Outils
             </summary>
         </member>
         <member name="F:NTK.Plugins.FieldMenu.SETTINGS">
             <summary>
-            
+            Paramètres
             </summary>
         </member>
         <member name="F:NTK.Plugins.FieldMenu.WINDOW">
             <summary>
-            
+            Fenêtre
             </summary>
         </member>
         <member name="F:NTK.Plugins.FieldMenu.TAB">
             <summary>
-            
+            Onglet
             </summary>
         </member>
         <member name="F:NTK.Plugins.FieldMenu.OTHER">
             <summary>
-            
+            Autre
             </summary>
         </member>
         <member name="F:NTK.Plugins.FieldMenu.CONTEXT">
             <summary>
-            
+            Context
             </summary>
         </member>
         <member name="F:NTK.Plugins.FieldMenu.NEW">
             <summary>
-            
+            Nouveau
             </summary>
         </member>
         <member name="T:NTK.Security.IAsymEncryptor">
             <summary>
-            
+            Interface de chiffrement asymétrique
             </summary>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.encryptPublic(System.Byte[])">
             <summary>
-            
+            Chiffrement avec clée publique
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.decryptPublic(System.Byte[])">
             <summary>
-            
+            Déchiffrement avec clée publique
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.encryptPublic(System.String)">
             <summary>
-            
+            Chiffrement avec clée publique
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.decryptPublic(System.String)">
             <summary>
-            
+            Déchiffrement avec clée publique
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.encryptPrivate(System.Byte[])">
             <summary>
-            
+            Chiffrement avec clée privée
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.decryptPrivate(System.Byte[])">
             <summary>
-            
+            Déchiffrement avec clée privée
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.encryptPrivate(System.String)">
             <summary>
-            
+            Chiffrement avec clée privée
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.decryptPrivate(System.String)">
             <summary>
-            
+            Déchiffrement avec clée privée
             </summary>
             <param name="data"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.Security.IAsymEncryptor.genKey">
             <summary>
-            
+            Génération de clée
             </summary>
             <returns></returns>
         </member>
-        <member name="M:NTK.Security.IAsymEncryptor.setKey(System.String)">
+        <member name="M:NTK.Security.IAsymEncryptor.setKey(System.String,System.Boolean)">
             <summary>
-            
+            définition de la clée
             </summary>
             <param name="key"></param>
+            <param name="priv"></param>
         </member>
-        <member name="M:NTK.Security.IAsymEncryptor.getKey">
+        <member name="M:NTK.Security.IAsymEncryptor.getKey(System.Boolean)">
             <summary>
-            
+            Obtient la clée publique ou privée
             </summary>
+            <param name="priv">privée ou publique</param>
             <returns></returns>
         </member>
         <member name="T:NTK.Security.IEncryptor">
@@ -2822,16 +2931,6 @@
             </summary>
             <param name="priv"></param>
             <returns></returns>
-        </member>
-        <member name="T:NTK.Security.Rsa">
-            <summary>
-            Rsa class deprecated
-            </summary>
-        </member>
-        <member name="M:NTK.Security.Rsa.#ctor">
-            <summary>
-            Constructor make random keys
-            </summary>
         </member>
         <member name="T:NTK.Service.ServicelistenFunction">
             <summary>
@@ -3196,6 +3295,13 @@
             <param name="sender"></param>
             <param name="args"></param>
         </member>
+        <member name="T:NTK.OnChangeStateHandler">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
         <member name="T:NTK.NTKClient">
             <summary>
             Client tcp
@@ -3232,6 +3338,11 @@
             </summary>
         </member>
         <member name="E:NTK.NTKClient.Stop">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:NTK.NTKClient.State">
             <summary>
             
             </summary>
@@ -3280,6 +3391,12 @@
             </summary>
             <param name="msg"></param>
         </member>
+        <member name="M:NTK.NTKClient.sendFile(System.String)">
+            <summary>
+            Envoi d'un fichier
+            </summary>
+            <param name="path"></param>
+        </member>
         <member name="M:NTK.NTKClient.closeConnection">
             <summary>
             
@@ -3309,6 +3426,13 @@
             
             </summary>
             <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKClient.sendFileAsync(System.String)">
+            <summary>
+            Envoi un fichier de manière asynchrone
+            </summary>
+            <param name="path"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.NTKClient.closeConnectionAsync">
@@ -3354,6 +3478,12 @@
             <param name="e"></param>
         </member>
         <member name="M:NTK.NTKClient.OnStop(NTK.EventsArgs.StopEventArgs)">
+            <summary>
+            
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="M:NTK.NTKClient.OnChangeState(NTK.EventsArgs.StateEventArgs)">
             <summary>
             
             </summary>
@@ -3436,7 +3566,7 @@
         </member>
         <member name="T:NTK.NTKServer">
             <summary>
-            Serveur tcp pouvant héberger un service
+            Serveur NTK
             </summary>
         </member>
         <member name="E:NTK.NTKServer.ReadMsg">
@@ -3489,9 +3619,26 @@
             </summary>
             <param name="user">Utilisateur</param>
         </member>
+        <member name="M:NTK.NTKServer.setPipe(NTK.NTKServerPipe)">
+            <summary>
+            Défini le canal de communication inter-serveurs
+            </summary>
+            <param name="pipe"></param>
+        </member>
+        <member name="M:NTK.NTKServer.getPipe">
+            <summary>
+            Retourne le canal de communication inter-serveur, si il existe
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.NTKServer.forcePipeMaster">
+            <summary>
+            Défini ce serveur comme maitre du canal inter-serveurs
+            </summary>
+        </member>
         <member name="P:NTK.NTKServer.Port">
             <summary>
-            
+            Port TCP
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Name">
@@ -3501,32 +3648,32 @@
         </member>
         <member name="P:NTK.NTKServer.Stype">
             <summary>
-            
+            Nom du service
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Service">
             <summary>
-            
+            Service 
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Ctype">
             <summary>
-            
+            Type de connection (authentification)
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Tls">
             <summary>
-            
+            Chiffrement de la communication
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Plugins">
             <summary>
-            
+            Si les plugins sont tolérés
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Tokenlist">
             <summary>
-            
+            Liste des tokens
             </summary>
         </member>
         <member name="P:NTK.NTKServer.StopCodes">
@@ -3541,42 +3688,42 @@
         </member>
         <member name="P:NTK.NTKServer.Database">
             <summary>
-            
+            Connexion à une base de données
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Confpath">
             <summary>
-            
+            Chemin vers la configuration
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Rsa">
             <summary>
-            
+            Algorithme de chiffrement assymétrique
             </summary>
         </member>
         <member name="P:NTK.NTKServer.SecKey">
             <summary>
-            
+            Clée de sécurité
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Pause">
             <summary>
-            
+            Mettre en pause le serveur
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Stop">
             <summary>
-            
+            Arret du serveur
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Config">
             <summary>
-            
+            Configuration
             </summary>
         </member>
         <member name="P:NTK.NTKServer.ExtServices">
             <summary>
-            
+            Services externes
             </summary>
         </member>
         <member name="P:NTK.NTKServer.Logs">
@@ -3606,7 +3753,7 @@
         </member>
         <member name="P:NTK.NTKServer.ExtPlugins">
             <summary>
-            
+            Plugins
             </summary>
         </member>
         <member name="P:NTK.NTKServer.FileTransfert">

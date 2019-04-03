@@ -106,6 +106,7 @@
     <Compile Include="EventsArgs\IEventEnum.cs" />
     <Compile Include="EventsArgs\OnConnectEventArgs.cs" />
     <Compile Include="EventsArgs\OnErrorEventArgs.cs" />
+    <Compile Include="EventsArgs\StateEventArgs.cs" />
     <Compile Include="EventsArgs\StopEventArgs.cs" />
     <Compile Include="IO\DllLoader.cs" />
     <Compile Include="EnumsStructs.cs" />
@@ -131,6 +132,9 @@
     <Compile Include="IO\IS\Function.cs" />
     <Compile Include="IO\IS\ISParser.cs" />
     <Compile Include="IO\Log.cs" />
+    <Compile Include="Pipe\NPM_UserList.cs" />
+    <Compile Include="Pipe\NTKPipeMsg.cs" />
+    <Compile Include="Pipe\NTKServerPipe.cs" />
     <Compile Include="Other\Log_NTK.cs" />
     <Compile Include="Other\NTKServicesList.cs" />
     <Compile Include="Other\Language.cs" />
@@ -149,7 +153,6 @@
     <Compile Include="Security\IHash.cs" />
     <Compile Include="Security\NTKAes.cs" />
     <Compile Include="Security\NTKRsa.cs" />
-    <Compile Include="Security\Rsa.cs" />
     <Compile Include="Security\RSAKeygen.cs" />
     <Compile Include="Service\NTKService.cs" />
     <Compile Include="Service\NTKS_BlockChain.cs" />

@@ -64,6 +64,8 @@
             this.fichierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ouvrirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transfererToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fichierToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.afficherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ongletsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.utilisateursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,8 +86,6 @@
             this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.p2PToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.installScriptsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.transfererToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fichierToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.formSkin1.SuspendLayout();
             this.flatTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -502,7 +502,7 @@
             this.optionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(255, 19);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(389, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(239, 28);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -521,14 +521,29 @@
             // ouvrirToolStripMenuItem
             // 
             this.ouvrirToolStripMenuItem.Name = "ouvrirToolStripMenuItem";
-            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.ouvrirToolStripMenuItem.Text = "Ouvrir";
             // 
             // quitterToolStripMenuItem
             // 
             this.quitterToolStripMenuItem.Name = "quitterToolStripMenuItem";
-            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.quitterToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
             this.quitterToolStripMenuItem.Text = "Quitter";
+            // 
+            // transfererToolStripMenuItem
+            // 
+            this.transfererToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fichierToolStripMenuItem1});
+            this.transfererToolStripMenuItem.Name = "transfererToolStripMenuItem";
+            this.transfererToolStripMenuItem.Size = new System.Drawing.Size(149, 26);
+            this.transfererToolStripMenuItem.Text = "Transferer";
+            // 
+            // fichierToolStripMenuItem1
+            // 
+            this.fichierToolStripMenuItem1.Name = "fichierToolStripMenuItem1";
+            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(127, 26);
+            this.fichierToolStripMenuItem1.Text = "Fichier";
+            this.fichierToolStripMenuItem1.Click += new System.EventHandler(this.fichierToolStripMenuItem1_Click);
             // 
             // afficherToolStripMenuItem
             // 
@@ -673,21 +688,6 @@
             this.installScriptsToolStripMenuItem1.Name = "installScriptsToolStripMenuItem1";
             this.installScriptsToolStripMenuItem1.Size = new System.Drawing.Size(196, 26);
             this.installScriptsToolStripMenuItem1.Text = "InstallScripts";
-            // 
-            // transfererToolStripMenuItem
-            // 
-            this.transfererToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fichierToolStripMenuItem1});
-            this.transfererToolStripMenuItem.Name = "transfererToolStripMenuItem";
-            this.transfererToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.transfererToolStripMenuItem.Text = "Transferer";
-            // 
-            // fichierToolStripMenuItem1
-            // 
-            this.fichierToolStripMenuItem1.Name = "fichierToolStripMenuItem1";
-            this.fichierToolStripMenuItem1.Size = new System.Drawing.Size(216, 26);
-            this.fichierToolStripMenuItem1.Text = "Fichier";
-            this.fichierToolStripMenuItem1.Click += new System.EventHandler(this.fichierToolStripMenuItem1_Click);
             // 
             // Main
             // 

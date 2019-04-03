@@ -7,21 +7,22 @@ using System.Threading.Tasks;
 namespace NTK.Plugins
 {
     /// <summary>
-    /// 
+    /// Type de plugin
     /// </summary>
     public enum PluginType
     {
         /// <summary>
-        /// 
+        /// Formulaire
         /// </summary>
         FORM,
         /// <summary>
-        /// 
+        /// Barre d'outils
         /// </summary>
         TOOLBAR,
         /// <summary>
-        /// 
+        /// Onglet
         /// </summary>
-        TAB
+        TAB,
+
     }
 }
