@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace NTK.EventsArgs
 {
+    /// <summary>
+    /// Connexion
+    /// </summary>
     public partial class OnConnectEventArgs : EventArgs
     {
         private ConnectionState state;

@@ -80,6 +80,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Numerics.Vectors" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -90,7 +92,17 @@
   <ItemGroup>
     <Compile Include="BlockChain\Block.cs" />
     <Compile Include="BlockChain\SimpleBlock.cs" />
-    <Compile Include="Database\ORM\BaseModel.cs" />
+    <Compile Include="Database\ORM\Attribute\Column.cs" />
+    <Compile Include="Database\ORM\Attribute\Generated.cs" />
+    <Compile Include="Database\ORM\Attribute\OneToMany.cs" />
+    <Compile Include="Database\ORM\Attribute\OneToOne.cs" />
+    <Compile Include="Database\ORM\Attribute\Table.cs" />
+    <Compile Include="Database\ORM\Core\EntitySerializer.cs" />
+    <Compile Include="Database\ORM\Core\ValueGenerator.cs" />
+    <Compile Include="Database\ORM\Core\QueryBuilder.cs" />
+    <Compile Include="Database\ORM\Core\QueryStateException.cs" />
+    <Compile Include="Database\ORM\Entity.cs" />
+    <Compile Include="Database\ORM\EntityManager.cs" />
     <Compile Include="Database\ORM\MVisiteur.cs" />
     <Compile Include="Database\ORM\Relation.cs" />
     <Compile Include="Database\ORM\RelationType.cs" />
@@ -132,9 +144,6 @@
     <Compile Include="IO\IS\Function.cs" />
     <Compile Include="IO\IS\ISParser.cs" />
     <Compile Include="IO\Log.cs" />
-    <Compile Include="Pipe\NPM_UserList.cs" />
-    <Compile Include="Pipe\NTKPipeMsg.cs" />
-    <Compile Include="Pipe\NTKServerPipe.cs" />
     <Compile Include="Other\Log_NTK.cs" />
     <Compile Include="Other\NTKServicesList.cs" />
     <Compile Include="Other\Language.cs" />

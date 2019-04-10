@@ -10,12 +10,12 @@ namespace NTK.Database.ORM
     {
         private DBSColumn column;
         private RelationType type;
-        private BaseModel target;
-        public Relation(DBSColumn col,RelationType type,BaseModel target)
+   
+        public Relation(DBSColumn col,RelationType type)
         {
             this.column = col;
             this.type = type;
-            this.target = target;
+
         }
 
         public DBSColumn Column { get => column;  }

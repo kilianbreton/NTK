@@ -1,23 +1,4 @@
-﻿/*************************************************************************************
- * NTK - Network Transport Kernel                                                    *
- * Server Class                                                                      *
- * ----------------------------------------------------------------------------------*
- *                                                                                   *
- * LICENSE: This program is free software: you can redistribute it and/or modify     *
- * it under the terms of the GNU General Public License as published by              *
- * the Free Software Foundation, either version 3 of the License, or                 *
- * (at your option) any later version.                                               *
- *                                                                                   *
- * This program is distributed in the hope that it will be useful,                   *
- * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
- * GNU General Public License for more details.                                      *
- *                                                                                   *
- * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.             *
- *                                                                                   *
- * ----------------------------------------------------------------------------------*/
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,7 +16,6 @@ using NTK.IO.Xml;
 using NTK.Service;
 using NTK.Security;
 using NTK.Plugins;
-using NTK.Pipe;
 using static NTK.Other.NTKF;
 using static NTK.NTKCommands;
 using static NTK.Separators;
@@ -72,7 +52,6 @@ namespace NTK
         private Log_NTK logs;
         private NTKDatabase database;
         private bool header = true;
-        private NTKServerPipe pipe = null;
         //Etat
         private bool run = false;
         private bool pause = false;
@@ -337,32 +316,6 @@ namespace NTK
             
            
 
-        }
-
-        /// <summary>
-        /// Défini le canal de communication inter-serveurs
-        /// </summary>
-        /// <param name="pipe"></param>
-        public void setPipe(NTKServerPipe pipe)
-        {
-            this.pipe = pipe;
-        }
-
-        /// <summary>
-        /// Retourne le canal de communication inter-serveur, si il existe
-        /// </summary>
-        /// <returns></returns>
-        public NTKServerPipe getPipe()
-        {
-            return this.pipe;
-        }
-
-        /// <summary>
-        /// Défini ce serveur comme maitre du canal inter-serveurs
-        /// </summary>
-        public void forcePipeMaster()
-        {
-            pipe.MasterId = pipe.Servers.IndexOf(this);
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -951,6 +904,7 @@ namespace NTK
             }
         }
 
+       
         //===================================================[EVENTS]=======================================================
 
         private void OnReadMsg(EventArgs e)

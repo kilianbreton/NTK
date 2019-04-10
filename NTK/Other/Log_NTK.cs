@@ -8,7 +8,7 @@ using NTK.IO;
 namespace NTK.Other
 {
     /// <summary>
-    /// 
+    /// Ligne de log
     /// </summary>
     public class LogLine_NTK : LogLine
     {
@@ -47,7 +47,7 @@ namespace NTK.Other
         }
     }
     /// <summary>
-    /// 
+    /// Gestion de log
     /// </summary>
     public class Log_NTK : Log
     {

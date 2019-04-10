@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NTK.EventsArgs
 {
+    /// <summary>
+    /// Message
+    /// </summary>
     public class MsgArgs : EventArgs
     {
         private String text;

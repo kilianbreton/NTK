@@ -4,33 +4,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NTK.IO.Xml
+namespace NTK.Database.ORM.Attribute
 {
     /// <summary>
-    /// Attribut XML
+    /// Défini une table
     /// </summary>
-    public class XmlAttribute
+    public class Table : System.Attribute
     {
         private String name;
-        private String value;
-        
+        private DBSCollation charset;
+
         /// <summary>
-        /// Création d'un attribut
+        /// Création d'un lien entité->table
         /// </summary>
         /// <param name="name"></param>
-        /// <param name="value"></param>
-        public XmlAttribute(string name, string value)
+        /// <param name="charset"></param>
+        public Table(string name, DBSCollation charset = DBSCollation.utf8_bin)
         {
             this.name = name;
-            this.value = value;
+            this.charset = charset;
         }
         /// <summary>
-        /// Nom
+        /// Nom de la table
         /// </summary>
         public string Name { get => name; set => name = value; }
         /// <summary>
-        /// Valeur
+        /// Interclassement
         /// </summary>
-        public string Value { get => value; set => this.value = value; }
+        public DBSCollation Charset { get => charset; set => charset = value; }
     }
 }

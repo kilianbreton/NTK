@@ -1,22 +1,4 @@
-﻿/*************************************************************************************
- * NTK - Network Transport Kernel                                                    *
- * DBSColumn Class                                                                   *
- * ----------------------------------------------------------------------------------*
- *                                                                                   *
- * LICENSE: This program is free software: you can redistribute it and/or modify     *
- * it under the terms of the GNU General Public License as published by              *
- * the Free Software Foundation, either version 3 of the License, or                 *
- * (at your option) any later version.                                               *
- *                                                                                   *
- * This program is distributed in the hope that it will be useful,                   *
- * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
- * GNU General Public License for more details.                                      *
- *                                                                                   *
- * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.             *
- *                                                                                   *
- * ----------------------------------------------------------------------------------*/
+﻿using NTK.Database.ORM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace NTK.Database
 {
-
+    /// <summary>
+    /// Type de donnée
+    /// </summary>
     public enum DBSType
     {
         INT,VARCHAR,TEXT,DATE,
@@ -44,7 +28,9 @@ namespace NTK.Database
         MULTILINESTRING,MULTIPOLYGON,
         GEOMETRYCOLLECTION
     }
-
+    /// <summary>
+    /// Interclassement
+    /// </summary>
     public enum DBSCollation
     {
         armscii8_bin, armscii8_general_ci, ascii_bin,
@@ -114,11 +100,16 @@ namespace NTK.Database
         utf8mb4_spanish2_ci, utf8mb4_spanish_ci, utf8mb4_swedish_ci, utf8mb4_turkish_ci,
         utf8mb4_unicode_520_ci, utf8mb4_unicode_ci, utf8mb4_vietnamese_ci
     }
-
+    /// <summary>
+    /// Attribut
+    /// </summary>
     public enum DBSAttribute
     {
         BINARY, UNSIGNED, UNSIGNED_ZEROFILL, CURRENT_TIMESTAMP
     }
+    /// <summary>
+    /// Type d'index
+    /// </summary>
     public enum DBSIndex
     {
         PRIMARY,UNIQUE,INDEX,FULLTEXT,SPACIAL,NONE
@@ -138,6 +129,8 @@ namespace NTK.Database
         private bool autoIncrement;
         private bool primaryKey;
         private bool notnull;
+        private Type joined;
+        private bool uniqueColJoin; //Si l'association a besoin d'une seule colonne
         private List<String> values = new List<String>();
 
 
@@ -201,7 +194,7 @@ namespace NTK.Database
             }
             else
             {
-                ret = ret + "DEFAULT NULL";
+                ret = ret + "DEFAULT NULL ";
             }
 
 
@@ -258,5 +251,7 @@ namespace NTK.Database
         /// 
         /// </summary>
         public bool PrimaryKey { get => primaryKey; set => primaryKey = value; }
+        public Type Joined { get => joined; set => joined = value; }
+        public bool UniqueColJoin { get => uniqueColJoin; set => uniqueColJoin = value; }
     }
 }

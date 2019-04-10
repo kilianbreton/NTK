@@ -7,6 +7,9 @@ using NTK.IO.Xml;
 
 namespace NTK.EventsArgs
 {
+    /// <summary>
+    /// Réception des utilisateurs
+    /// </summary>
     public class GetUserEventArgs : EventArgs, IEventEnum
     {
         private XmlNode root;

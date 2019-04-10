@@ -8,8 +8,9 @@ using NTK.IO.Xml;
 
 namespace NTK.EventsArgs
 {
-
-   
+    /// <summary>
+    /// Résultat d'identification
+    /// </summary>
     public class IdentificationEventArgs : EventArgs
     {
         private Identification state;

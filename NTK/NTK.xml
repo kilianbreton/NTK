@@ -24,48 +24,207 @@
             <param name="regex"></param>
             <returns></returns>
         </member>
-        <member name="T:NTK.Database.ORM.PrimaryKey">
+        <member name="T:NTK.Database.ORM.Attribute.OneToOne">
             <summary>
-            
+            Relation OneToOne
             </summary>
         </member>
-        <member name="T:NTK.Database.ORM.ModelValues">
+        <member name="M:NTK.Database.ORM.Attribute.OneToOne.#ctor(System.String,System.String)">
             <summary>
-            
+            Création d'une relation OneOne
+            </summary>
+            <param name="targetTable"></param>
+            <param name="targetColumn"></param>
+        </member>
+        <member name="P:NTK.Database.ORM.Attribute.OneToOne.TargetTable">
+            <summary>
+            Table cible
             </summary>
         </member>
-        <member name="T:NTK.Database.ORM.BaseModel">
+        <member name="P:NTK.Database.ORM.Attribute.OneToOne.TargetColumn">
             <summary>
-            
+            Colonne cible
             </summary>
         </member>
-        <member name="M:NTK.Database.ORM.BaseModel.#ctor">
+        <member name="T:NTK.Database.ORM.Attribute.Table">
             <summary>
-            
-            </summary>        
-        </member>
-        <member name="M:NTK.Database.ORM.BaseModel.init">
-            <summary>
-            
+            Défini une table
             </summary>
         </member>
-        <member name="M:NTK.Database.ORM.BaseModel.select(System.Int32)">
+        <member name="M:NTK.Database.ORM.Attribute.Table.#ctor(System.String,NTK.Database.DBSCollation)">
             <summary>
-            
+            Création d'un lien entité->table
             </summary>
-            <param name="id"></param>
+            <param name="name"></param>
+            <param name="charset"></param>
+        </member>
+        <member name="P:NTK.Database.ORM.Attribute.Table.Name">
+            <summary>
+            Nom de la table
+            </summary>
+        </member>
+        <member name="P:NTK.Database.ORM.Attribute.Table.Charset">
+            <summary>
+            Interclassement
+            </summary>
+        </member>
+        <member name="T:NTK.Database.ORM.Core.EntitySerializer`1">
+            <summary>
+            Serialisation d'entité en xml ou DBS (Object)
+            </summary>
+            <typeparam name="T">Entity</typeparam>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.EntitySerializer`1.#ctor">
+            <summary>
+            Instanciation
+            </summary>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.EntitySerializer`1.getDBS">
+            <summary>
+            Retourne une entité convertie en DBStruct
+            </summary>
             <returns></returns>
         </member>
-        <member name="M:NTK.Database.ORM.BaseModel.select(System.String,System.String)">
+        <member name="T:NTK.Database.ORM.Core.QueryState">
             <summary>
-            
+            Etat de requête pour QueryBuilder
             </summary>
-            <param name="field"></param>
+        </member>
+        <member name="F:NTK.Database.ORM.Core.QueryState.NONE">
+            <summary>
+            Aucun (Etat de base)
+            </summary>
+        </member>
+        <member name="F:NTK.Database.ORM.Core.QueryState.SELECT">
+            <summary>
+            Mode SELECT (non remplaçable)
+            </summary>
+        </member>
+        <member name="F:NTK.Database.ORM.Core.QueryState.INSERT">
+            <summary>
+            Mode INSERT (non remplaçable)
+            </summary>
+        </member>
+        <member name="F:NTK.Database.ORM.Core.QueryState.UPDATE">
+            <summary>
+            Mode UPDATE (non remplaçable)
+            </summary>
+        </member>
+        <member name="T:NTK.Database.ORM.Core.QueryBuilder`1">
+            <summary>
+            Constructeur de requête par entitée
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.#ctor">
+            <summary>
+            Instanciation (mise zéro)
+            </summary>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.select">
+            <summary>
+            Création d'une requête SELECT
+            </summary>
+            <returns>this</returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.insert">
+            <summary>
+            Création d'une requête INSERT
+            </summary>
+            <returns>this</returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.update">
+            <summary>
+            Création d'une requête UPDATE
+            </summary>
+            <returns>this</returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.andWhere(System.String,System.String)">
+            <summary>
+            Ajout d'une condition Where avec opérateur AND
+            </summary>
+            <param name="column"></param>
             <param name="value"></param>
             <returns></returns>
         </member>
-        <member name="M:NTK.Database.ORM.BaseModel.getPKname">
-            PRIVEES //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.andWhere(System.String,System.Int32)">
+            <summary>
+            Ajout d'une condition Where avec opérateur AND
+            </summary>
+            <param name="column"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.orWhere(System.String,System.String)">
+            <summary>
+            Ajout d'une condition Where avec opérateur OR
+            </summary>
+            <param name="column"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.orWhere(System.String,System.Int32)">
+            <summary>
+            Ajout d'une condition Where avec opérateur OR
+            </summary>
+            <param name="column"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.getQuery">
+            <summary>
+            Récupération de la requête
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.getOne">
+            <summary>
+            Obtient un objet du résultat
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.getResults">
+            <summary>
+            Obtient la liste des objets concernés par le résultat
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.executeNonQuery">
+            <summary>
+            Execute une requête sans résultat
+            </summary>
+        </member>
+        <member name="T:NTK.Database.ORM.Core.QueryStateException">
+            <summary>
+            Exception lors d'un mauvais changement d'état de requete
+            </summary>
+        </member>
+        <member name="M:NTK.Database.ORM.Core.QueryStateException.#ctor(NTK.Database.ORM.Core.QueryState,NTK.Database.ORM.Core.QueryState)">
+            <summary>
+            
+            </summary>
+            <param name="origin"></param>
+            <param name="tryedState"></param>
+        </member>
+        <member name="T:NTK.Database.DBSType">
+            <summary>
+            Type de donnée
+            </summary>
+        </member>
+        <member name="T:NTK.Database.DBSCollation">
+            <summary>
+            Interclassement
+            </summary>
+        </member>
+        <member name="T:NTK.Database.DBSAttribute">
+            <summary>
+            Attribut
+            </summary>
+        </member>
+        <member name="T:NTK.Database.DBSIndex">
+            <summary>
+            Type d'index
+            </summary>
         </member>
         <member name="T:NTK.Database.DBSColumn">
             <summary>
@@ -146,6 +305,21 @@
         <member name="P:NTK.Database.DBSColumn.PrimaryKey">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:NTK.Database.DBSTable">
+            <summary>
+            Table
+            </summary>
+        </member>
+        <member name="T:NTK.Database.DBStorage">
+            <summary>
+            Méthode de stokage
+            </summary>
+        </member>
+        <member name="T:NTK.Database.DBStruct">
+            <summary>
+            Structure de base de données
             </summary>
         </member>
         <member name="F:NTK.Database.DBStruct.name">
@@ -676,6 +850,16 @@
             <param name="name">champ</param>
             <returns></returns>
         </member>
+        <member name="T:NTK.EventsArgs.OnConnectEventArgs">
+            <summary>
+            Connexion
+            </summary>
+        </member>
+        <member name="T:NTK.EventsArgs.OnErrorEventArgs">
+            <summary>
+            Réception d'une erreur
+            </summary>
+        </member>
         <member name="T:NTK.EventsArgs.StateEventArgs">
             <summary>
             Changement d'état de la connexion
@@ -690,6 +874,11 @@
         <member name="P:NTK.EventsArgs.StateEventArgs.State">
             <summary>
             Etat
+            </summary>
+        </member>
+        <member name="T:NTK.EventsArgs.StopEventArgs">
+            <summary>
+            Arret de l'écoute
             </summary>
         </member>
         <member name="T:NTK.EventsArgs.ConnectionEventArgs">
@@ -816,7 +1005,7 @@
         </member>
         <member name="T:NTK.EventsArgs.GetMsgEventArgs">
             <summary>
-            
+            Réception d'un message
             </summary>
         </member>
         <member name="M:NTK.EventsArgs.GetMsgEventArgs.#ctor(System.String)">
@@ -879,6 +1068,26 @@
             </summary>
             <param name="name"></param>
             <returns></returns>
+        </member>
+        <member name="T:NTK.EventsArgs.GetServiceEventArgs">
+            <summary>
+            réception du service
+            </summary>
+        </member>
+        <member name="T:NTK.EventsArgs.GetUserEventArgs">
+            <summary>
+            Réception des utilisateurs
+            </summary>
+        </member>
+        <member name="T:NTK.EventsArgs.IdentificationEventArgs">
+            <summary>
+            Résultat d'identification
+            </summary>
+        </member>
+        <member name="T:NTK.EventsArgs.MsgArgs">
+            <summary>
+            Message
+            </summary>
         </member>
         <member name="T:NTK.IO.DllLoader">
             <summary>
@@ -1287,7 +1496,7 @@
         </member>
         <member name="T:NTK.IO.Ini.IniValue">
             <summary>
-            
+            Valeur d'un groupe ini
             </summary>
         </member>
         <member name="M:NTK.IO.Ini.IniValue.#ctor(System.String,System.String)">
@@ -1337,7 +1546,7 @@
         </member>
         <member name="T:NTK.IO.LogLine">
             <summary>
-            
+            Ligne de log
             </summary>
         </member>
         <member name="M:NTK.IO.LogLine.#ctor(System.String,System.String,System.DateTime)">
@@ -1356,22 +1565,22 @@
         </member>
         <member name="P:NTK.IO.LogLine.Type">
             <summary>
-            
+            Type de log
             </summary>
         </member>
         <member name="P:NTK.IO.LogLine.Text">
             <summary>
-            
+            Texte
             </summary>
         </member>
         <member name="P:NTK.IO.LogLine.Date">
             <summary>
-            
+            Date
             </summary>
         </member>
         <member name="T:NTK.IO.Log">
             <summary>
-            
+            Gestion de log
             </summary>
         </member>
         <member name="F:NTK.IO.Log.lines">
@@ -2005,87 +2214,9 @@
             Erreur de syntaxe dans une commande
             </summary>
         </member>
-        <member name="T:NTK.NPMType">
-            <summary>
-            Type de message Pipe
-            </summary>
-        </member>
-        <member name="F:NTK.NPMType.GET">
-            <summary>
-            Demande
-            </summary>
-        </member>
-        <member name="F:NTK.NPMType.SET">
-            <summary>
-            Envoi
-            </summary>
-        </member>
-        <member name="T:NTK.NTKPipeMsg">
-            <summary>
-            Classe de base d'un message de canal
-            </summary>
-        </member>
-        <member name="F:NTK.NTKPipeMsg.type">
-            <summary>
-            Type de message
-            </summary>
-        </member>
-        <member name="F:NTK.NTKPipeMsg.text">
-            <summary>
-            Texte du message
-            </summary>
-        </member>
-        <member name="M:NTK.NTKPipeMsg.#ctor(NTK.NPMType,System.String)">
-            <summary>
-            Créé un message de base
-            </summary>
-            <param name="type"></param>
-            <param name="text"></param>
-        </member>
-        <member name="T:NTK.NPM_UserList">
-            <summary>
-            Commande SET USERLIST
-            </summary>
-        </member>
-        <member name="M:NTK.NPM_UserList.#ctor(System.Collections.Generic.List{NTK.NTKUser})">
-            <summary>
-            Créé une commande de définition de la liste utilisateur
-            </summary>
-        </member>
-        <member name="P:NTK.NPM_UserList.Userlist">
-            <summary>
-            Liste d'utilisateurs
-            </summary>
-        </member>
-        <member name="T:NTK.NTKServerPipe">
-            <summary>
-            Canal de communication inter-serveurs
-            </summary>
-        </member>
-        <member name="M:NTK.NTKServerPipe.#ctor">
-            <summary>
-            Créé un canal vierge
-            </summary>
-        </member>
-        <member name="M:NTK.NTKServerPipe.#ctor(NTK.NTKServer[])">
-            <summary>
-            Créer un canal entre les serveurs passés en paramètres
-            </summary>
-            <param name="servers"></param>
-        </member>
-        <member name="P:NTK.NTKServerPipe.Servers">
-            <summary>
-            Liste des serveurs
-            </summary>
-        </member>
-        <member name="P:NTK.NTKServerPipe.MasterId">
-            <summary>
-            Id du serveur maitre
-            </summary>
-        </member>
         <member name="T:NTK.Other.LogLine_NTK">
             <summary>
-            
+            Ligne de log
             </summary>
         </member>
         <member name="M:NTK.Other.LogLine_NTK.#ctor(System.String,System.String,System.DateTime)">
@@ -2113,7 +2244,7 @@
         </member>
         <member name="T:NTK.Other.Log_NTK">
             <summary>
-            
+            Gestion de log
             </summary>
         </member>
         <member name="M:NTK.Other.Log_NTK.#ctor(System.String)">
@@ -2270,7 +2401,7 @@
         </member>
         <member name="T:NTK.NTKUser">
             <summary>
-            Utilisateur d'un flux NTK
+            Utilisateur NTK
             </summary>
         </member>
         <member name="E:NTK.NTKUser.ReadMsg">
@@ -3599,7 +3730,7 @@
         </member>
         <member name="M:NTK.NTKServer.#ctor">
             <summary>
-            
+            Créé un serveur vierge
             </summary>
         </member>
         <member name="M:NTK.NTKServer.start">
@@ -3618,23 +3749,6 @@
             Boucle d'écoute
             </summary>
             <param name="user">Utilisateur</param>
-        </member>
-        <member name="M:NTK.NTKServer.setPipe(NTK.NTKServerPipe)">
-            <summary>
-            Défini le canal de communication inter-serveurs
-            </summary>
-            <param name="pipe"></param>
-        </member>
-        <member name="M:NTK.NTKServer.getPipe">
-            <summary>
-            Retourne le canal de communication inter-serveur, si il existe
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:NTK.NTKServer.forcePipeMaster">
-            <summary>
-            Défini ce serveur comme maitre du canal inter-serveurs
-            </summary>
         </member>
         <member name="P:NTK.NTKServer.Port">
             <summary>

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NTK.EventsArgs
 {
+    /// <summary>
+    /// Arret de l'écoute
+    /// </summary>
     public class StopEventArgs : EventArgs
     {
         private int code;

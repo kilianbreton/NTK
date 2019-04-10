@@ -8,7 +8,7 @@ using NTK.IO.Xml;
 namespace NTK.EventsArgs
 {
     /// <summary>
-    /// 
+    /// Réception d'un message
     /// </summary>
     public class GetMsgEventArgs : EventArgs, IEventEnum
     {

@@ -7,6 +7,9 @@ using NTK.Service;
 
 namespace NTK.EventsArgs
 {
+    /// <summary>
+    /// réception du service
+    /// </summary>
     public class GetServiceEventArgs : EventArgs
     {
         private NTKService service;

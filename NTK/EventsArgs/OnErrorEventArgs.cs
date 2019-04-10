@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace NTK.EventsArgs
 {
+    /// <summary>
+    /// Réception d'une erreur
+    /// </summary>
     public class OnErrorEventArgs : EventArgs
     {
         private String type;
