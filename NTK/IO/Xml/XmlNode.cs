@@ -13,12 +13,11 @@ namespace NTK.IO.Xml
     /// </summary>
     public class XmlNode
     {
+        private List<XmlAttribute> attributes = new List<XmlAttribute>();
         private List<XmlNode> nodelist = new List<XmlNode>();
         private String value = null;
         private String name;
         private int index = -1;
-
-   
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -46,7 +45,7 @@ namespace NTK.IO.Xml
             this.value = value;
             if (attributs != null)
             {
-                this.Attributs = attributs;
+                this.Attributes = attributs;
             }
             if (child != null)
             {
@@ -196,41 +195,62 @@ namespace NTK.IO.Xml
             return newNode;
         }
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Attributs /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   
+        /*********************************************************************************************************************
+        ** Attributs *********************************************************************************************************
+        **********************************************************************************************************************/
+    
+        #region "Attributs"
         /// <summary>
-        /// 
+        /// Permet de savoir si le noeud comporte des attributs
         /// </summary>
         /// <returns></returns>
         public bool haveAttributes()
         {
-            return (Attributs != null);
+            return (Attributes.Count > 0);
         }
+        
         /// <summary>
-        /// 
+        /// Permet de savoir si le noeud comporte des attributs nommés name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool haveAttribute(string name)
+        {
+            bool ret = false;
+            int cpt = 0;
+            while(cpt < Attributes.Count && !ret)
+            {
+                if (Attributes[cpt].Name.Equals(name))
+                    ret = true;
+                else
+                    cpt++;
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Ajoute un attribut à un noeud
         /// </summary>
         /// <param name="att"></param>
-        /// <returns></returns>
+        /// <returns>Le noeud auquel on ajoute un attribut</returns>
         public XmlNode addAttribute(XmlAttribute att)
         {
-            initAtt();
-            Attributs.Add(att);
+            Attributes.Add(att);
             return this;
         }
+
         /// <summary>
-        /// 
+        /// Ajoute un attribut à un noeud
         /// </summary>
         /// <param name="name"></param>
         /// <param name="value"></param>
-        /// <returns></returns>
+        /// <returns>Le noeud auquel on ajoute un attribut</returns>
         public XmlNode addAttribute(String name, String value)
         {
-            initAtt();
-            Attributs.Add(new XmlAttribute(name, value));
+            Attributes.Add(new XmlAttribute(name, value));
             return this;
         }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -238,8 +258,9 @@ namespace NTK.IO.Xml
         /// <returns></returns>
         public XmlAttribute getAttribute(int id)
         {
-            return Attributs[id];
+            return Attributes[id];
         }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -250,9 +271,9 @@ namespace NTK.IO.Xml
             int compt = 0;
             bool find = false;
             XmlAttribute ret = null;
-            while (compt < Attributs.Count && !find)
+            while (compt < Attributes.Count && !find)
             {
-                if (name.Equals(Attributs[compt].Name))
+                if (name.Equals(Attributes[compt].Name))
                 {
                     find = true;
                 }
@@ -267,10 +288,11 @@ namespace NTK.IO.Xml
             }
             else
             {
-                ret = Attributs[compt];
+                ret = Attributes[compt];
             }
             return ret;
         }
+        
         /// <summary>
         /// 
         /// </summary>
@@ -280,11 +302,13 @@ namespace NTK.IO.Xml
         {
             return getAttribute(name).Value;
         }
+        #endregion
 
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // ChildNode /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /*********************************************************************************************************************
+        ** ChildNode *********************************************************************************************************
+        **********************************************************************************************************************/
 
+        #region "ChildNode"
         /// <summary>
         /// retourne true si l'enfant n°<c>id</c> existe
         /// </summary>
@@ -325,10 +349,10 @@ namespace NTK.IO.Xml
         }
        
         /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="name"></param>
-       /// <returns></returns>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public List<XmlNode> getChildList(String name)
         {
             var ret = new List<XmlNode>();
@@ -351,7 +375,43 @@ namespace NTK.IO.Xml
         {
             return nodelist;
         }
+
+        /// <summary>
+        /// Obtient ou défini le noeud enfant d'index index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public XmlNode this[int index]
+        {
+            get
+            {
+                return this.getChild(index);
+            }
+            set
+            {
+                this.nodelist[index] = value;
+            }
+        }
         
+        /// <summary>
+        /// Obtient ou défini le noeud enfant de nom name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public XmlNode this[string name]
+        {
+            get
+            {
+                return this.getChild(name);
+            }
+            set
+            {
+                var child = this.getChild(name);
+                int i = this.nodelist.IndexOf(child);
+                this.nodelist[i] = value;
+            }
+        }
+
         /// <summary>
         /// Ontient l'enfant n°id du noeud
         /// </summary>
@@ -473,7 +533,126 @@ namespace NTK.IO.Xml
             }
             return ret;
         }
-     
+
+        /// <summary>
+        /// Get boolean value of child
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [Obsolete("Use .getChildV(...) or .getChild(...).Value")]
+        public bool getChildBV(String name)
+        {
+            bool ret;
+            bool.TryParse(getChildV(name), out ret);
+            return ret;
+        }
+
+        /// <summary>
+        /// Get Numeric value of child
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [Obsolete("Use .getChildV(...) or .getChild(...).Value")]
+        public long getChildNV(String name)
+        {
+            long ret;
+            long.TryParse(getChildV(name), out ret);
+            return ret;
+        }
+
+        //Recherches spéciales-------------------------------------------------------------
+
+        /// <summary>
+        /// Recherche dans toute l'arboressence les noeuds de nom name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<XmlNode> searchAllByName(String name)
+        {
+            List<XmlNode> ret = new List<XmlNode>();
+            foreach(XmlNode node in nodelist)
+            {
+                ret.AddRange(node.searchAllByName(name));
+                if (node.Name.Equals(name))
+                    ret.Add(node);
+            }
+
+            return ret;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="childName"></param>
+        /// <param name="attributeName"></param>
+        /// <param name="attributeValue"></param>
+        /// <returns></returns>
+        public List<XmlNode> getChildsByAttribute(String childName, String attributeName, String attributeValue)
+        {
+            List<XmlNode> ret = new List<XmlNode>();
+            List<XmlNode> tmp = this.getChildList(name);
+            foreach(XmlNode node in tmp)
+            {
+                if (node.haveAttribute(attributeName) && node.getAttibuteV(attributeName).Equals(attributeValue))
+                    ret.Add(node);
+            }  
+
+            return ret;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="attributeName"></param>
+        /// <param name="attributeValue"></param>
+        /// <returns></returns>
+        public List<XmlNode> getChildsByAttribute(String attributeName, String attributeValue)
+        {
+            List<XmlNode> ret = new List<XmlNode>();
+            foreach (XmlNode node in nodelist)
+            {
+                if (node.haveAttribute(attributeName) && node.getAttibuteV(attributeName).Equals(attributeValue))
+                    ret.Add(node);
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// Recherche par valeur
+        /// </summary>
+        /// <param name="childname"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public List<XmlNode> getChildsByValue(String childname, String value)
+        {
+            var ret = new List<XmlNode>();
+            foreach(XmlNode node in nodelist)
+            {
+                if (node.Name.Equals(name) && node.Value.Equals(value))
+                    ret.Add(node);
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public List<XmlNode> getChildsByValue(String value)
+        {
+            var ret = new List<XmlNode>();
+            foreach (XmlNode node in nodelist)
+            {
+                if (node.Value.Equals(value))
+                    ret.Add(node);
+            }
+            return ret;
+        }
+
         /// <summary>
         /// Ajout un enfant XmlNode
         /// </summary>
@@ -555,6 +734,35 @@ namespace NTK.IO.Xml
             return find;
         }
 
+        /// <summary>
+        /// Supprimer tous les noeuds de nom name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public bool deleteAllChildLike(String name)
+        {
+            bool ret = true;
+            try
+            {
+                for(int i = 0; i < nodelist.Count; i++)
+                {
+                    var child = nodelist[i];
+                    if (child.getName().Equals(name))
+                    {
+                        nodelist.RemoveAt(i);
+                        i--;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ret = false;
+            }
+
+            return ret;
+        }
+        #endregion
+       
         //----------------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
         //----------------------------------------------------------------------------------------------------------------------
@@ -563,12 +771,13 @@ namespace NTK.IO.Xml
         /// Génère le noeud Xml
         /// </summary>
         /// <returns></returns>
-        public String print()
+        public String print(int indentLvl = 0)
         {
-            String ret = "<" + name;
+            String indent = makeIdent(indentLvl);
+            String ret = indent + "<" + name;
             if (haveAttributes())
             {
-                foreach(XmlAttribute elem in Attributs)
+                foreach(XmlAttribute elem in Attributes)
                 {
                     ret += " " + elem.Name + "=\"" + elem.Value + "\"";
                 }
@@ -578,20 +787,20 @@ namespace NTK.IO.Xml
             if (value != null)
             {
                 ret = ret + value;
-                ret = ret + "</" + name + ">\n  ";
+                ret = ret + "</" + name + ">\n";
             }
             else
             {
                 for(int i = 0; i < nodelist.Count; i++)
                 {
-                    ret = ret + "\n   " + nodelist[i].print();
+                    ret = ret + "\n" + nodelist[i].print(indentLvl + 1);
                 }
-                ret = ret + "</" + name + ">";
+                ret = ret + indent + "</" + name + ">\n";
             }
 
              return ret;
         }
-    
+
         /// <summary>
         /// 
         /// </summary>
@@ -601,7 +810,7 @@ namespace NTK.IO.Xml
             String ret = "<" + name;
             if (haveAttributes())
             {
-                foreach (XmlAttribute elem in Attributs)
+                foreach (XmlAttribute elem in Attributes)
                 {
                     ret += elem.Name + "=\"" + elem.Value + "\"";
                 }
@@ -624,62 +833,127 @@ namespace NTK.IO.Xml
 
             return ret;
         }
+
+        /*********************************************************************************************************************
+        * GETTERS & SETTERS **************************************************************************************************
+        **********************************************************************************************************************/
      
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // GETTERS & SETTERS /////////////////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        #region "getters"
+       
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
+        [Obsolete("Use .Name = ")]
         public void setName(String name)
         {
             this.name = name;
         }
-      
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete("use .Name")]
         public String getName()
         {
             return this.name;
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="value"></param>
+        [Obsolete("Use .Value = ")]
         public void setValue(String value)
         {
             this.value = value;
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        [Obsolete("Use .Value = ")]
+        public void setValue(bool value)
+        {
+            this.value = value.ToString();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        [Obsolete("Use .Value = ")]
+        public void setValue(long value)
+        {
+            this.value = value.ToString();
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Use .Value")]
         public String getValue()
         {
             return this.value;
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Obsolete("Use .Value")]
+        public bool getBoolValue()
+        {
+            bool ret;
+            bool.TryParse(value, out ret);
+
+            return ret;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [Obsolete("Use .Value")]
+        public long getNumericValue()
+        {
+            long ret;
+            long.TryParse(value, out ret);
+
+            return ret;
+        }
+
+        /// <summary>
         /// Liste des attributs
         /// </summary>
-        public List<XmlAttribute> Attributs { get; set; }
-
+        public List<XmlAttribute> Attributes { get => attributes; set => this.attributes = value; }
+        
+        /// <summary>
+        /// Valeur
+        /// </summary>
+        public string Value { get => value; set => this.value = value; }
+        
+        /// <summary>
+        /// Nom
+        /// </summary>
+        public string Name { get => name; set => name = value; }
+        #endregion
+      
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Methodes privées //////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        private void initAtt()
+        string makeIdent(int lvl)
         {
-            if (!haveAttributes())
+            string ret = "";
+            for (int i = 0; i < lvl; i++)
             {
-                Attributs = new List<XmlAttribute>();
+                ret += "    ";
             }
+            return ret;
         }
-
     }
 }

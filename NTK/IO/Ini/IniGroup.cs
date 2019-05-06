@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using static NTK.Other.NTKF;
 
-
 namespace NTK.IO.Ini
 {
     /// <summary>
@@ -133,6 +132,28 @@ namespace NTK.IO.Ini
             return ret;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public IniGroup addValue(String name, String value)
+        {
+            this.values.Add(new IniValue(name, value));
+            return this;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public IniGroup addValue(IniValue value)
+        {
+            this.values.Add(value);
+            return this;
+        }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // GETTERS & SETTERS /////////////////////////////////////////////////////////////////////////////////////////////////   

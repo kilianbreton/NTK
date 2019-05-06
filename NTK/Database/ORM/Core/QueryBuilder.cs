@@ -135,11 +135,23 @@ namespace NTK.Database.ORM.Core
             query += column + " = " + value + " ";
             return this;
         }
-
+        /// <summary>
+        /// Ajout d'un group by
+        /// </summary>
+        /// <param name="columns"></param>
+        /// <returns></returns>
         public QueryBuilder<T> groupBy(params String[] columns)
         {
-
-
+            if (columns.Length > 0)
+            {
+                this.query += "\nGROUP BY ";
+                this.query += columns[0];
+                for (int i = 1; i< columns.Length; i++)
+                {
+                    this.query += ", " + columns[i];
+                }
+                this.query += "\n";
+            }
             return this;
         }
 

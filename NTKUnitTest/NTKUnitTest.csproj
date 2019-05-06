@@ -54,6 +54,7 @@
     <Compile Include="RSA_Test.cs" />
     <Compile Include="AesTest.cs" />
     <Compile Include="ServerClient.cs" />
+    <Compile Include="Xml.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

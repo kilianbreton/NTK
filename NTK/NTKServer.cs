@@ -16,6 +16,7 @@ using NTK.IO.Xml;
 using NTK.Service;
 using NTK.Security;
 using NTK.Plugins;
+using NTK.Exceptions;
 using static NTK.Other.NTKF;
 using static NTK.NTKCommands;
 using static NTK.Separators;
@@ -330,7 +331,7 @@ namespace NTK
             var u = (NTKUser)user;
             addLogs(LogsTypes.NOTICE, "SelectService : " + u.Name);
             //Enchainement des fonction d'identification et d'écoute en fonction de la config coté service
-
+            
             //Selection de la fonction d'écoute
             ServicelistenFunction listenfunction = null;
             if (service.Config.useBasicListen)
@@ -356,6 +357,10 @@ namespace NTK
                         identification_GLOBAL(u, listenfunction);
                         break;
                 }
+            }
+            catch(NotImplementedException)
+            {
+                throw new AuthentificationUndefinedException(stype);
             }
             catch (Exception e)
             {
@@ -524,7 +529,28 @@ namespace NTK
         //Identification d'un BOT
         private bool id_bot(NTKUser user, string umsg)
         {
-            return false;
+            bool connected = false;
+            //  exemple commande : A_BOT>Kilian,password,seckey;
+            String[] argtab = subsep(umsg, ">", ";").Split(V);
+
+            MySqlDataReader msr = (MySqlDataReader)database.select("SELECT * FROM sn_bot WHERE Token='" + argtab[0] + "';");
+            msr.Read();
+
+            var dbtoken = msr.GetString("Token");
+          
+            if (dbtoken.Equals(argtab[0]))
+            {
+                user.Login = msr.GetString("login");
+                user.Lvl = USER_LVL.BOT;
+                userlist.Add(user);
+                user.writeMsg(A_OK);
+                connected = true;
+            }
+            else
+            {
+                user.writeMsg(A_BAD);
+            }
+            return connected;
         }
 
         //Enregistrement d'un utilisateur
@@ -749,36 +775,36 @@ namespace NTK
           
             XmlDocument xmlp = new XmlDocument(confpath);
             this.config = xmlp;
-            XmlNode root = xmlp.getNode(0);
+            XmlNode root = xmlp[0];
 
             while (root.read())
             {
                 var node = root.getNode();
-                switch (node.getName())
+                switch (node.Name)
                 {
                     case "port":
-                        int.TryParse(node.getValue(),out port);
+                        int.TryParse(node.Value,out port);
                         break;                                                                                                                 
                     case "name":
-                        this.name = node.getValue();
+                        this.name = node.Value;
                         break;
                     case "ctype":
-                        this.ctype = setCtype(node.getValue());
+                        this.ctype = setCtype(node.Value);
                         break;
                     case "tls":
-                        bool.TryParse(node.getValue(), out tls);
+                        bool.TryParse(node.Value, out tls);
                         break;
                     case "plugins":
-                        bool.TryParse(node.getValue(), out plugins);
+                        bool.TryParse(node.Value, out plugins);
                         break;
                     case "seckey":
-                        this.secKey = node.getValue();
+                        this.secKey = node.Value;
                         break;
                     case "service":
                         stype = node.getAttibuteV("name");
                         break;
                     case "FileTransfert":
-                        bool.TryParse(node.getValue(), out fileTransfert);
+                        bool.TryParse(node.Value, out fileTransfert);
                         break;
                     case "database":
                         //setDatabase(node);
@@ -923,98 +949,122 @@ namespace NTK
         /// Port TCP
         /// </summary>
         public int Port {get => port; set {     if (!run) { port = value; }   }}
+        
         /// <summary>
         /// 
         /// </summary>
         public string Name { get => name; set => name = value; }
+        
         /// <summary>
         /// Nom du service
         /// </summary>
         public string Stype { get => stype; set => stype = value; }
+        
         /// <summary>
         /// Service 
         /// </summary>
         public NTKService Service { get => service; }
+        
         /// <summary>
         /// Type de connection (authentification)
         /// </summary>
         public CTYPE Ctype { get => ctype; set => ctype = value; }
+        
         /// <summary>
         /// Chiffrement de la communication
         /// </summary>
         public bool Tls { get => tls; set => tls = value; }
+        
         /// <summary>
         /// Si les plugins sont tolérés
         /// </summary>
         public bool Plugins { get => plugins; set => plugins = value; }
+        
         /// <summary>
         /// Liste des tokens
         /// </summary>
         public List<Token> Tokenlist { get => tokenlist; }
+        
         /// <summary>
         /// 
         /// </summary>
         public List<string> StopCodes { get => stopCodes; }
+        
         /// <summary>
         /// 
         /// </summary>
         public List<NTKUser> Userlist { get => userlist; set => userlist = value; }
+        
         /// <summary>
         /// Connexion à une base de données
         /// </summary>
         public NTKDatabase Database { get => database; set => database = value; }
+        
         /// <summary>
         /// Chemin vers la configuration
         /// </summary>
         public string Confpath { get => confpath; set => confpath = value; }
+        
         /// <summary>
         /// Algorithme de chiffrement assymétrique
         /// </summary>
         public NTKRsa Rsa { get => rsa; }
+        
         /// <summary>
         /// Clée de sécurité
         /// </summary>
         public string SecKey { get => secKey; set => secKey = value; }
+        
         /// <summary>
         /// Mettre en pause le serveur
         /// </summary>
         public bool Pause { get => pause; set => pause = value; }
+        
         /// <summary>
         /// Arret du serveur
         /// </summary>
         public bool Stop { get => stop; set => stop = value; }
+        
         /// <summary>
         /// Configuration
         /// </summary>
         public XmlDocument Config { get => config; }
+        
         /// <summary>
         /// Services externes
         /// </summary>
         public List<NTKService> ExtServices { get => extServices; set => extServices = value; }
+        
         /// <summary>
         /// 
         /// </summary>
         public Log_NTK Logs { get => logs; set => logs = value; }
+        
         /// <summary>
         /// Si le serveur doit envoyer une entête NTK avant d'executer le service
         /// </summary>
         public bool Header { get => header; set => header = value; }
+        
         /// <summary>
         /// Si le serveur est lancé
         /// </summary>
         public bool Run { get => run;}
+        
         /// <summary>
         /// Liste des classes (externes) de connection à une base de données 
         /// </summary>
         public List<NTKDatabase> ExtDatabase { get => extDatabase; set => extDatabase = value; }
+        
         /// <summary>
         /// Liste des classes (externes) de chiffrement
         /// </summary>
         public List<IEncryptor> ExtEncryptor { get => extEncryptor; set => extEncryptor = value; }
+        
         /// <summary>
         /// Plugins
         /// </summary>
         public List<IBasePlugin> ExtPlugins { get => extPlugins; set => extPlugins = value; }
+        
         /// <summary>
         /// Si le transfert de fichiers est toléré
         /// </summary>

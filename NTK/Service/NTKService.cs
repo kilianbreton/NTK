@@ -78,6 +78,9 @@ namespace NTK.Service
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private ServiceConfig config;
+        /// <summary>
+        /// Liste des utilisateurs
+        /// </summary>
         protected List<NTKUser> userlist;
         protected NTKDatabase db;
         protected List<Entity> entities;
@@ -162,7 +165,7 @@ namespace NTK.Service
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// 
+        /// Méthode permettant d'attendre la fin d'une commande séparée
         /// </summary>
         /// <param name="startCommand"></param>
         /// <param name="endString"></param>

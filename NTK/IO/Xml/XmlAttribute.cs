@@ -12,18 +12,20 @@ namespace NTK.IO.Xml
     public class XmlAttribute
     {
         private String name;
-        private String value;
+        private object value;
         
         /// <summary>
         /// Création d'un attribut
         /// </summary>
         /// <param name="name"></param>
         /// <param name="value"></param>
-        public XmlAttribute(string name, string value)
+        public XmlAttribute(string name, object value)
         {
             this.name = name;
             this.value = value;
         }
+
+
         /// <summary>
         /// Nom
         /// </summary>
@@ -31,6 +33,18 @@ namespace NTK.IO.Xml
         /// <summary>
         /// Valeur
         /// </summary>
-        public string Value { get => value; set => this.value = value; }
+        public string Value { get => (string)value; set => this.value = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool BValue { get => (bool)value; set => this.value = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public long NValue { get => (long)value; set => this.value = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public object OValue { get => value; set => this.value = value; }
     }
 }

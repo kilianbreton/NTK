@@ -384,6 +384,7 @@ namespace NTK.Service
         public override void c_listen(NTKUser user,String cmd)
         {
      //       String cmd = user.readMsg();
+            
             String tempDataSql = "";
             if (cmd.Contains("/GA_") && cmd.Contains(SPV))
             {

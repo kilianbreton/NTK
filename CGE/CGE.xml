@@ -317,10 +317,17 @@
         </member>
         <member name="T:CGE.OUT.DataGrid">
             <summary>
-            
+            Tableau de données
             </summary>
         </member>
         <member name="M:CGE.OUT.DataGrid.#ctor(System.String[0:,0:],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="grid"></param>
+            <param name="header"></param>
+        </member>
+        <member name="M:CGE.OUT.DataGrid.#ctor(System.String[][],System.Boolean)">
             <summary>
             
             </summary>
@@ -349,6 +356,16 @@
             
             </summary>
             <param name="bad"></param>
+        </member>
+        <member name="P:CGE.OUT.DataGrid.MaxLength">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CGE.OUT.DataGrid.Startleftpos">
+            <summary>
+            
+            </summary>
         </member>
     </members>
 </doc>

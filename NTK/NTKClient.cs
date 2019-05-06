@@ -1,23 +1,4 @@
-﻿/*************************************************************************************
- * NTK - Network Transport Kernel                                                    *
- * Client Class                                                                      *
- * ----------------------------------------------------------------------------------*
- *                                                                                   *
- * LICENSE: This program is free software: you can redistribute it and/or modify     *
- * it under the terms of the GNU General Public License as published by              *
- * the Free Software Foundation, either version 3 of the License, or                 *
- * (at your option) any later version.                                               *
- *                                                                                   *
- * This program is distributed in the hope that it will be useful,                   *
- * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
- * GNU General Public License for more details.                                      *
- *                                                                                   *
- * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.             *
- *                                                                                   *
- * ----------------------------------------------------------------------------------*/
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -144,7 +125,8 @@ namespace NTK
         private String pass;
         private Log_NTK logs;
         private USER_LVL lvl;
-
+        private bool autoListen = true;
+       
         //Listes (Plugins)
         private List<IEncryptor> extEncryptors = new List<IEncryptor>();
         private List<NTKService> extServices = new List<NTKService>();
@@ -208,7 +190,9 @@ namespace NTK
                     User.Pass=Pass;
                     User.Seckey=Seckey;
                     OnConnect(new OnConnectEventArgs(System.Data.ConnectionState.Open));
-                    listenLoop(User);
+                    if(autoListen)
+                        listenLoop(User);
+
                     if (user.IsBad)
                     {
 
@@ -387,6 +371,7 @@ namespace NTK
                 catch (Exception e)
                 {
                     OnError(new OnErrorEventArgs("Exception", e.ToString()));
+                    Console.WriteLine(e.ToString());
                 }
             }
         }
@@ -425,7 +410,6 @@ namespace NTK
             addLogs(LogsTypes.NOTICE, "send file :  " + path);
             user.sendFile(path);
         }
-
 
         /// <summary>
         /// 
@@ -833,5 +817,6 @@ namespace NTK
         /// Liste des services externe
         /// </summary>
         public List<NTKService> ExtServices { get => extServices; set => extServices = value; }
+        public bool AutoListen { get => autoListen; set => autoListen = value; }
     }
 }

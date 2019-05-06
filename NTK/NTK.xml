@@ -4,6 +4,36 @@
         <name>NTK</name>
     </assembly>
     <members>
+        <member name="T:NTK.Api.BasicApiClient">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Api.BasicApiClient.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="key"></param>
+        </member>
+        <member name="M:NTK.Api.BasicApiClient.#ctor(System.Uri,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="address"></param>
+            <param name="key"></param>
+        </member>
+        <member name="M:NTK.Api.BasicApiClient.test">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NTK.Api.BasicApiClient.readObject(Newtonsoft.Json.Linq.JToken)">
+            <summary>
+            recursive reader
+            </summary>
+            <param name="obj"></param>
+        </member>
         <member name="T:NTK.BlockChain.Block`1">
             <summary>
             
@@ -171,6 +201,13 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.groupBy(System.String[])">
+            <summary>
+            Ajout d'un group by
+            </summary>
+            <param name="columns"></param>
+            <returns></returns>
+        </member>
         <member name="M:NTK.Database.ORM.Core.QueryBuilder`1.getQuery">
             <summary>
             Récupération de la requête
@@ -205,6 +242,11 @@
             </summary>
             <param name="origin"></param>
             <param name="tryedState"></param>
+        </member>
+        <member name="T:NTK.Database.QueryResult">
+            <summary>
+            Encapsulation de l'interface IDataReader
+            </summary>
         </member>
         <member name="T:NTK.Database.DBSType">
             <summary>
@@ -1089,6 +1131,17 @@
             Message
             </summary>
         </member>
+        <member name="T:NTK.Exceptions.AuthentificationUndefinedException">
+            <summary>
+            Erreur de sélection de la méthode d'authentification
+            </summary>
+        </member>
+        <member name="M:NTK.Exceptions.AuthentificationUndefinedException.#ctor(System.String)">
+            <summary>
+            Constructeur
+            </summary>
+            <param name="serviceName"></param>
+        </member>
         <member name="T:NTK.IO.DllLoader">
             <summary>
             Charge des instance de classe dans des librairies de manière dynamique
@@ -1366,8 +1419,11 @@
         </member>
         <member name="T:NTK.IO.Ini.IniDocument">
             <summary>
-            
+            Représente un fichier INI
             </summary>
+        </member>
+        <member name="F:NTK.IO.Ini.IniDocument.groups">
+            PROPRIETES ///////////////////////////////////////////////////////////////////////////////////////////////////
         </member>
         <member name="M:NTK.IO.Ini.IniDocument.#ctor(System.String,System.Boolean)">
             <summary>
@@ -1375,6 +1431,11 @@
             </summary>
             <param name="textOrPath"></param>
             <param name="isPath"></param>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.#ctor">
+            <summary>
+            Création d'un nouveau documlent ini en mémoire
+            </summary>
         </member>
         <member name="M:NTK.IO.Ini.IniDocument.isGroupExist(System.String)">
             <summary>
@@ -1406,6 +1467,45 @@
             <param name="name"></param>
             <returns></returns>
         </member>
+        <member name="M:NTK.IO.Ini.IniDocument.addValue(System.String,System.String)">
+            <summary>
+            Ajoute une valeur dans le document
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.addValue(NTK.IO.Ini.IniValue)">
+            <summary>
+            Ajoute une valeu dans le documlent
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.nextGroup">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.nextValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.getCurrentGrp">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniDocument.getCurrentValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:NTK.IO.Ini.IniDocument.print">
             <summary>
             
@@ -1417,7 +1517,18 @@
             Save File
             </summary>
         </member>
+        <member name="M:NTK.IO.Ini.IniDocument.save(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+        </member>
         <member name="P:NTK.IO.Ini.IniDocument.Groups">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Ini.IniDocument.Values">
             <summary>
             
             </summary>
@@ -1484,6 +1595,21 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:NTK.IO.Ini.IniGroup.addValue(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Ini.IniGroup.addValue(NTK.IO.Ini.IniValue)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="P:NTK.IO.Ini.IniGroup.Name">
             <summary>
             
@@ -1520,6 +1646,16 @@
         <member name="P:NTK.IO.Ini.IniValue.Value">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:NTK.IO.UnknowPathException">
+            <summary>
+            Chemin non défini
+            </summary>
+        </member>
+        <member name="M:NTK.IO.UnknowPathException.#ctor">
+            <summary>
+            Création
             </summary>
         </member>
         <member name="T:NTK.IO.InstallScript">
@@ -1638,24 +1774,31 @@
         </member>
         <member name="M:NTK.IO.Xml.XmlNode.haveAttributes">
             <summary>
-            
+            Permet de savoir si le noeud comporte des attributs
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.haveAttribute(System.String)">
+            <summary>
+            Permet de savoir si le noeud comporte des attributs nommés name
+            </summary>
+            <param name="name"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.IO.Xml.XmlNode.addAttribute(NTK.IO.Xml.XmlAttribute)">
             <summary>
-            
+            Ajoute un attribut à un noeud
             </summary>
             <param name="att"></param>
-            <returns></returns>
+            <returns>Le noeud auquel on ajoute un attribut</returns>
         </member>
         <member name="M:NTK.IO.Xml.XmlNode.addAttribute(System.String,System.String)">
             <summary>
-            
+            Ajoute un attribut à un noeud
             </summary>
             <param name="name"></param>
             <param name="value"></param>
-            <returns></returns>
+            <returns>Le noeud auquel on ajoute un attribut</returns>
         </member>
         <member name="M:NTK.IO.Xml.XmlNode.getAttribute(System.Int32)">
             <summary>
@@ -1711,6 +1854,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:NTK.IO.Xml.XmlNode.Item(System.Int32)">
+            <summary>
+            Obtient ou défini le noeud enfant d'index index
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlNode.Item(System.String)">
+            <summary>
+            Obtient ou défini le noeud enfant de nom name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="M:NTK.IO.Xml.XmlNode.getChild(System.Int32)">
             <summary>
             Ontient l'enfant n°id du noeud
@@ -1745,6 +1902,59 @@
             </summary>
             <param name="name"></param>
             <returns>(Stringà value</returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildBV(System.String)">
+            <summary>
+            Get boolean value of child
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildNV(System.String)">
+            <summary>
+            Get Numeric value of child
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.searchAllByName(System.String)">
+            <summary>
+            Recherche dans toute l'arboressence les noeuds de nom name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildsByAttribute(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="childName"></param>
+            <param name="attributeName"></param>
+            <param name="attributeValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildsByAttribute(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="attributeName"></param>
+            <param name="attributeValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildsByValue(System.String,System.String)">
+            <summary>
+            Recherche par valeur
+            </summary>
+            <param name="childname"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getChildsByValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
         </member>
         <member name="M:NTK.IO.Xml.XmlNode.addChild(NTK.IO.Xml.XmlNode)">
             <summary>
@@ -1782,7 +1992,14 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:NTK.IO.Xml.XmlNode.print">
+        <member name="M:NTK.IO.Xml.XmlNode.deleteAllChildLike(System.String)">
+            <summary>
+            Supprimer tous les noeuds de nom name
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.print(System.Int32)">
             <summary>
             Génère le noeud Xml
             </summary>
@@ -1812,15 +2029,49 @@
             </summary>
             <param name="value"></param>
         </member>
+        <member name="M:NTK.IO.Xml.XmlNode.setValue(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.setValue(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+        </member>
         <member name="M:NTK.IO.Xml.XmlNode.getValue">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="P:NTK.IO.Xml.XmlNode.Attributs">
+        <member name="M:NTK.IO.Xml.XmlNode.getBoolValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NTK.IO.Xml.XmlNode.getNumericValue">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlNode.Attributes">
             <summary>
             Liste des attributs
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlNode.Value">
+            <summary>
+            Valeur
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlNode.Name">
+            <summary>
+            Nom
             </summary>
         </member>
         <member name="T:NTK.IO.Xml.XmlDocument">
@@ -1862,6 +2113,13 @@
             <summary>
             
             </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlDocument.Item(System.String)">
+            <summary>
+            Obtient l'enfant de nom name
+            </summary>
+            <param name="name"></param>
             <returns></returns>
         </member>
         <member name="M:NTK.IO.Xml.XmlDocument.getNode(System.Int32)">
@@ -1932,7 +2190,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:NTK.IO.Xml.XmlDocument.save">
+        <member name="M:NTK.IO.Xml.XmlDocument.save(System.Boolean)">
             <summary>
             Save File
             </summary>
@@ -1942,7 +2200,7 @@
             Attribut XML
             </summary>
         </member>
-        <member name="M:NTK.IO.Xml.XmlAttribute.#ctor(System.String,System.String)">
+        <member name="M:NTK.IO.Xml.XmlAttribute.#ctor(System.String,System.Object)">
             <summary>
             Création d'un attribut
             </summary>
@@ -1957,6 +2215,21 @@
         <member name="P:NTK.IO.Xml.XmlAttribute.Value">
             <summary>
             Valeur
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlAttribute.BValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlAttribute.NValue">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:NTK.IO.Xml.XmlAttribute.OValue">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:NTK.Identification">
@@ -2662,6 +2935,21 @@
             Onglet
             </summary>
         </member>
+        <member name="F:NTK.Plugins.PluginType.SERVICE">
+            <summary>
+            Service
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.PluginType.ENCRYPTOR">
+            <summary>
+            Algorithme de chiffrement
+            </summary>
+        </member>
+        <member name="F:NTK.Plugins.PluginType.DATABASE">
+            <summary>
+            Classe de connexion à une base de données
+            </summary>
+        </member>
         <member name="T:NTK.Plugins.FieldMenu">
             <summary>
             Section menu
@@ -3122,6 +3410,11 @@
             
             </summary>
         </member>
+        <member name="F:NTK.Service.NTKService.userlist">
+            <summary>
+            Liste des utilisateurs
+            </summary>
+        </member>
         <member name="M:NTK.Service.NTKService.#ctor(NTK.Service.ServiceConfig,System.Collections.Generic.List{NTK.NTKUser})">
             <summary>
             Initialisation d'un service avec configuration et la liste des utilisateurs
@@ -3179,7 +3472,7 @@
         </member>
         <member name="M:NTK.Service.NTKService.waitEndCommand(System.String,System.String,NTK.NTKUser)">
             <summary>
-            
+            Méthode permettant d'attendre la fin d'une commande séparée
             </summary>
             <param name="startCommand"></param>
             <param name="endString"></param>

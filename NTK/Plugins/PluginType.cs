@@ -23,6 +23,17 @@ namespace NTK.Plugins
         /// Onglet
         /// </summary>
         TAB,
-
+        /// <summary>
+        /// Service
+        /// </summary>
+        SERVICE,
+        /// <summary>
+        /// Algorithme de chiffrement
+        /// </summary>
+        ENCRYPTOR,
+        /// <summary>
+        /// Classe de connexion à une base de données
+        /// </summary>
+        DATABASE,
     }
 }

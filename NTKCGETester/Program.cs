@@ -15,9 +15,7 @@ using System.Security.Cryptography;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Formatters.Soap;
-//ServiceDll
-using ServiceTest;
-//CGE
+//cge
 using CGE.IN;
 using CGE.OUT;
 //NTK
@@ -33,6 +31,7 @@ using NTK.IO.Html;
 using NTK.IO.IS;
 using NTK.IO.Ini;
 using NTK.Security;
+using NTK.Api;
 using static NTK.Other.NTKF;
 
 
@@ -42,36 +41,27 @@ namespace NTKCGETester
     {
         static void Main(string[] args)
         {
-            
-            var obj = new MVisiteur("k98", "KBreton", "Breton", "Kilian", "Combrit", new Labo("FD5","Bichat"));
-            var ser = new EntitySerializer<MVisiteur>();
-            var table = ser.getDBS();
-            Console.WriteLine(table.print());
-            /*
-            //Opens a file and serializes the object into it in binary format.
-            Stream stream = File.Open(@"D:\data.xml", FileMode.Create);
-            SoapFormatter formatter = new SoapFormatter();
 
-            //BinaryFormatter formatter = new BinaryFormatter();
-            formatter.FilterLevel = System.Runtime.Serialization.Formatters.TypeFilterLevel.Full;
-            formatter.Serialize(stream, obj);
-            formatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Full;
-            stream.Close();
-          
-            var testAn = typeof(MVisiteur).GetCustomAttribute<Table>();
-            Console.WriteLine("--" + testAn.Name + "--");
-            var fields = typeof(MVisiteur).GetMembers(BindingFlags.NonPublic | BindingFlags.Instance);
-            foreach(MemberInfo m in fields)
-            {
-                Console.WriteLine("-" + m.Name);
-                foreach(var a in m.GetCustomAttributes<Column>())
-                {
-                    Console.WriteLine(" -" + a.ColumnName + " : " + a.Type);
-                   
-                    
-                }
-            }
-              */
+            XmlDocument doc = new XmlDocument();
+
+            doc[0]["logs"]["xmlrpc"].addAttribute("path", "D:\\log.txt");
+            doc.getNode(0).getChild("logs").getChild("xmlrpc").Attributes.Add(new XmlAttribute("path", "D:\\log.txt"));
+
+            string value = "";
+            value = doc[0].Value;
+            value = doc[0].getValue();
+
+            value = doc[0]["child"].Value;
+            value = doc[0].getChildV("child");
+
+
+
+
+            doc.addNode("1").addChild("2").addChild("3","yo");
+            doc[0].addChild("1");
+            Console.Write(doc.print());
+
+
             Console.ReadKey();
         }
 

@@ -1,23 +1,4 @@
-﻿/*************************************************************************************
- * NTK - Network Transport Kernel                                                    *
- * IniDocument Class                                                                      *
- * ----------------------------------------------------------------------------------*
- *                                                                                   *
- * LICENSE: This program is free software: you can redistribute it and/or modify     *
- * it under the terms of the GNU General Public License as published by              *
- * the Free Software Foundation, either version 3 of the License, or                 *
- * (at your option) any later version.                                               *
- *                                                                                   *
- * This program is distributed in the hope that it will be useful,                   *
- * but WITHOUT ANY WARRANTY; without even the implied warranty of                    *
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                     *
- * GNU General Public License for more details.                                      *
- *                                                                                   *
- * You should have received a copy of the GNU General Public License                 *
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.             *
- *                                                                                   *
- * ----------------------------------------------------------------------------------*/
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,12 +9,23 @@ using static NTK.Other.NTKF;
 namespace NTK.IO.Ini
 {
     /// <summary>
-    /// 
+    /// Représente un fichier INI
     /// </summary>
     public class IniDocument
     {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// PROPRIETES ///////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         private List<IniGroup> groups = new List<IniGroup>();
+        private List<IniValue> values = new List<IniValue>();
         private String path;
+        private int indexGroup = -1;
+        private int indexValue = -1;
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // CONSTRUCTEURS ////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// 
@@ -72,7 +64,15 @@ namespace NTK.IO.Ini
 
 
         }
-    
+
+        /// <summary>
+        /// Création d'un nouveau documlent ini en mémoire
+        /// </summary>
+        public IniDocument() { }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // METHODES /////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// Recherche si un groupe éxiste
@@ -136,13 +136,78 @@ namespace NTK.IO.Ini
         }
       
         /// <summary>
+        /// Ajoute une valeur dans le document
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public IniDocument addValue(String name, String value)
+        {
+            this.values.Add(new IniValue(name, value));
+            return this;
+        }
+
+        /// <summary>
+        /// Ajoute une valeu dans le documlent
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public IniDocument addValue(IniValue value)
+        {
+            this.values.Add(value);
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool nextGroup()
+        {
+            return (++indexGroup < groups.Count);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool nextValue()
+        {
+            return (++indexValue < values.Count);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IniGroup getCurrentGrp()
+        {
+            return groups[indexGroup];
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IniValue getCurrentValue()
+        {
+            return values[indexValue];
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
         public String print()
         {
             String ret = "";
-            foreach(IniGroup grp in groups)
+
+            foreach (IniValue val in values)
+            {
+                ret += val.print() + "\n";
+            }
+
+            foreach (IniGroup grp in groups)
             {
                 ret += grp.print() + "\n";
             }
@@ -155,17 +220,44 @@ namespace NTK.IO.Ini
         /// </summary>
         public void save()
         {
+            if (path != null)
+            {
+                var strm = File.Create(path);
+                var sw = new StreamWriter(strm);
+                sw.WriteLine(this.print());
+                sw.Flush();
+            }
+            else
+            {
+                throw new UnknowPathException();
+            }
+        }
+     
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        public void save(String path)
+        {
+            this.path = path;
             var strm = File.Create(path);
             var sw = new StreamWriter(strm);
             sw.WriteLine(this.print());
             sw.Flush();
         }
-
-        
+       
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // GETTER ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         /// <summary>
         /// 
         /// </summary>
         public List<IniGroup> Groups { get => groups; set => groups = value; }
+      
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<IniValue> Values { get => values; set => values = value; }
     }
 }

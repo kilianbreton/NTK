@@ -8,7 +8,7 @@ using static System.Console;
 namespace CGE.OUT
 {
     /// <summary>
-    /// 
+    /// Tableau de données
     /// </summary>
     public class DataGrid : CGEObject
     {
@@ -30,9 +30,31 @@ namespace CGE.OUT
             OutputEncoding = Encoding.Unicode;
         }
 
-        public int[] MaxLength { get => maxLength; set => maxLength = value; }
-        public int Startleftpos { get => startleftpos; set => startleftpos = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="header"></param>
+        public DataGrid(String[][] grid, bool header = false)
+        {
+            this.grid = new string[grid.GetLength(0),grid[0].Length];
+            int i = 0;
+            foreach (String[] g in grid)
+            {
+                int x = 0;
+                foreach(String s in g)
+                {
+                    this.grid[i, x] = s;
+                    x++;
+                }
+                i++;
+            }
+            this.header = header;
+            OutputEncoding = Encoding.Unicode;
+        }
+   
 
+      
         /// <summary>
         /// 
         /// </summary>
@@ -137,7 +159,6 @@ namespace CGE.OUT
             return "0";
         }
 
-      
         /// <summary>
         /// 
         /// </summary>
@@ -146,5 +167,16 @@ namespace CGE.OUT
         {
             
         }
+        
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int[] MaxLength { get => maxLength; set => maxLength = value; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Startleftpos { get => startleftpos; set => startleftpos = value; }
+
     }
 }

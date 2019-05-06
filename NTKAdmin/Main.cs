@@ -102,7 +102,7 @@ namespace NTKAdmin
 
      
 
-        private void launchClient()
+        private async void launchClient()
         {
             client.Connect += new OnConnectEventHandler(client_connect);
             client.GetService += new OnGetServiceEventHandler(client_getservice);
@@ -110,8 +110,9 @@ namespace NTKAdmin
             client.Error += new OnErrorEventHandler(client_error);
             client.Stop += new OnStopEventHandler(client_stop);
             client.Logs = Log_NTK.getInstance(@"Logs\NTKClient.log");
-            clientThread = new Thread(client.connect);
-            clientThread.Start();
+            await client.connectAsync();
+            // clientThread = new Thread(client.connect);
+            //clientThread.Start();
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -214,14 +215,14 @@ namespace NTKAdmin
         //TODO :    Ajouter évènement touche clavier
         //          pour récupération des cmd précédentes  
        
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            sendMsg();
+            await sendMsg();
         }
 
-        private void b_console_Click(object sender, EventArgs e)
+        private async void b_console_Click(object sender, EventArgs e)
         {
-            sendMsg();
+            await sendMsg();
         }
 
         private void fenêtreToolStripMenuItem_Click(object sender, EventArgs e)
@@ -269,9 +270,9 @@ namespace NTKAdmin
             }
         }
 
-        private void sendMsg()
+        private async Task sendMsg()
         {
-            client.User.writeMsg(flatTextBox1.Text);
+            await client.User.writeMsgAsync(flatTextBox1.Text);
             cmdlst.Add(flatTextBox1.Text);
             cmdId = cmdlst.Count;
             flatTextBox1.Text = "";

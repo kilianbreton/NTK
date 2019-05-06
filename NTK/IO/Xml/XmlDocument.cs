@@ -34,6 +34,11 @@ namespace NTK.IO.Xml
             String text;
             if (ispath)
             {
+                if (!File.Exists(pathortext))
+                {
+                    var stream = File.Create(pathortext);
+                    stream.Close(); 
+                }
                 text = System.IO.File.ReadAllText(pathortext);
                 this.path = pathortext;
             }
@@ -109,11 +114,35 @@ namespace NTK.IO.Xml
             return nodelist.Count;
         }
     
+
+        public XmlNode this[int index]
+        {
+            get
+            {
+                return this.getNode(index);
+            }
+        }
+
         /// <summary>
-       /// 
-       /// </summary>
-       /// <param name="id"></param>
-       /// <returns></returns>
+        /// Obtient l'enfant de nom name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public XmlNode this[string name]
+        {
+            get
+            {
+                return this.getNode(name);
+            }
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public XmlNode getNode(int id)
         {
             XmlNode ret;
@@ -252,9 +281,10 @@ namespace NTK.IO.Xml
         /// 
         /// </summary>
         /// <param name="path"></param>
+        [Obsolete("write est obsolete ustilisez : save()")]
         public void write(String path)
         {
-            System.IO.File.WriteAllText(path, print());
+            File.WriteAllText(path, print());
         }
   
         /// <summary>
@@ -288,12 +318,29 @@ namespace NTK.IO.Xml
         /// <summary>
         /// Save File
         /// </summary>
-        public void save()
+        public void save(bool close = true)
+        {
+            if (path == null)
+                throw new UnknowPathException();
+
+            var strm = File.Create(path);
+            var sw = new StreamWriter(strm);
+            sw.WriteLine(this.print());
+            sw.Flush();
+
+            if (close)
+                sw.Close();
+        }
+
+        public void saveAs(string path, bool close = true)
         {
             var strm = File.Create(path);
             var sw = new StreamWriter(strm);
             sw.WriteLine(this.print());
             sw.Flush();
+
+            if (close)
+                sw.Close();
         }
     }
 }
